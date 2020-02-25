@@ -1,0 +1,62 @@
+.analyzeContainer {
+	display: grid;
+	grid-column-gap: 20px;
+	grid-row-gap: 15px;
+	grid-template-columns: minmax(600px,1fr) minmax(600px,1fr);
+  	grid-template-rows:  minmax(600px,1fr)  70px;
+  	margin-right: 10px;
+    margin-left: 10px;
+}
+
+.analyzeTables {
+	grid-column: 1;
+	grid-row: 1;	
+}
+
+.analyzeCharts {
+	grid-column: 2;
+	grid-row: 1 ;	
+}
+
+.analyzeDates {
+	grid-column: 1 / span 2;
+	grid-row: 2 ;	
+}
+
+
+p {
+    margin-bottom: 0rem;
+}
+
+.form-control {
+    padding: .0rem .15rem;
+    margin-top: .25rem;
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: .75rem;
+}
+.table th {
+	padding: 0;
+    vertical-align: top;
+    font-weight: 400px;
+}
+.table td {
+    padding: .1rem;
+    vertical-align: top;
+}
+
+.card-body {
+    padding: .75rem;
+}
+
+.padBottom {
+   margin-left: 10px;
+   margin-bottom: 10px;
+}
+
+td {
+	padding: 1px;
+}

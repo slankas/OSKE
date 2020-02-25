@@ -1,0 +1,53 @@
+# Name: openke_ms_scraper
+# Purpose: Extracts microformat data (http://microformats.org/) from html pages
+#
+# Version: 1.0
+# History
+# 20190508 Initial version.  Using example from https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md
+#
+# Build Command: (execute from this current directory)
+#     docker build -t="openke_ms_scraper" -f dockerfile  .
+#
+# Executing (as standalone)
+#     docker run -d --init --cap-add=SYS_ADMIN -p 9011:3000 --name scraper openke_ms_scraper
+#     curl -d '{"url":"url to crawl","waitFor":"css selector to find on page"}' -H "Content-Type: application/json" -X POST http://localhost:9011/crawl
+#
+FROM node:12-slim
+
+# Install latest chrome dev package and fonts to support major charsets (Chinese, Japanese, Arabic, Hebrew, Thai and a few others)
+# Note: this installs the necessary libs to make the bundled version of Chromium that Puppeteer
+# installs, work.
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
+    && apt-get update \
+    && apt-get install -y google-chrome-unstable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst ttf-freefont \
+      --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY . /root/install/MicroServices
+RUN mkdir /opt/scraper && \
+    cp /root/install/MicroServices/* /opt/scraper
+
+WORKDIR /opt/scraper
+
+# Install puppeteer so it's available in the container.
+RUN npm install \
+    # Add user so we don't need --no-sandbox.
+    # same layer as npm install to keep re-chowned files from using up several hundred MBs more space
+    && groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
+    && mkdir -p /home/pptruser/Downloads \
+    && chown -R pptruser:pptruser /home/pptruser \
+    && chown -R pptruser:pptruser /opt/scraper
+
+RUN cd /opt/scraper/node_modules/puppeteer/.local-chromium/linux-*/chrome-linux/ && \
+    chown root:root chrome_sandbox && \
+    chmod 4755 chrome_sandbox && \
+    cp -p chrome_sandbox /usr/local/sbin/chrome_devel-sandbox
+
+ENV CHROME_DEVEL_SANDBOX=/usr/local/sbin/chrome_devel-sandbox
+
+# Run everything after as non-privileged user.
+USER pptruser
+
+ENTRYPOINT ["node","app.js"]
+EXPOSE 3000

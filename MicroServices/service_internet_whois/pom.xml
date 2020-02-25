@@ -1,0 +1,110 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>edu.ncsu.las</groupId>
+  <artifactId>service.internet.siteInfo</artifactId>
+  <version>0.0.1</version>
+  <name>Domain Site Info</name>
+  
+  	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	   <maven.compiler.source>1.8</maven.compiler.source>
+	   <maven.compiler.target>1.8</maven.compiler.target>
+	   <maven.test.skip>true</maven.test.skip>
+	    <maven.build.timestamp.format>yyyyMMdd'T'HHmm'Z'</maven.build.timestamp.format>
+	    <jersey.version>2.25</jersey.version>
+	</properties>
+   
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.glassfish.jersey</groupId>
+                <artifactId>jersey-bom</artifactId>
+                <version>${jersey.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-grizzly2-http</artifactId>
+        </dependency>
+         
+		 <dependency>
+		    <groupId>org.glassfish.jersey.media</groupId>
+		    <artifactId>jersey-media-json-jackson</artifactId>
+		</dependency>   
+
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20160810</version>
+    	</dependency> 
+    	
+    	<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>24.1-jre</version>
+		</dependency>
+    
+    	<!-- replacement for junit: http://testng.org -->
+		<dependency>
+		  <groupId>org.testng</groupId>
+		  <artifactId>testng</artifactId>
+		  <version>6.14.2</version>
+		  <scope>test</scope>
+		</dependency>
+       
+		<dependency>
+		    <groupId>commons-net</groupId>
+		    <artifactId>commons-net</artifactId>
+		    <version>3.6</version>
+		</dependency>
+		
+		<dependency>
+ 			<groupId>edu.ncsu.las</groupId>
+ 			<artifactId>LAS-Common</artifactId>
+ 			<version>0.0.1</version>
+ 		</dependency>
+		
+    </dependencies>
+
+  
+  <build>
+  <plugins>
+    <plugin>
+      <artifactId>maven-assembly-plugin</artifactId>
+      <configuration>
+        <archive>
+          <manifest>
+            <mainClass>fully.qualified.MainClass</mainClass>
+          </manifest>
+          <manifestEntries>
+             <Build-Time>${maven.build.timestamp}</Build-Time>
+          </manifestEntries>
+        </archive>
+        <descriptorRefs>
+          <descriptorRef>jar-with-dependencies</descriptorRef>
+        </descriptorRefs>
+      </configuration>
+    </plugin>
+    <plugin>
+    	<artifactId>maven-jar-plugin</artifactId>
+	    <version>2.2</version>
+    	<configuration>
+        	<archive>
+            	<manifestEntries>
+                	<CollectorBuildTime>${maven.build.timestamp}</CollectorBuildTime>
+            	</manifestEntries>
+        	</archive>
+    	</configuration>
+	</plugin>
+  </plugins>
+</build>
+  
+ 
+  
+</project>

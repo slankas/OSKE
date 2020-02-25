@@ -1,0 +1,43 @@
+version: '3.7'
+services:
+  database:
+    image: postgres:11.2
+    container_name: database
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: MUST_CHANGE_PASSWORD
+      POSTGRES_USER: openke_user
+      POSTGRES_DB: openke_db
+    volumes:
+      - ../../database:/var/lib/postgresql/data
+    networks:
+      - openke
+    ports:
+      - 5432:5432
+
+  elasticsearch:
+    image: elasticsearch:7.0.0
+    container_name: elasticsearch
+    restart: always
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65534
+        hard: 65536
+
+    volumes:
+      - ../../elasticsearch:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - openke
+
+networks:
+  openke:

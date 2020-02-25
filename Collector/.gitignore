@@ -1,0 +1,11 @@
+target/**
+allCountries.zip
+allCountries.txt
+indexDirectory*/**
+IndexDirectory*/
+/target/
+*.temp
+/.ftpCache
+PubMedImportApp.running
+sql/local_setup.sql
+system_properties.json

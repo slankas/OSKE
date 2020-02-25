@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Relation Graph</title>
+	<meta charset="utf-8">
+	<style>
+		html, body {
+		   height: 100%;
+		   width: 100%;
+		   margin: 0;
+		   padding: 0;
+		   font-family: arial;
+		}
+	    #d3_selectable_force_directed_graph {
+	    	height: calc(98vh - 40px);
+	    	width:98vw;
+	    	margin: 12px 12px 12px 12px;
+	   	}
+	</style>
+	<link rel='stylesheet' href='d3v4-selectable-zoomable-force-directed-graph.css'>
+	<script src="https://d3js.org/d3.v4.js"></script>
+	<script src="d3v4-brush-lite.js"></script>
+	<script src="d3v4-selectable-force-directed-graph.js"></script>
+</head>
+
+<body>
+<div class="ui-widget" style ="margin: 10px 0px 0px 12px">
+    Find Nodes: 
+    <input id="search">
+    <button type="button" onclick="searchNode()">Search</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     Find Relations: 
+    <input id="relationSearch">
+    <button type="button" onclick="searchRelations()">Search</button>
+</div>
+	<div align='center' id="d3_selectable_force_directed_graph" >
+	    <svg></svg>
+	</div>
+</body>
+<script>
+var graphData = opener.RecordLevelAnalytics.getGraphRelationData();
+var svg = d3.select('#d3_selectable_force_directed_graph');
+var myGraph = createV4SelectableForceDirectedGraph(svg, graphData);
+
+document.getElementById('search').addEventListener('keyup',searchEnterKey,false)
+document.getElementById('relationSearch').addEventListener('keyup',searchRelationEnterKey,false)
+
+function searchEnterKey() {
+	if (event.keyCode == 13) {
+		searchNode();
+	}
+	return false;
+}
+
+function searchRelationEnterKey() {
+	if (event.keyCode == 13) {
+		searchRelations();
+	}
+	return false;
+}
+
+function searchNode() {
+	var searchValue = document.getElementById('search').value;
+	var searchRegex = new  RegExp(searchValue, 'i')
+	
+	myGraph.node.each(function(d) {
+		if (searchRegex.test(d.id)) {
+			d.selected = true;
+		}
+	});
+	
+	myGraph.highlightNodes();
+	return false;
+}
+
+function searchRelations() {
+	var searchValue = document.getElementById('relationSearch').value;
+	var searchRegex = new  RegExp(searchValue, 'i')
+	
+	myGraph.link.each(function(d) {
+		if (searchRegex.test(d.label)) {
+			d.source.selected = true;
+			d.target.selected = true;
+		}
+	});
+	
+	myGraph.highlightNodes();
+	return false;
+}
+
+</script>
+</html>
+
+
+

@@ -1,0 +1,22 @@
+#catdiv {
+	margin-top:25px;
+	/*border: thin solid black;*/
+	margin-left:10px;
+}
+
+#conceptArea {
+	/*margin-top: 25px;*/
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-top: 10px; 
+	/*border: thin solid black;*/
+
+}
+
+.icon-remove {
+    color: #BB0000;
+}
+
+#main {
+
+}

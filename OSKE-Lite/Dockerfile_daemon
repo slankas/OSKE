@@ -1,0 +1,42 @@
+# Name: las/collector
+# Purpose: daemon for the OpenKE system
+#
+# Version: 1.0
+# History
+# 20170405 Initial creation
+#
+# Build Command:
+#     docker build -t="openke_daemon" .
+#
+FROM openke_base as base
+
+FROM centos:7.5.1804
+#FROM openjdk:8u181-jdk
+RUN mkdir /opt/collector && \
+    mkdir /opt/collector/bin && \
+    mkdir /opt/collector/config && \
+    mkdir /opt/collector/lib && \
+    mkdir /openke && \
+    mkdir /openke/download && \
+    mkdir /openke/externalExport && \
+    mkdir /openke/upload_directory
+
+COPY --from=base /root/install/OpenKE/Collector/target/dependency/* /opt/collector/lib/
+COPY --from=base /root/install/OpenKE/Collector/target/Collector-0.0.2.jar /opt/collector/collector.jar
+COPY --from=base /root/install/OpenKE/Collector/system_properties.json.docker /opt/collector/config/system_properties.json
+COPY --from=base /root/install/OpenKE/Collector/sql/database_setup.sql /opt/collector/config/database_setup.sql
+COPY --from=base /root/install/OpenKE/Collector/sql/local_setup_docker.sql /opt/collector/config/local_setup.sql
+COPY --from=base /root/install/OpenKE/Collector/logging* /opt/collector/config/
+COPY --from=base /root/install/OpenKE/Collector/scripts/docker_start.sh /opt/collector/start.sh
+
+RUN chmod 775 /opt/collector/start.sh && \
+    groupadd -g 1000 -r collector && \
+    useradd -d /opt/collector -u 1000 -g collector collector
+RUN chown -R collector:collector /openke /opt/collector
+RUN yum install -y https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm
+RUN yum install -y postgresql10 java
+
+
+USER collector
+WORKDIR /opt/collector/config
+ENTRYPOINT ["/opt/collector/start.sh"]

@@ -1,0 +1,26 @@
+
+.newstape {
+  background-color: #ffffff;
+  color: #000000;
+  height: 400px;
+  overflow: hidden;
+}
+
+.newstape-content {
+  position: relative;
+  padding: 5px;
+}
+
+.newstape-drag { cursor: ns-resize; }
+
+.text-center { text-align: center; }
+
+.text-right { text-align: right; }
+
+.text-justify { text-align: justify; }
+
+/*.news-block strong { color: #666}*/
+
+#pauseButton { color: #999}
+
+#playButton { color: #999}

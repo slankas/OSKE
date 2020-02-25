@@ -1,0 +1,240 @@
+# This file brings up the necessary docker files to support OpenKE in a multi-server installation
+# (i.e., it is assumed that the database server, ElasticSearch, Kibana, daemon, and web application
+# are running separate from this docker-compose (versus the OpenKE-Lite compose file that defines those services as well)
+#
+# Note: The base image is included as several of the other services depend upon it being built.
+#       When the cluster of services is started (e.g.: docker-compose up -d), this service will start and then
+#       exit immediately
+#
+# Start services:
+#   cd <this directory>
+#   docker-compose up -d
+#
+# Stop services:
+#   cd <this direcotry>
+#   docker-compose down
+
+version: '3.7'
+services:
+  base:
+    image: openke_base
+    restart: "no"
+    build:
+      context: ..
+      dockerfile: MicroServices/base_images/Dockerfile_base
+    networks:
+      - openke
+
+  dbpedia-service:
+    image: dbpedia/spotlight-english
+    container_name: dbpedia-service
+    command: spotlight.sh
+    restart: always
+    ports:
+      - 2222:80
+    networks:
+      - openke
+
+  exif-service:
+    image: openke_ms_exif
+    container_name: exif-service
+    restart: always
+    build:
+      context: ../MicroServices/service_image_exif
+      dockerfile: Dockerfile
+    ports:
+      - 9001:9001
+    networks:
+      - openke
+
+  geo-service:
+    image: openke_ms_geotag
+    container_name: geo-service
+    restart: always
+    build:
+      context: ../MicroServices/service_text_geo_tagging
+      dockerfile: Dockerfile
+    environment:
+      SERVICE_URL: http://0.0.0.0:9001/geoTagger/
+      SERVICE_INDEX_DIRECTORY: /opt/clavin/index/IndexDirectory
+    ports:
+      - 9004:9001
+    networks:
+      - openke
+
+  geocode-service:
+    image: openke_ms_geocode
+    container_name: geocode-service
+    restart: always
+    build:
+      context: ../MicroServices/service_text_geo_coding
+      dockerfile: Dockerfile
+    environment:
+      APPLICATION_PROPERTIES: '{"geo_api":{"service_url":"http://0.0.0.0:9001/geo/","cacheSize":20000,"maxSleepTime":1000},"providers":[{"longitudeField":"lon","requestRate":1,"parentArray":"","name":"openStreetMap","latitudeField":"lat","userAgent":" IDENTENIFYING_EMAIL_ADDRESS","maxPerDay":86400,"restEndPoint":"http://nominatim.openstreetmap.org/search?format=json&q="},{"longitudeField":"lon","requestRate":1,"parentArray":"","name":"locationIQ","latitudeField":"lat","userAgent":" IDENTENIFYING_EMAIL_ADDRESS ","maxPerDay":10000,"restEndPoint":"https://locationiq.org/v1/search.php?key=LOCATION_IQ_KEY&format=json&q="}]}'
+    ports:
+      - 9002:9001
+    networks:
+      - openke
+
+  microformat-service:
+    image: openke_ms_microformat
+    container_name: microformat-service
+    restart: always
+    build:
+      context: ../MicroServices/service_html_microformat
+      dockerfile: Dockerfile
+    environment:
+      GUNICORN_WORKERS: 4
+      GUNICORN_ACCESSLOG: '-'
+    ports:
+      - 9009:8000
+    networks:
+      - openke
+
+
+  nlp-service:
+    image: openke_ms_nlp
+    container_name: nlp-service
+    restart: always
+    build:
+      context: ../MicroServices/service_text_nlp
+      dockerfile: Dockerfile
+    environment:
+      SERVICE_URL: http://0.0.0.0:9001/nlp/
+    ports:
+      - 9006:9001
+    networks:
+      - openke
+
+  scraper-service:
+    image: openke_ms_scraper
+    container_name: scraper-service
+    restart: always
+    build:
+      context: ../MicroServices/service_internet_scraper
+      dockerfile: Dockerfile
+    init: true
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - 9011:3000
+    networks:
+      - openke
+
+  spacy-service:
+    image: openke_ms_spacy
+    container_name: spacy-service
+    restart: always
+    build:
+      context: ../MicroServices/service_text_ner_spacy
+      dockerfile: Dockerfile
+    environment:
+      GUNICORN_WORKERS: 4
+      GUNICORN_ACCESSLOG: '-'
+    ports:
+      - 9012:8000
+    networks:
+      - openke
+
+  structural-service:
+    image: openke_ms_service_structural
+    container_name: structural-service
+    restart: always
+    build:
+      context: ../MicroServices/service_text_contentExtraction
+      dockerfile: Dockerfile
+    environment:
+      SERVICE_URL: http://0.0.0.0:9001/structuralExtraction/
+      SERVICE_USER_AGENT: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36"
+      SERVICE_DATABASE: '{"datasourcename":"CollectorDataSource","driver":"org.postgresql.Driver","url":"jdbc:postgresql://FULL_DOMAIN_NAME_POSTGRESQL:POSTGRESQL_PORT/POSTGRESQL_OPENKE_DB","user":"POSTGRESQL_OPENKE_USER","password":"POSTGRESQL_OPENKE_PASSWORD","maxconnections":10}'
+    ports:
+      - 9010:9001
+    networks:
+      - openke
+
+  temporal-service:
+    image: openke_ms_temporal
+    container_name: temporal-service
+    restart: always
+    build:
+      context: ../MicroServices/service_text_temporal
+      dockerfile: Dockerfile
+    environment:
+      SERVICE_URL: http://0.0.0.0:9001/temporalTagger/
+      SERVICE_CONFIGURATION_FILE: /opt/heideltimeAPI/docker_config.props
+    ports:
+      - 9003:9001
+    networks:
+      - openke
+
+#the redis service is necessary to run with textrank to maintain among the different gunicorn workers.  name is hardcode in the textrank code
+  openke_redis:
+    image: redis:4.0.11
+    container_name: openke_redis
+    entrypoint: ["redis-server","--protected-mode","no"]
+    restart: always
+    ports:
+      - 6379:6379
+    networks:
+      - openke
+
+  textrank-service:
+    image: openke_ms_textrank
+    container_name: textrank-service
+    restart: always
+    build:
+      context: ../MicroServices/service_text_analysis
+      dockerfile: Dockerfile
+    environment:
+      GUNICORN_WORKERS: 4
+      GUNICORN_ACCESSLOG: '-'
+    ports:
+      - 8000:8000
+    networks:
+      - openke
+
+
+  topic-service:
+    image: openke_ms_topic
+    container_name: topic-service
+    restart: always
+    build:
+      context: ../MicroServices/service_text_lda
+      dockerfile: Dockerfile
+    depends_on:
+      - base
+    ports:
+      - 9005:9001
+    networks:
+      - openke
+
+
+  whois-service:
+    image: openke_ms_whois
+    container_name: whois-service
+    restart: always
+    build:
+      context: ../MicroServices/service_internet_whois
+      dockerfile: Dockerfile
+    depends_on:
+      - base
+    environment:
+      SERVICE_USER_AGENT: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36'
+      SERVICE_URL: http://0.0.0.0:9001/whois/
+    ports:
+      - 9008:9001
+    networks:
+      - openke
+
+  wordnet-service:
+    image: jacopofar/wordnet-as-a-service
+    container_name: wordnet-service
+    restart: always
+    ports:
+      - 5679:5679
+    networks:
+      - openke
+
+
+networks:
+  openke:

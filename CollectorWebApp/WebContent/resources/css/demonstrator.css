@@ -1,0 +1,616 @@
+/*
+   styles specific to the demonstrator App
+*/
+html, body {
+	font-size: 14px;
+	line-height: 1;
+}
+
+.btn-primary{color:#fff;background-color:#357ebd;border-color:#357ebd}
+
+.page-item.active .page-link{background-color:#357ebd;border-color:#357ebd}
+.page-item.disabled .page-link {text-decoration: none; }
+
+.pull-right {
+	float: right !important;
+}
+
+.nomargin {
+	margin: 0px 0px 0px 0px;
+}
+
+.tab-content {
+	display: flex;
+}
+
+.tabs-left > .nav-tabs > li {
+  float: none;
+}
+
+.tabs-left > .nav-tabs > li > a {
+  min-width: 74px;
+  margin-right: 0;
+  margin-bottom: 3px;
+}
+
+.tabs-left > .nav-tabs {
+  float: left;
+  margin-right: 19px;
+  border-right: 1px solid #ddd;
+  border-bottom: 0px;
+}
+
+.tabs-left > .nav-tabs > li > a {
+  padding: 2px 2px;
+  margin-right: -1px;
+  -webkit-border-radius: 2px 0 0 2px;
+     -moz-border-radius: 2px 0 0 2px;
+          border-radius: 2px 0 0 2px;
+}
+
+.tabs-left > .nav-tabs > li > a:hover,
+.tabs-left > .nav-tabs > li > a:focus {
+  border-color: #eeeeee #dddddd #eeeeee #eeeeee;
+}
+
+.tabs-left > .nav-tabs .active > a,
+.tabs-left > .nav-tabs .active > a:hover,
+.tabs-left > .nav-tabs .active > a:focus {
+  border-color: #ddd transparent #ddd #ddd;
+  *border-right-color: #ffffff;
+}
+
+.message {
+	font-weight: bold;
+	font-size: larger;
+	margin: 10px 10px 10px 0px;
+}
+
+.messageAllMargin {
+	font-weight: bold;
+	font-size: larger;
+	margin: 10px 10px 10px 10px;
+}
+
+
+.pageTitle {
+	font-weight: bold;
+	font-size: x-large;
+	margin-bottom: 20px;
+}
+
+.myBlock { display: block;
+}       
+
+.graphLabel { display: block;
+              font-weight: bold
+              }
+              
+.graphField { display: inline;
+}              
+
+.myBold {font-weight: bold
+              }
+/*
+.form-control {
+	display: block;
+	width: 100%;
+	height: initial;
+	padding: 3px 3px;
+	line-height: 1;
+	font-size: 12px;
+}
+*/
+
+.searchPanelResults { margin: 4px 8px 4px 8px; }
+
+/* TODO:  These .search* classes should be removed as they are in resultObject.css now  TODO */
+
+.searchRecord {
+	margin-top: 2px;
+	margin-bottom: 8px;
+}
+
+.searchURL {
+	line-height: 1;
+}
+
+.searchText {
+	line-height: 1.2;
+}
+
+.searchTitle {
+	line-height: 1;
+}
+
+.searchLinks {
+	line-height: 1;
+}
+
+label {
+	margin-bottom: 1px;
+}
+
+label.recordText {
+	margin-bottom: 1px;
+}
+
+
+label.export {
+float: left;
+width: 120px;
+font-weight: bold;
+margin-bottom: 3px;	
+}
+
+select.export {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+input[type="radio"], input[type="checkbox"] {
+	margin: 0 0 0 0;
+	line-height: normal;
+}
+
+/* Default Link Styles override */
+a {
+	text-decoration: underline;
+}
+
+ /*may just use jquery show()/hide() */
+.hideVisibility {
+	visibility: hidden;
+}
+
+.showVisibilty {
+	visibility: inherit;
+}
+
+.headerStyle {
+	position: relative;
+	/* height: 77px; */
+	width: 100%;
+}
+
+.headerLeftAbsoluteStyle {
+	position: absolute;
+	top: 0px;
+	left: 5px;
+}
+
+.headerRightAbsoluteStyle {
+	position: absolute;
+	top: 8px;
+	right: 20px;
+	width: 360px;
+}
+
+.headerPaddingStyle {
+	position: relative;
+	float: right;
+	padding: 7px 10px 0px 0px;
+	font-weight: bold;
+}
+
+.floatright {
+	float: right;
+}
+
+#welcomeField {
+	font-weight: bold;
+}
+
+#topButtonBar {
+	margin-right: 10px;
+	margin-top: 5px;
+}
+
+table.context {
+	background: white;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	border: none 1px #dddddd;
+	table-layout: auto;
+}
+
+table.context tr.even, table tr.alt, table tr:nth-of-type(even) {
+	background: #FFFFFF;
+}
+
+table.context thead tr th, table.context tfoot tr th, table.context tfoot tr td,
+	table.context tbody tr th, table.context tbody tr td, table.context tr td
+	{
+	font-size: smaller;
+	padding: 0 2px 0 1px;
+}
+
+/*				 
+.contextDescription {
+	padding: 0px 0px 0px 0px;
+	position: absolute;
+	top: 50px;
+	right: 10px;
+	line-height: 1;
+}						 					 
+		*/
+.textWizardHypotheses {
+	padding: 0px 0px 0px 0px;
+	line-height: 1;
+}
+
+.contextAction {
+	vertical-align: middle;
+	margin: 0 0 0 10px;
+}
+
+.evidenceSummary {
+	font-weight: bold;
+}
+
+.evidenceSupport {
+	color: green;
+}
+
+.evidenceRefute {
+	color: red;
+}
+
+.sliderTooltip {
+	display: block;
+	position: absolute;
+	border: 1px solid #D9D9D9;
+	font: 400 12px/12px Arial;
+	border-radius: 3px;
+	background: #fff;
+	top: 35px;
+	padding: 2px;
+	left: -3px;
+	text-align: left;
+	width: 38px;
+}
+
+.sliderTooltip strong {
+	display: block;
+	padding: 2px;
+}
+
+td.details-control {
+	background: url('resources/details_open.png') no-repeat center center;
+	cursor: pointer;
+}
+
+tr.shown td.details-control {
+	background: url('resources/details_close.png') no-repeat center center;
+}
+
+#messageStatusBox {
+	position: absolute;
+	bottom: 0px;
+	right: 40px;
+	top: 59px;
+	text-align: left;
+	margin: 0px 6px 0px 0px;
+	float: left;
+}
+
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   speak for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.modalLoading {
+	display: none;
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(255, 255, 255, .8) url('resources/loadingRed.gif') 50%
+		50% no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+	overflow: hidden;
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modalLoading {
+	display: block;
+}
+/* override bootstrap's standard */
+hr {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border: 0;
+	border-top: 1px solid #eee;
+}
+
+.table-tight>thead>tr>th, .table-tight>tbody>tr>th, .table-tight>tfoot>tr>th,
+	.table-tight>thead>tr>td, .table-tight>tbody>tr>td, .table-tight>tfoot>tr>td
+	{
+	padding: 0.5rem;
+}
+
+.table-nopad>thead>tr>th, .table-nopad>tbody>tr>th, .table-nopad>tfoot>tr>th,
+	.table-nopad>thead>tr>td, .table-nopad>tbody>tr>td, .table-nopad>tfoot>tr>td
+	{
+	padding: 0.0rem;
+}
+
+input[type="text"][disabled], input[type="text"][readonly], fieldset[disabled] input[type="text"],
+	input[type="password"][disabled], input[type="password"][readonly],
+	fieldset[disabled]
+  input[type="password"], input[type="date"][disabled], input[type="date"][readonly],
+	fieldset[disabled]
+  input[type="date"], input[type="datetime"][disabled], input[type="datetime"][readonly],
+	fieldset[disabled]
+  input[type="datetime"], input[type="datetime-local"][disabled], input[type="datetime-local"][readonly],
+	fieldset[disabled]
+  input[type="datetime-local"], input[type="month"][disabled], input[type="month"][readonly],
+	fieldset[disabled]
+  input[type="month"], input[type="week"][disabled], input[type="week"][readonly],
+	fieldset[disabled]
+  input[type="week"], input[type="email"][disabled], input[type="email"][readonly],
+	fieldset[disabled]
+  input[type="email"], input[type="number"][disabled], input[type="number"][readonly],
+	fieldset[disabled]
+  input[type="number"], input[type="search"][disabled], input[type="search"][readonly],
+	fieldset[disabled]
+  input[type="search"], input[type="tel"][disabled], input[type="tel"][readonly],
+	fieldset[disabled]
+  input[type="tel"], input[type="time"][disabled], input[type="time"][readonly],
+	fieldset[disabled]
+  input[type="time"], input[type="url"][disabled], input[type="url"][readonly],
+	fieldset[disabled]
+  input[type="url"], input[type="color"][disabled], input[type="color"][readonly],
+	fieldset[disabled]
+  input[type="color"], textarea[disabled], textarea[readonly], fieldset[disabled]
+  textarea {
+	background-color: #dddddd;
+	cursor: default;
+}
+/*
+tr {
+	border-bottom: 1px solid;
+	border-bottom-color: transparent;
+}
+*/
+
+#tblDomain { 
+	width: 100%;
+}
+
+#tblSettings {
+	width: 50%;
+	display: inline-block;
+}
+
+#btnGoBack {
+	margin-right: 30px;
+}
+
+#progress-extended {
+    margin: auto;
+}
+
+.lblError{
+	margin: auto;
+	font-size: 18px;
+}
+
+.srchbox {
+	text-align: center;
+}
+
+.lnkadjudicator{
+	text-align: center;
+}
+#thdAddNewUsers, #thdCurrentUsers, #thdJobHistory {
+	font-size: 20px;
+	font-weight: normal;
+	padding-left: 0px;
+}
+/*
+table.dataTable thead > tr > th{
+	padding-left: 0px;
+}
+*/
+#tblJobHistory{
+	/* width: 35%; */
+}
+#tblAddUser,td{
+	padding: 5px;
+}
+
+
+.nowrap {
+	white-space: nowrap;
+}
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+
+/* Graph Visualisation - Start*/
+
+.svgLink {
+  stroke: #999;
+}
+#svgDisplay{
+	height: 95%;
+	width: 90%;
+	border-style: groove;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-bottom: 5%;
+}
+.svgAxis line {
+  fill: none;
+/* stroke: #ddd;*/
+  shape-rendering: crispEdges;
+  vector-effect: non-scaling-stroke;
+}
+#btn_zoom_in{
+	margin-left:5%;
+}
+/* Graph Visualisation - End*/
+
+h3 > a {
+	color: inherit;
+	text-decoration: none;
+}
+
+h3 > a:hover {
+	color: inherit;
+}
+
+iframe.seamless{
+    background-color: transparent;
+    border: 0px none transparent;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.overlay {
+    background: #e9e9e9;  
+    display: none;       
+    position: absolute; 
+    top: 0;                  
+    right: 0;   
+    bottom: 0;
+    left: 0;
+    opacity: 0.75;
+    z-index: 1000;
+}
+
+#loading-img {
+    background: url(images/ajax-loader.gif) center center no-repeat;
+    height: 100%;
+    opacity: 1.0;
+}
+
+input.textbox-autosize, span.invisible-autosize-helper {
+    padding:0;
+    font-size:12px;
+    font-family:Sans-serif; 
+    white-space:pre;
+}
+input.textbox-autosize {
+    width: 100px; /* Initial width of textboxes */
+}
+
+a.pointer {
+	cursor: pointer;
+}
+
+.tooltip-inner {
+	max-width: 800px;
+}
+
+/* Used to change ordering of bootstrap buttons such that the confirm button choice is first*/
+.modal-footer button {
+  float:right;
+  margin-left: 10px;
+}
+
+#searchAlertList {
+height: 430px;	
+overflow-y: auto;
+}
+
+#searchAlertBody {
+	padding: 0px 0px 0px 5px;
+}
+
+
+.title_box { 
+    border: #CCCCCC 1px dashed; 
+}
+
+.title_box .title { 
+    position: relative; 
+    top : -0.5em;
+    margin-left: 1em;
+    display: inline; 
+    background-color: white; 
+}
+
+.title_box .content {
+	padding: 5px;
+}
+
+#newExtractRecordArea {
+	margin-left: 30px;
+	margin-right: 20px;
+}
+
+.grayout {
+    opacity: 0.6; 
+    filter: alpha(opacity = 60); /* MSIE */
+}
+
+.center-div
+{
+     margin: 0 auto;
+     width: 450px; 
+}
+
+.inner-div
+{
+     margin: 0 auto;
+     width: 100px; 
+}
+
+.bootbox .modal-header{
+display: block;
+}
+
+#drop-zone {
+	height: 200px;
+	width: 100%;
+	border-style: dashed;
+	border-width: 1px;
+	border-color: #999999;
+}
+
+.myMenu {
+	color: #000000;
+	text-decoration: none;
+}
+
+tr.resultRow:nth-child(even) {
+	background-color: rgba(0,0,0,.03);
+}
+
+/* Used by the jquery UI to display the % on the slider bar */
+#custom-handle {
+    width: 2.8em;
+    height: 1.4em;
+    top: 50%;
+    margin-top: -.6em;
+    text-align: center;
+    line-height: 1.4em;
+}
+
+.nav-link.active {
+    color: #495057;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.dropdown-item {
+	    color: #007bff;
+}
+
+.cursorPointer {
+	cursor : pointer;
+}

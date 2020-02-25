@@ -1,0 +1,81 @@
+# Name: las/collector
+# Purpose: Webapplication for OpenKE
+#          Also contains the Voyant text analysis tools: https://voyant-tools.org/
+#
+# Version: 1.0
+# History
+# 20170405  Initial creation
+#
+# Build Command:
+#     docker build -t="openke_webapp" .
+#
+FROM openke_base as base
+RUN cd /root/install/OpenKE/CollectorWebApp && \
+    mvn package
+WORKDIR /root
+RUN wget https://github.com/sgsinclair/VoyantServer/releases/download/2.4.0-M7/VoyantServer2_4-M7.zip && \
+    unzip VoyantServer2_4-M7.zip
+
+
+FROM tomcat:8.5.34-jre8-alpine
+#FROM openjdk:8u181-jdk
+RUN mkdir /opt && \
+    mkdir /opt/collector && \
+    mkdir /opt/collector/config && \
+    mkdir /openke && \
+    mkdir /openke/download && \
+    mkdir /openke/externalExport && \
+    mkdir /openke/upload_directory
+
+COPY --from=base /root/install/OpenKE/Collector/system_properties.json.docker /opt/collector/config/system_properties.json
+COPY --from=base /root/install/OpenKE/Collector/logging* /opt/collector/config/
+
+#RUN groupadd -g 1000 -r collector && \
+#    useradd -d /opt/collector -u 1000 -g collector collector
+#RUN chown -R collector:collector /openke /opt/collector
+RUN chown -R 1000:1000 /openke /opt/collector
+RUN rm -rf /usr/local/tomcat/webapps/* && \
+    mkdir /usr/local/tomcat/webapps/ROOT
+COPY --from=base /root/VoyantServer2_4-M7/_app /usr/local/tomcat/webapps/voyant
+COPY --from=base /root/install/OpenKE/CollectorWebApp/target/CollectorWebApp-0.1.0-SNAPSHOT.war /usr/local/tomcat/webapps/collector.war
+
+ENV CATALINA_OPTS="-Xms512m -Xmx8192m -Dlogback.configurationFile=/opt/tomcat/current/conf/logback.xml"
+
+RUN echo '<% response.sendRedirect("/collector"); %>' >> /usr/local/tomcat/webapps/ROOT/index.jsp
+
+RUN echo $'<configuration>\n\
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">\n\
+        <encoder>\n\
+            <pattern>%date{HH:mm:ss} %-5level [%thread] - [%logger{0}]- %msg%n</pattern>\n\
+        </encoder>\n\
+    </appender>\n\
+ \n\
+    <logger name="com.github.tomakehurst" level="ERROR"/>\n\
+    <logger name="org.eclipse.jetty" level="ERROR" />\n\
+ \n\
+    <root level="INFO">\n\
+        <appender-ref ref="STDOUT" />\n\
+        <!--<appender-ref ref="FILE" />-->\n\
+    </root>\n\
+</configuration>\n\
+' >> /usr/local/tomcat/conf/logback.xml
+
+RUN mkdir -p /usr/local/tomcat/conf/Catalina/localhost
+RUN echo $'<?xml version="1.0"  encoding="utf-8"?>\n\
+<!-- The contents of this file will be loaded for each web application -->\n\
+<Context>\n\
+\n\
+    <!-- Default set of monitored resources. If one of these changes, the    -->\n\
+    <!-- web application will be reloaded.                                   -->\n\
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>\n\
+    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>\n\
+\n\
+  <Environment name="collectorConfigurationDirectory" \n\
+               value="/opt/collector/config" type="java.lang.String" override="false"/>\n\
+</Context>\n\
+' >> /usr/local/tomcat/conf/Catalina/localhost/collector.xml
+
+RUN sed -i 's/<\/Context>/<Resources cachingAllowed="true" cacheMaxSize="100000" \/><\/Context>/g'  /usr/local/tomcat/conf/context.xml
+
+RUN chown -R 1000:1000 /usr/local/tomcat
+USER 1000

@@ -1,0 +1,336 @@
+{
+	"accessAuthenticatedSites": true,
+	"blockedTLDs":[".ac",".ad",".ae",".af",".ag",".ai",".al",".am",".ao",".ar",".as",".at",".aw",".ax",".az",".ba",".bb",".bd",".be",".bf",".bg",".bh",".bi",".bj",".bm",".bn",".bo",".br",".bs",".bt",".bv",".bw",".by",".bz",".cc",".cd",".cf",".cg",".ch",".ci",".ck",".cl",".cm",".cn",".cr",".cu",".cv",".cw",".cx",".cy",".cz",".de",".dj",".dk",".dm",".do",".dz",".ec",".ee",".eg",".er",".es",".et",".eu",".fi",".fj",".fk",".fm",".fo",".fr",".ga",".gd",".ge",".gf",".gg",".gh",".gi",".gl",".gm",".gn",".gp",".gq",".gr",".gs",".gt",".gu",".gw",".gy",".hk",".hm",".hn",".hr",".ht",".hu",".id",".ie",".il",".im",".in",".io",".iq",".ir",".is",".it",".je",".jm",".jo",".jp",".ke",".kg",".kh",".ki",".km",".kn",".kp",".kr",".kw",".ky",".kz",".la",".lb",".lc",".li",".lk",".lr",".ls",".lt",".lu",".lv",".ly",".ma",".mc",".md",".me",".mg",".mh",".mk",".ml",".mm",".mn",".mo",".mp",".mq",".mr",".ms",".mt",".mu",".mv",".mw",".mx",".my",".mz",".na",".nc",".ne",".nf",".ng",".ni",".nl",".no",".np",".nr",".nu",".om",".pa",".pe",".pf",".pg",".ph",".pk",".pl",".pm",".pn",".pr",".ps",".pt",".pw",".py",".qa",".re",".ro",".rs",".ru",".rw",".sa",".sb",".sc",".sd",".se",".sg",".sh",".si",".sj",".sk",".sl",".sm",".sn",".so",".sr",".st",".su",".sv",".sx",".sy",".sz",".tc",".td",".tf",".tg",".th",".tj",".tk",".tl",".tm",".tn",".to",".tr",".tt",".tv",".tw",".tz",".ua",".ug",".uy",".uz",".va",".vc",".ve",".vg",".vi",".vn",".vu",".wf",".ws",".ye",".yt",".za",".zm",".zw"],
+    "geoTagAPI": "http://FULL_DOMAIN_NAME_MICROSERVICES:9004/geoTagger/",
+    "textrankAPI": "http://FULL_DOMAIN_NAME_MICROSERVICES:8000/textrank/",
+    "import": {  "sleepTimeSec": 300  },
+    "allowDuplicateText": false,
+    "annotations": [
+        "referrer", "http_headers", "structured_data", "html_title",
+        "html_meta", "open_graph",  "html_outlinks",  "provenance",
+        "dataHeader",  "language", "tikaMetaData", "published_date",
+        "concepts", "geotag", "microformat"
+    ],
+    "adjudicationQuestions": {
+        "utilize": false,
+        "questions": [
+            {
+                "question": "Who is doing the collection and acquisition?  Name the specific organization or is this being done on behalf of Laboratory For Analytic Sciences?",
+                "category": "Collection",
+                "subcategory": "Who"
+            }
+        ],
+        "require": false,
+        "title": "Job Adjudication: FIPP Questions",
+        "overviewText": "Answering this series of questions will provide users with a brief overview of compliance and privacy considerations. Additionally, this process will ensure that appropriate authorities are well-thought-out; enabling the LAS to ensure it maintains the public trust."
+    },
+    "video": {
+        "utilize": true,
+        "url_regex": [
+            "vimeo.com/[0-9]+",
+            "youtu.be/\\w+",
+            "www.youtube.com/watch\\?v=",
+            "www.dailymotion.com/video/\\w+"
+        ]
+    },
+    "newsFeed": {
+        "urls": [
+            "http://www.aljazeera.com/xml/rss/all.xml",
+            "http://feeds.bbci.co.uk/news/world/rss.xml",
+            "http://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+            "http://feeds.foxnews.com/foxnews/world"
+        ],
+        "keywords": [],
+        "utilize": false,
+        "cacheTimeMinutes": 10
+    },
+    "secretPhrase": "a deep, really deep, dark secret",
+    "systemComponent": {
+        "accumulo": true,
+        "kafka": true,
+        "hdfs": true
+    },
+    "webCrawler": {
+        "maxPagesToFetch": -1,
+        "politenessDelay": 500,
+        "includeBinaryContentInCrawling": true,
+        "maxDepthOfCrawling": -1,
+        "userAgentString": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36",
+        "maxDownloadSize": 20000000
+    },
+    "conceptCacheSec": 60,
+    "accumulo": {
+        "password": "ACCUMULO_OPENKE_PASSWORD",
+        "instanceName": "hdp-accumulo-instance",
+        "zooKeepers": "FULL_DOMAIN_NAME_HDP:2181",
+        "userName": "openke",
+        "storeRaw": {
+            "normal": true,
+            "sandbox": false,
+            "archive": false
+        }
+    },
+    "nlpAPI": "http://FULL_DOMAIN_NAME_MICROSERVICES:9006/nlp/",
+    "file": {
+        "storeRaw": {
+            "normal": true,
+            "sandbox": false,
+            "archive": false
+        }
+    },
+    "microformatAPI": "http://FULL_DOMAIN_NAME_MICROSERVICES:9009/microformat/",
+    "allowOnlineDomainPurge": true,
+    "instrumentation": {
+        "isElastic": true,
+        "elastic": {
+            "settings": {
+                "settings": {  "index": {
+                        "mapping": { "ignore_malformed": "true"  },
+                        "number_of_shards": 5,
+                        "number_of_replicas": 1    }     }
+            },
+            "mappings": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "EvtTime": { "type": "long",
+                                         "fields": {  "converted": {
+                                             "format": "strict_date_optional_time||epoch_millis",
+                                             "type": "date"  } }
+                            },
+                             "AppName": {
+                                 "type": "keyword"
+                             },
+                            "UserId": {
+				                "type": "keyword"
+				            }
+				        }
+				     },
+
+                    "time": { "format": "strict_date_optional_time||epoch_millis",
+                              "type": "date"
+                    }
+                }
+            },
+            "index": "skylr",
+            "type": "events"
+        },
+        "api": "http://FULL_DOMAIN_NAME_ELASTIC:9200/skylr/events/",
+        "sendEvents": true,
+        "projectID": "LAS/CollectorDev",
+        "token": "ae4109b4a476c0641c5c7a747e17c0e50ebd40e46b300578dd91eb4eb62eaaa1"
+    },
+    "kibana": {
+        "utilizeDashboard": false,
+        "homeDashboard": "KIBANA_HOME_DASHBOARD URL",
+        "homeTitle": "Top Pages Retrieved (all domains)"
+    },
+    "export": {
+        "maxRecordCount": 1000000,
+        "voyant": {
+            "maxRecordCount": 1000,
+            "url": "http://FULL_DOMAIN_NAME_VOYANT:8888"
+        },
+        "timeToLiveHours": 25
+    },
+    "email": {
+        "server": "EMAIL_SERVER",
+        "password": "EMAIL_PASSWORD",
+        "port": "EMAIL_PORT (without quotes)",
+        "user": "EMAIL_USER"
+    },
+    "azure": {
+        "academicAPI_key": "AZURE_KEY_ACADEMIC_API",
+        "autoComplete_key": "AZURE_KEY_AUTOCOMPLETE_API",
+        "autoComplete_api": "https://api.cognitive.microsoft.com/bing/v5.0/suggestions?mkt=en-us&q="
+    },
+    "graphAPI": "http://FULL_DOMAIN_NAME_MICROSERVICES:9001/GraphAPI/",
+    "kafka": {
+        "replicationFactor": 1,
+        "zookeeper": "FULL_DOMAIN_NAME_HDP:2181",
+        "numPartitions": 5,
+        "send": {
+            "normal": true,
+            "sandbox": false,
+            "archive": false
+        },
+        "properties": {
+            "compression.type": "snappy",
+            "value.serializer": "org.apache.kafka.common.serialization.StringSerializer",
+            "bootstrap.servers": "FULL_DOMAIN_NAME_HDP:6667",
+            "key.serializer": "org.apache.kafka.common.serialization.StringSerializer"
+        }
+    },
+    "elastic": {
+        "default": {
+            "settings": {
+                "settings": {
+                    "index": {
+                        "mapping": {
+                            "ignore_malformed": "true"
+                        },
+                        "number_of_shards": 5,
+                        "number_of_replicas": 1
+                    }
+                }
+            },
+            "mappings": {
+                "web": {
+                    "properties": {
+                        "open_graph": {
+                            "type": "object",
+                            "enabled": false
+                        },
+                        "domainDiscovery": {
+                            "properties": {
+                                "relevant": { "type": "boolean"  },
+                                "retrievals": {
+                                    "type": "nested",
+                                    "properties": {
+                                        "executionNumber": {"type": "long" },
+                                        "sessionID": {
+                                            "type": "text",
+                                            "fields": {
+                                                "raw": {
+                                                    "index": true,
+                                                    "type": "keyword"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "type": "text",
+                                    "fields": {
+                                        "raw": {
+                                            "index": true,
+                                            "type": "keyword"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "provenance": {
+                            "properties": {
+                                "configuration": {
+                                    "properties": {
+                                        "allowSingleHopFromReferrer": {
+                                            "type": "text"
+                                        },
+                                        "webCrawler": {
+                                            "properties": {
+                                                "respectRobotsTxt": {  "type": "text" }
+                                            }
+                                        }
+                                    }
+                                },
+                                "job": {
+                                    "properties": {
+                                        "url": {
+                                            "type": "text",
+                                            "fields": {
+                                                "raw": {
+                                                    "index": true,
+                                                    "type": "keyword"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "concepts": {  "type": "nested" },
+                        "http_headers": {
+                            "type": "object",
+                            "enabled": false
+                        },
+                        "user_collection": {
+                            "type": "nested",
+                            "properties": {
+                                "collection_id": {
+                                    "index": true,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "structured_data": {
+                            "type": "object",
+                            "enabled": false
+                        },
+                        "html_meta": {
+                            "type": "object",
+                            "enabled": false
+                        },
+                        "url": {
+                            "type": "text",
+                            "fields": {
+                                "raw": {
+                                    "index": true,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "geotag": {  "type": "nested" },
+                        "tikaMetaData": {
+                            "type": "object",
+                            "enabled": false
+                        }
+                    }
+                }
+            }
+        },
+        "port": 9300,
+        "clusterName": "elasticsearch",
+        "host": "FULL_DOMAIN_NAME_ELASTIC",
+        "restEndPoint": "http://FULL_DOMAIN_NAME_ELASTIC:9200/",
+        "storeJSON": {
+            "normal": true,
+            "sandbox": true,
+            "archive": false
+        }
+    },
+    "hdfs": {
+        "hdfsUser": "hdfs",
+        "hdfsBaseURI": "hdfs://FULL_DOMAIN_NAME_HDP/",
+        "storeJSON": {
+            "normal": true,
+            "sandbox": false,
+            "archive": false
+        },
+        "storeRaw": {
+            "normal": true,
+            "sandbox": false,
+            "archive": false
+        }
+    },
+    "faroo": { "key": ""  },
+    "topicModelAPI": "http://FULL_DOMAIN_NAME_MICROSERVICES:9005/topicmodel/",
+    "applicationLogo": "resources/images/logo.png",
+    "hyperlinks": [
+        {   "displayText": "ElasticSearch: Cerebro",
+            "link": "http://FULL_DOMAIN_NAME_ELASTIC:9201/#/overview?host=http:%2F%2Flocalhost:9200"
+        },
+        {    "displayText": "Kibana",
+            "link": "http://FULL_DOMAIN_NAME_ELASTIC:5601"
+        },
+        {   "displayText": "Voyant",
+            "link": "http://FULL_DOMAIN_NAME_VOYANT:8888"
+        },
+        {   "displayText": "HDP",
+            "link": "http://FULL_DOMAIN_NAME_HDP:8080"
+        }
+    ],
+    "webapp": {
+        "authorization" : {
+            "method": "http_header",
+            "http_header": ["x-forwarded-user","remote_user" ],
+            "signout_text": "LAS",
+            "signout_url": "https://domain_name/",
+            "oauth_clientid": "YOURCLIENTID.apps.googleusercontent.com"
+        }
+    },
+    "ldap": {
+        "baseDN": "ou=people,dc=ncsu,dc=edu",
+        "url": "ldap://FULLY_QUALIFIED_DOMAIN_NAME:LDAP_PORT"
+    }
+}

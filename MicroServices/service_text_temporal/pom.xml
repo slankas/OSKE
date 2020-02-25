@@ -1,0 +1,130 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>edu.ncsu.las</groupId>
+  <artifactId>service.text.temporal</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Temporal Text Tagging - Heideltime</name>
+  
+  	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	   <maven.compiler.source>1.8</maven.compiler.source>
+	   <maven.compiler.target>1.8</maven.compiler.target>
+	   <maven.test.skip>true</maven.test.skip>
+	    <maven.build.timestamp.format>yyyyMMdd'T'HHmm'Z'</maven.build.timestamp.format>
+	    <jersey.version>2.28</jersey.version>
+	</properties>
+   
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.glassfish.jersey</groupId>
+                <artifactId>jersey-bom</artifactId>
+                <version>${jersey.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-grizzly2-http</artifactId>
+        </dependency>
+         
+		 <dependency>
+		    <groupId>org.glassfish.jersey.media</groupId>
+		    <artifactId>jersey-media-json-jackson</artifactId>
+		</dependency>   
+		
+		<dependency>
+		    <groupId>org.glassfish.jersey.inject</groupId>
+		    <artifactId>jersey-hk2</artifactId>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20180813</version>
+		</dependency>       
+       
+       <!-- UIMA version 3.0 + does not work -->
+	 	<dependency>
+	 		<groupId>org.apache.uima</groupId>
+	 		<artifactId>uimaj-core</artifactId>
+	 		<version>2.10.3</version>
+	 	</dependency>
+	 	<dependency>
+	 		<groupId>com.github.heideltime</groupId>
+	 		<artifactId>heideltime</artifactId>
+	 		<version>2.2.1</version>
+	 	</dependency>
+	 	
+	 	<!-- These version are required by heideltime -->
+		<dependency>
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>3.3.1</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>edu.stanford.nlp</groupId>
+		    <artifactId>stanford-corenlp</artifactId>
+    		<version>3.3.1</version>
+    		<classifier>models</classifier>
+		</dependency>
+        
+        
+        <!-- Used to create a pool of HeidalTime objects for re-use -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-pool2</artifactId>
+		    <version>2.6.2</version>
+		</dependency>
+        
+    	<!-- replacement for junit: http://testng.org -->
+		<dependency>
+		  <groupId>org.testng</groupId>
+		  <artifactId>testng</artifactId>
+		  <version>6.14.3</version>
+		  <scope>test</scope>
+		</dependency>
+    </dependencies>
+
+  
+  <build>
+  <plugins>
+    <plugin>
+      <artifactId>maven-assembly-plugin</artifactId>
+      <configuration>
+        <archive>
+          <manifest>
+            <mainClass>fully.qualified.MainClass</mainClass>
+          </manifest>
+          <manifestEntries>
+             <Build-Time>${maven.build.timestamp}</Build-Time>
+          </manifestEntries>
+        </archive>
+        <descriptorRefs>
+          <descriptorRef>jar-with-dependencies</descriptorRef>
+        </descriptorRefs>
+      </configuration>
+    </plugin>
+    <plugin>
+    	<artifactId>maven-jar-plugin</artifactId>
+	    <version>2.2</version>
+    	<configuration>
+        	<archive>
+            	<manifestEntries>
+                	<CollectorBuildTime>${maven.build.timestamp}</CollectorBuildTime>
+            	</manifestEntries>
+        	</archive>
+    	</configuration>
+	</plugin>
+  </plugins>
+</build>
+  
+ 
+  
+</project>

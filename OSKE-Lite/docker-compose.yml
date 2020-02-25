@@ -1,0 +1,240 @@
+version: '3.7'
+services:
+  database:
+    image: postgres:11.2
+    container_name: database
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: MUST_CHANGE_PASSWORD
+      POSTGRES_USER: openke_user
+      POSTGRES_DB: openke_db
+    volumes:
+      - ../../oske/database:/var/lib/postgresql/data
+    networks:
+      - openke
+    ports:
+      - 5432:5432
+#    healthcheck:
+#      test: ["CMD-SHELL", "/usr/pgsql-10/bin/pg_isready -h 127.0.0.1 -U openke_user"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
+
+  elasticsearch:
+    image: elasticsearch:7.0.0
+    container_name: elasticsearch
+    restart: always
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ../../oske/elasticsearch:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - openke
+
+  kibana:
+    image: kibana:7.0.0
+    container_name: kibana
+    restart: always
+    depends_on:
+      - elasticsearch
+    ports:
+      - 5601:5601
+    networks:
+      - openke
+
+  base:
+    image: openke_base
+    restart: "no"
+    build:
+      context: ..
+      dockerfile: MicroServices/base_images/Dockerfile_base
+    networks:
+      - openke
+
+  daemon:
+    image: openke_daemon
+    container_name: daemon
+    restart: always
+    build:
+      context: ..
+      dockerfile: OSKE-Lite/Dockerfile_daemon
+    depends_on:
+      - base
+      - elasticsearch
+      - database
+    volumes:
+      - ../../oske/data:/openke
+      - /dev/urandom:/dev/random
+    networks:
+      - openke
+
+  webapp:
+    image: openke_webapp
+    container_name: webapp
+    restart: always
+    build:
+      context: ..
+      dockerfile: OSKE-Lite/Dockerfile_webapp
+    depends_on:
+      - base
+      - database
+      - elasticsearch
+      - daemon
+    volumes:
+      - ../../oske/data:/openke
+      - /dev/urandom:/dev/random
+    ports:
+      - 80:8080
+    networks:
+      - openke
+
+  dbpedia-service:
+    image: dbpedia/spotlight-english
+    container_name: dbpedia-service
+    command: spotlight.sh
+    restart: always
+    ports:
+      - 2222:80
+    networks:
+      - openke
+
+  geo-service:
+    image: openke_ms_geotag
+    container_name: geo-service
+    restart: always
+    build:
+      context: ../MicroServices/service_text_geo_tagging
+      dockerfile: Dockerfile
+    environment:
+      SERVICE_URL: http://0.0.0.0:9001/geoTagger/
+      SERVICE_INDEX_DIRECTORY: /opt/clavin/index/IndexDirectory
+    ports:
+      - 9004:9001
+    networks:
+      - openke
+
+  microformat-service:
+    image: openke_ms_microformat
+    container_name: microformat-service
+    restart: always
+    build:
+      context: ../MicroServices/service_html_microformat
+      dockerfile: Dockerfile
+    environment:
+      GUNICORN_WORKERS: 4
+      GUNICORN_ACCESSLOG: '-'
+    ports:
+      - 9009:8000
+    networks:
+      - openke
+
+
+  nlp-service:
+    image: openke_ms_nlp
+    container_name: nlp-service
+    restart: always
+    build:
+      context: ../MicroServices/service_text_nlp
+      dockerfile: Dockerfile
+    environment:
+      SERVICE_URL: http://0.0.0.0:9001/nlp/
+    ports:
+      - 9006:9001
+    networks:
+      - openke
+
+  spacy-service:
+    image: openke_ms_spacy
+    container_name: spacy-service
+    restart: always
+    build:
+      context: ../MicroServices/service_text_ner_spacy
+      dockerfile: Dockerfile
+    environment:
+      GUNICORN_WORKERS: 4
+      GUNICORN_ACCESSLOG: '-'
+    ports:
+      - 9012:8000
+    networks:
+      - openke
+
+
+#the redis service is necessary to run with textrank to maintain among the different gunicorn workers.  name is hardcode in the textrank code
+  openke_redis:
+    image: redis:4.0.11
+    container_name: openke_redis
+    entrypoint: ["redis-server","--protected-mode","no"]
+    restart: always
+    ports:
+      - 6379:6379
+    networks:
+      - openke
+
+  textrank-service:
+    image: openke_ms_textrank
+    container_name: textrank-service
+    restart: always
+    build:
+      context: ../MicroServices/service_text_analysis
+      dockerfile: Dockerfile
+    environment:
+      GUNICORN_WORKERS: 4
+      GUNICORN_ACCESSLOG: '-'
+    ports:
+      - 8000:8000
+    networks:
+      - openke
+
+
+  topic-service:
+    image: openke_ms_topic
+    container_name: topic-service
+    restart: always
+    build:
+      context: ../MicroServices/service_text_lda
+      dockerfile: Dockerfile
+    depends_on:
+      - base
+    ports:
+      - 9005:9001
+    networks:
+      - openke
+
+
+  whois-service:
+    image: openke_ms_whois
+    container_name: whois-service
+    restart: always
+    build:
+      context: ../MicroServices/service_internet_whois
+      dockerfile: Dockerfile
+    depends_on:
+      - base
+    environment:
+      SERVICE_USER_AGENT: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36'
+      SERVICE_URL: http://0.0.0.0:9001/whois/
+    ports:
+      - 9008:9001
+    networks:
+      - openke
+
+  wordnet-service:
+    image: jacopofar/wordnet-as-a-service
+    container_name: wordnet-service
+    restart: always
+    ports:
+      - 5679:5679
+    networks:
+      - openke
+
+networks:
+  openke:

@@ -1,0 +1,1 @@
+01 08 * * * /home/hdfs/bin/hdfs_cat_subdir /openke/drones > /home/hdfs/log/drone_`date +\%Y\%m\%d\%H\%M\%S`_cron.log 2>&1

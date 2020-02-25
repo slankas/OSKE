@@ -1,0 +1,924 @@
+fullCategoryName,name,type,regex
+general.time.duration_regex,Months,Month,\b(?:(Jan|Feb)(?:(r?)uary)?|Mar(?:ch)?|April|May|Jun(?:e)?|July|Aug(?:ust)?|Oct(?:ober)?|(Sept|Nov|Dec)(?:ember)?)\b
+pestles.economic.company,company,thing,(?ui)\b((software|tech(nology|ical)?\s)?compan(y|ies)|business(es)?)\b
+pestles.economic.financial.currency,proliferation,thing,(?ui)\bproliferation\b
+pestles.economic.financial.currency,exchange_rate,thing,\bexchange rate\b
+pestles.economic.financial.currency,USD_USDollar,thing,"\$[0-9,.]+"
+pestles.economic.financial.currency,EUR_EuropeanEuro,thing,"\€[0-9,.]+"
+pestles.economic.financial.currency,GBP_BritishPound,thing,"\£[0-9,.]+"
+pestles.economic.financial.currency,JPYCNY_JapaneseYen_ChineseYuan,thing,"\¥[0-9,.]+"
+pestles.economic.financial.institution,bank,thing,(?ui)\bbank(s)\b
+pestles.economic.financial.institution,bank_loan,thing,(?ui)\bsavings and loan\b
+pestles.economic.financial.institution,credit_union,thing,(?ui)\bcredit union(s)?\b
+pestles.economic.financial.institution,insurance,thing,(?ui)\binsurance\b
+pestles.economic.financial.institution,mortgage,thing,(?ui)\bmortgage(s)?\b
+pestles.economic.financial.market,stock_market,thing,(?ui)\bstock market(s)?\b
+pestles.economic.financial.market,store_department,thing,(?ui)\bdepartment store(s)?\b
+pestles.economic.financial.market,store_farmersmarket,thing,(?ui)\bfarmer(')?s market(s)?\b
+pestles.economic.financial.market,store_grocery,thing,(?ui)\bgrocery store(s)?\b
+pestles.economic.financial.market,store_mall,thing,(?ui)\bshopping mall(s)\s?\b
+pestles.economic.transportation,manufacturer,thing,(?ui)\bmanufacturer(s)?\b
+pestles.economic.transportation,B2B,thing,(?ui)\b(business\sto\sbusiness|B2B)\b
+pestles.economic.transportation,shipping,thing,(?ui)\bship(ping|er(s)?|ment(s)?|ped)?\b
+pestles.economic.transportation,transport,thing,(?ui)\btransport(ation|ed|s)?\b
+pestles.economic.transportation,vehicle,thing,(?ui)\b((vehicle|car|truck)(s)?|SUV)\b
+pestles.economic.transportation,mail,thing,(?ui)\bmail\b
+pestles.economic.transportation,customs,thing,(?ui)\bcustoms\b
+pestles.economic.transportation,postage,thing,(?ui)\bpostage\b
+pestles.economic.transportation,logs,thing,(?ui)\b(shipping)?(\s)?log(s)?\b
+pestles.economic.transportation,manifest,thing,(?ui)\bmanifest\b
+pestles.economic.transportation,wholesalers,thing,(?ui)\bwhole\s?saler(s)?\b
+pestles.economic.transportation,sellers,thing,(?ui)\bseller(s)?\b
+pestles.economic.transportation,retailers,thing,(?ui)\bretail(er(s)?)?\b
+pestles.economic.transportation,containers,thing,(?ui)\bcontainer(s)?\b
+pestles.economic.transportation,B2I,thing,(?ui)\b(business\sto\s(industry|institution)|B2I)\b
+pestles.environmental.history,indigenous,thing,(?ui)\bindigenous\b
+pestles.environmental.place,underwater,thing,(?ui)\bunder(\s)?water\b
+pestles.environmental.place,underground,thing,(?ui)\bunder(\s)?ground\b
+pestles.environmental.place,land,thing,(?ui)\b(ground|land)\b
+pestles.environmental.place,air,thing,(?ui)\bair\b
+pestles.environmental.weather,snow,thing,(?ui)\bsnow(fall|ing)?\b
+pestles.environmental.weather,rain,thing,(?ui)\brain(fall|ing)?\b
+pestles.legal.criminal.activity,assault,thing,(?ui)\bassult\b
+pestles.legal.criminal.activity,drug_possession,thing,(?ui)\bdrug\spossession\b
+pestles.legal.criminal.activity,burglary,thing,(?ui)\bburglar(y|ies)\b
+pestles.legal.criminal.activity,theft,thing,(?ui)\b(theft|thief|thieves)\b
+pestles.legal.criminal.activity,larceny,thing,(?ui)\blarceny\b
+pestles.legal.criminal.activity,arson,thing,(?ui)\barson\b
+pestles.legal.criminal.activity,aggravated_assault,thing,(?ui)\baggravated\sassault\b
+pestles.legal.criminal.activity,bribery,thing,(?ui)\bbribery\b
+pestles.legal.criminal.activity,computer_crime,thing,(?ui)\bcomputer\scrime\b
+pestles.legal.criminal.activity,conspiracy,thing,(?ui)\bconspiracy\b
+pestles.legal.criminal.activity,credit_card_fraud,thing,(?ui)\bcredit\scard\sfraud\b
+pestles.legal.criminal.activity,debit_card_fraud,thing,(?ui)\bdedit\scard\sfraud\b
+pestles.legal.criminal.activity,criminal_contempt_of_court,thing,(?ui)\bcriminal\scontempt\sof\scourt\b
+pestles.legal.criminal.activity,cyber_bullying,thing,(?ui)\bcyber\sbully(ing)?\b
+pestles.legal.criminal.activity,disorderly_conduct,thing,(?ui)\bdisorderly\sconduct\b
+pestles.legal.criminal.activity,disturbing_the_peace,thing,(?ui)\bdisturbing\sthe\speace\b
+pestles.legal.criminal.activity,domestic_violence,thing,(?ui)\bdomestic\sviolence\b
+pestles.legal.criminal.activity,drug_manufacturing,thing,(?ui)\bdrug\smanufactur(e|ing)?\b
+pestles.legal.criminal.activity,drug_trafficking,thing,(?ui)\bdrug\straffick(ing|er(s)?)\b
+pestles.legal.criminal.activity,drug_distribution,thing,(?ui)\bdrug\sdistribut(ing|er(s)?|ion)\b
+pestles.legal.criminal.activity,drug_manufacturing,thing,(?ui)\bdrug\smanufactur(ing|er(s)?)\b
+pestles.legal.criminal.activity,dui,thing,(?ui)\b(driving\sunder\sthe\sinfluence|(d(\.)?u(\.)?i(\.)?))\b
+pestles.legal.criminal.activity,dwi,thing,(?ui)\b(driving\swhile\sintoxic(ated)?|(d(\.)?w(\.)?i(\.)?))\b
+pestles.legal.criminal.activity,embezzlement,thing,(?ui)\bembezzle(ment)?\b
+pestles.legal.criminal.activity,extortion,thing,(?ui)\bextortion\b
+pestles.legal.criminal.activity,forgery,thing,(?ui)\bforgery\b
+pestles.legal.criminal.activity,fraud,thing,(?ui)\bfraud\b
+pestles.legal.criminal.activity,gambling,thing,(?ui)\bgambl(e|ing)\b
+pestles.legal.criminal.activity,harassment,thing,(?ui)\bharassment\b
+pestles.legal.criminal.activity,hate_crimes,thing,(?ui)\bhate\scrime(s)?\b
+pestles.legal.criminal.activity,homicide,thing,(?ui)\bhomicide\b
+pestles.legal.criminal.activity,indecent_exposure,thing,(?ui)\bindecent\sexposure\b
+pestles.legal.criminal.activity,identity_theft,thing,(?ui)\bidentity\stheft\b
+pestles.legal.criminal.activity,insurance_fraud,thing,(?ui)\binsurance\sfraud\b
+pestles.legal.criminal.activity,kidnapping,thing,(?ui)\bkidnap(ping|per(s)?)?\b
+pestles.legal.criminal.activity,manslaughter,thing,(?ui)\bmanslaughter\b
+pestles.legal.criminal.activity,marijuana,thing,(?ui)\bmariguana\b
+pestles.legal.criminal.activity,minor_in_possession,thing,(?ui)\bminor\sin\spossession\b
+pestles.legal.criminal.activity,money_laundering,thing,(?ui)\bmoney\slaunder(er|ing)?\b
+pestles.legal.criminal.activity,murder,thing,(?ui)\bmurder(er(s)?)?\b
+pestles.legal.criminal.activity,open_container_law,thing,(?ui)\bopen\scontainer\slaw\b
+pestles.legal.criminal.activity,perjury,thing,(?ui)\bperjury\b
+pestles.legal.criminal.activity,probation_violation,thing,(?ui)\bprostitut(e|ion)\b
+pestles.legal.criminal.activity,prostitution,thing,(?ui)\bprobation(\sviolation)?\b
+pestles.legal.criminal.activity,public_intoxication,thing,(?ui)\bpublic\sintoxication\b
+pestles.legal.criminal.activity,pyramid_schemes,thing,(?ui)\bpyramid\sscheme(s)?\b
+pestles.legal.criminal.activity,racketeering,thing,(?ui)\bracketeer(ing)?\b
+pestles.legal.criminal.activity,rico,thing,(?ui)\b(racketeer(ing)?\sinfluence(d)?\sand\scorrupt(ion)?\sorganization(s)?|r(\.)?i(\.)?c(\.)?o(\.)?)\b
+pestles.legal.criminal.activity,rape,thing,(?ui)\brap(e(d)?|ist|ing)\b
+pestles.legal.criminal.activity,robbery,thing,(?ui)\brobbe(ry|d|r(s)?)\b
+pestles.legal.criminal.activity,securities_fraud,thing,(?ui)\bsecurit(ies|y)\sfraud\b
+pestles.legal.criminal.activity,sexual_assault,thing,(?ui)\bsex(ual)?\sassault\b
+pestles.legal.criminal.activity,shoplifting,thing,(?ui)\bshop(\s)?lift(ing|er(s)?)?\b
+pestles.legal.criminal.activity,solicitation,thing,(?ui)\bsolicit(ation|or(s)?)?\b
+pestles.legal.criminal.activity,stalking,thing,(?ui)\bstalk(ing|er(s)?)?\b
+pestles.legal.criminal.activity,statutory_rape,thing,(?ui)\bstatutory\srape\b
+pestles.legal.criminal.activity,tax_evasion,thing,(?ui)\btax\sevasion\b
+pestles.legal.criminal.activity,fraud,thing,(?ui)\bfraud\b
+pestles.legal.criminal.activity,telemarketing_fraud,thing,(?ui)\btelemarket(ing|er)\sfraud\b
+pestles.legal.criminal.activity,vandalism,thing,(?ui)\bvandal(ism|ize)\b
+pestles.legal.criminal.activity,white_collar_crimes,thing,(?ui)\bwhite\scollar\scrime(s)?\b
+pestles.legal.criminal.activity,wire_fraud,thing,(?ui)\bwire\sfraud\b
+pestles.legal.criminal.weapons,weapons,thing,(?ui)\bweapon(s|ry|ize)?\b
+pestles.legal.criminal.weapons,bombs,thing,(?ui)\bbomb(s)?\b
+pestles.legal.criminal.weapons,firearm,thing,(?ui)\bfirearm(s)?\b
+pestles.legal.criminal.weapons,gun,thing,(?ui)\bgun(s)?\b
+pestles.legal.criminal.weapons,missile,thing,(?ui)\bmissle(s)?\b
+pestles.legal.criminal.weapons,nerve_gas,thing,(?ui)\bnerve\sgas\b
+pestles.legal.criminal.weapons,grenade,thing,(?ui)\bgrenade(s)?\b
+pestles.legal.criminal.weapons,tear_gas,thing,(?ui)\btear\sgas\b
+pestles.legal.criminal.weapons,mortar,thing,(?ui)\bmortar(s)?\b
+pestles.legal.criminal.weapons,IED,thing,(?ui)\b(improvise(d)?\sexplosive\sdevice(s)?|i(\.)?e(\.)?d(\.)?)\b
+pestles.legal.law,regulation,thing,(?ui)\b(regulatory|regulation|regulation(s)?)\b
+pestles.legal.law,ordinance,thing,(?ui)\bordinance(s)?\b
+pestles.political.country.africa.middle_africa,Central_African_Republic,place,(?ui)\bcentral african republic\b
+pestles.political.country.africa.middle_africa,Chad,place,(?ui)\bChad\b
+pestles.political.country.africa.middle_africa,Congo,place,(?ui)\bCongo\b
+pestles.political.country.africa.middle_africa,Congo_DR,place,(?ui)(\bcongo \(democratic republic of the\)\b|\bcongo\b)
+pestles.political.country.africa.middle_africa,Equatorial_Guinea,place,(?ui)\bequatorial guinea\b
+pestles.political.country.africa.middle_africa,Gabon,place,(?ui)\bGabon\b
+pestles.political.country.africa.middle_africa,Sao_Tome_Principe,place,(?ui)\bsao tome and principe\b
+pestles.political.country.africa.northern_africa,Algeria,place,(?ui)\bAlgeria\b
+pestles.political.country.africa.northern_africa,Egypt,place,(?ui)\bEgypt\b
+pestles.political.country.africa.northern_africa,Libya,place,(?ui)\bLibya\b
+pestles.political.country.africa.northern_africa,Morocco,place,(?ui)\bMorocco\b
+pestles.political.country.africa.northern_africa,Sudan,place,(?ui)\bSudan\b
+pestles.political.country.africa.northern_africa,Tunisia,place,(?ui)\bTunisia\b
+pestles.political.country.africa.northern_africa,Western_Sahara,place,(?ui)\bWestern Sahara\b
+pestles.political.country.americas.caribbean,saint_vincent_and_the_grenadines,place,(?ui)\b(st(\.)?|saint)\svincent(\s)?(and\sthe\sgrenadines)?\b
+pestles.political.country.americas.caribbean,antigua_and_barbuda,place,(?ui)\bantigua(\s)?(and\sbarbuda)?\b
+pestles.political.country.americas.caribbean,aruba,place,(?ui)\baruba\b
+pestles.political.country.americas.caribbean,bonaire,place,(?ui)\bbonaire\b
+pestles.political.country.americas.caribbean,british_virgin_islands,place,(?ui)\bbritish\svirgin\sisland(s)?\b
+pestles.political.country.americas.caribbean,cayman_islands,place,(?ui)\bcayman(\sisland(s)?)?\b
+pestles.political.country.americas.caribbean,curacao,place,(?ui)\bcuracao\b
+pestles.political.country.americas.caribbean,federal_dependencies_of_venezuela,place,(?ui)\bfederal\sdependencies\sof\svenezuela\b
+pestles.political.country.americas.caribbean,guadeloupe,place,(?ui)\bguadeloupe\b
+pestles.political.country.americas.caribbean,martinique,place,(?ui)\bmartinique\b
+pestles.political.country.americas.caribbean,montserrat,place,(?ui)\bmontserrat\b
+pestles.political.country.americas.caribbean,navassa_island,place,(?ui)\bnavassa(\sisland)?\b
+pestles.political.country.americas.caribbean,nueva_esparta,place,(?ui)\bnueva\sesparta\b
+pestles.political.country.americas.caribbean,puerto_rico,place,(?ui)\bpuerto\srico\b
+pestles.political.country.americas.caribbean,saba,place,(?ui)\bsaba\b
+pestles.political.country.americas.caribbean,san_andres_and_providencia,place,(?ui)\bsan\sandres\sand\sprovidencia\b
+pestles.political.country.americas.caribbean,sint_eustatius,place,(?ui)\bsint\seustatius\b
+pestles.political.country.americas.caribbean,sint_maarten,place,(?ui)\bsint\smaarten\b
+pestles.political.country.americas.caribbean,turks_and_caicos_islands,place,(?ui)\bturks\sand\scaicos\sisland(s)?\b
+pestles.political.country.americas.caribbean,united_states_virgin_islands,place,(?ui)\b(united\sstates\s)?virgin\sislands\b
+pestles.political.country.americas.caribbean,jamacia,place,(?ui)\bjamaica\b
+pestles.political.country.americas.caribbean,bahamas,place,(?ui)\bbahamas\b
+pestles.political.country.americas.caribbean,trinidad_and_tobago,place,(?ui)\btrinidad\sand\stobago\b
+pestles.political.country.americas.caribbean,cuba,place,(?ui)\bcuba\b
+pestles.political.country.americas.caribbean,saint_lucia,place,(?ui)\b(st(\.)?|saint)\slucia\b
+pestles.political.country.americas.caribbean,dominican_republic,place,(?ui)\bdominican\srepublic\b
+pestles.political.country.americas.caribbean,haiti,place,(?ui)\bhaiti\b
+pestles.political.country.americas.caribbean,barbados,place,(?ui)\bbarbados\b
+pestles.political.country.americas.caribbean,grenada,place,(?ui)\bgrenada\b
+pestles.political.country.americas.caribbean,saint_kitts_and_nevis,place,(?ui)\b(st(\.)?|saint)\skitts\sand\snevis\b
+pestles.political.country.americas.caribbean,dominica,place,(?ui)\bdominica\b
+pestles.political.country.americas.central,Costa_Rica,place,(?ui)\bcosta\srica\b
+pestles.political.country.americas.central,Belize,place,(?ui)\bbelize\b
+pestles.political.country.americas.central,El_Salvador,place,(?ui)\bel\ssalvador\b
+pestles.political.country.americas.central,Guatemala,place,(?ui)\bguatemala\b
+pestles.political.country.americas.central,Honduras,place,(?ui)\bhonduras\b
+pestles.political.country.americas.central,Nicaragua,place,(?ui)\bnicaragua\b
+pestles.political.country.americas.central,Panama,place,(?ui)\bpanama\b
+pestles.political.country.americas.north_america,united_states_of_america,place,(?ui)\b(USA|U.S.A.|united\sstates\sof\samerica)\b
+pestles.political.country.americas.north_america,canada,place,(?ui)\bcanada\b
+pestles.political.country.americas.south,Argentina,place,(?ui)\bargentina\b
+pestles.political.country.americas.south,Bolivia,place,(?ui)\bbolivia\b
+pestles.political.country.americas.south,Brazil,place,(?ui)\bbrazil\b
+pestles.political.country.americas.south,Chile,place,(?ui)\bchile\b
+pestles.political.country.americas.south,Colombia,place,(?ui)\bcolombia\b
+pestles.political.country.americas.south,Ecuador,place,(?ui)\becuador\b
+pestles.political.country.americas.south,French_Guiana,place,(?ui)\bfrench\sguiana\b
+pestles.political.country.americas.south,Guyana,place,(?ui)\bguyana\b
+pestles.political.country.americas.south,Paraguay,place,(?ui)\bparaguay\b
+pestles.political.country.americas.south,Peru,place,(?ui)\bperu\b
+pestles.political.country.americas.south,Uruguay,place,(?ui)\buruguay\b
+pestles.political.country.americas.south,Venezuela,place,(?ui)\bvenezuela\b
+pestles.political.country.asia.central_asia,Kazakhstan,place,(?ui)\bKazakhstan\b
+pestles.political.country.asia.central_asia,Kyrgyzstan,place,(?ui)\bKyrgyzstan\b
+pestles.political.country.asia.central_asia,Tajikistan,place,(?ui)\bTajikistan\b
+pestles.political.country.asia.central_asia,Turkmenistan,place,(?ui)\bTurkmenistan\b
+pestles.political.country.asia.central_asia,Uzbekistan,place,(?ui)\bUzbekistan\b
+pestles.political.country.asia.eastern_asia,China,place,(?ui)\bChina\b
+pestles.political.country.asia.eastern_asia,Hong_Kong,place,(?ui)\bhong kong\b
+pestles.political.country.asia.eastern_asia,Japan,place,(?ui)\bJapan\b
+pestles.political.country.asia.eastern_asia,Korea_Democratic_Republic,place,(?ui)(\bKorea \(Democratic People\'s Republic of\)\b|\bnorth korea\b)
+pestles.political.country.asia.eastern_asia,Korea_Republic,place,(?ui)(\bKorea \(Republic of\)\b|\bsouth korea\b)
+pestles.political.country.asia.eastern_asia,Macao,place,(?ui)\bMacao\b
+pestles.political.country.asia.eastern_asia,Mongolia,place,(?ui)\bMongolia\b
+pestles.political.country.asia.eastern_asia,Taiwan_Province_China,place,"(?ui)(\bTaiwan, Province of China\b|\bTaiwan\b)"
+pestles.political.country.asia.southern_asia,Afghanistan,place,(?ui)\bAfghanistan\b
+pestles.political.country.asia.southern_asia,Bangladesh,place,(?ui)\bBangladesh\b
+pestles.political.country.asia.southern_asia,Bhutan,place,(?ui)\bBhutan\b
+pestles.political.country.asia.southern_asia,India,place,(?ui)\bIndia\b
+pestles.political.country.asia.southern_asia,Iran,place,(?ui)(\bIran \(Islamic Republic of\)\b|\bIran\b)
+pestles.political.country.asia.southern_asia,Maldives,place,(?ui)\bMaldives\b
+pestles.political.country.asia.southern_asia,Nepal,place,(?ui)\bNepal\b
+pestles.political.country.asia.southern_asia,Pakistan,place,(?ui)\bPakistan\b
+pestles.political.country.asia.southern_eastern_asia,Brunei_Darussalam,place,(?ui)\bBrunei Darussalam\b
+pestles.political.country.asia.southern_eastern_asia,Cambodia,place,(?ui)\bCambodia\b
+pestles.political.country.asia.southern_eastern_asia,Indonesia,place,(?ui)\bIndonesia\b
+pestles.political.country.asia.southern_eastern_asia,Lao_People_DR,place,(?ui)\bLao People\'s Democratic Republic\b
+pestles.political.country.asia.southern_eastern_asia,Malaysia,place,(?ui)\bMalaysia\b
+pestles.political.country.asia.southern_eastern_asia,Myanmar,place,(?ui)\bMyanmar\b
+pestles.political.country.asia.southern_eastern_asia,Philippines,place,(?ui)\bPhilippines\b
+pestles.political.country.asia.southern_eastern_asia,Singapore,place,(?ui)\bSingapore\b
+pestles.political.country.asia.southern_eastern_asia,Thailand,place,(?ui)\bThailand\b
+pestles.political.country.asia.southern_eastern_asia,Timor_Leste,place,(?ui)(\bTimor-Leste\b|\btimor leste\b)
+pestles.political.country.asia.southern_eastern_asia,Viet_Nam,place,(?ui)(\bViet Nam\b|\bvietnam\b)
+pestles.political.country.asia.western_asia,Sri_Lanka,place,(?ui)\bSri Lanka\b
+pestles.political.country.asia.western_asia,Armenia,place,(?ui)\bArmenia\b
+pestles.political.country.asia.western_asia,Azerbaijan,place,(?ui)\bAzerbaijan\b
+pestles.political.country.asia.western_asia,Bahrain,place,(?ui)\bBahrain\b
+pestles.political.country.asia.western_asia,Cyprus,place,(?ui)\bCyprus\b
+pestles.political.country.asia.western_asia,Georgia,place,(?ui)\bGeorgia\b
+pestles.political.country.asia.western_asia,Iraq,place,(?ui)\bIraq\b
+pestles.political.country.asia.western_asia,Israel,place,(?ui)\bIsrael\b
+pestles.political.country.asia.western_asia,Jordan,place,(?ui)\bJordan\b
+pestles.political.country.asia.western_asia,Kuwait,place,(?ui)\bKuwait\b
+pestles.political.country.asia.western_asia,Lebanon,place,(?ui)\bLebanon\b
+pestles.political.country.asia.western_asia,Oman,place,(?ui)\bOman\b
+pestles.political.country.asia.western_asia,Palestine,place,"(?ui)(\bPalestine, State of\b|\bState of Palestine\b)"
+pestles.political.country.asia.western_asia,Qatar,place,(?ui)\bQatar\b
+pestles.political.country.asia.western_asia,Saudi_Arabia,place,(?ui)\bSaudi Arabia\b
+pestles.political.country.asia.western_asia,Syrian_Arab_Republic,place,(?ui)\bSyrian Arab Republic\b
+pestles.political.country.asia.western_asia,Turkey,place,(?ui)\bTurkey\b
+pestles.political.country.asia.western_asia,UAE,place,(?ui)(\bUnited Arab Emirates\b|\bUAE\b)
+pestles.political.country.asia.western_asia,Yemen,place,(?ui)\bYemen\b
+pestles.political.country.europe.eastern_europe,Belarus,place,(?ui)\bBelarus\b
+pestles.political.country.europe.eastern_europe,Bulgaria,place,(?ui)\bBulgaria\b
+pestles.political.country.europe.eastern_europe,Czech_Republic,place,(?ui)\bCzech Republic\b
+pestles.political.country.europe.eastern_europe,Hungary,place,(?ui)\bHungary\b
+pestles.political.country.europe.eastern_europe,Moldova,place,(?ui)(\bMoldova \(Republic of\)\b|\bMoldova\b)
+pestles.political.country.europe.eastern_europe,Poland,place,(?ui)\bPoland\b
+pestles.political.country.europe.eastern_europe,Romania,place,(?ui)\bRomania\b
+pestles.political.country.europe.eastern_europe,Russia,place,(?ui)(\bRussian Federation\b|\bRussia\b)
+pestles.political.country.europe.eastern_europe,Slovakia,place,(?ui)\bSlovakia\b
+pestles.political.country.europe.eastern_europe,Ukraine,place,(?ui)\bUkraine\b
+pestles.political.country.europe.nothern_europe,Aland_Islands,place,(?ui)\b�land Islands\b
+pestles.political.country.europe.nothern_europe,Denmark,place,(?ui)\bDenmark\b
+pestles.political.country.europe.nothern_europe,Estonia,place,(?ui)\bEstonia\b
+pestles.political.country.europe.nothern_europe,Faroe_Islands,place,(?ui)\bFaroe Islands\b
+pestles.political.country.europe.nothern_europe,Finland,place,(?ui)\bFinland\b
+pestles.political.country.europe.nothern_europe,Guernsey,place,(?ui)\bGuernsey\b
+pestles.political.country.europe.nothern_europe,Iceland,place,(?ui)\bIceland\b
+pestles.political.country.europe.nothern_europe,Ireland,place,(?ui)\bIreland\b
+pestles.political.country.europe.nothern_europe,Isle_of_Man,place,(?ui)\bIsle of Man\b
+pestles.political.country.europe.nothern_europe,Jersey,place,(?ui)\bJersey\b
+pestles.political.country.europe.nothern_europe,Latvia,place,(?ui)\bLatvia\b
+pestles.political.country.europe.nothern_europe,Lithuania,place,(?ui)\bLithuania\b
+pestles.political.country.europe.nothern_europe,Norway,place,(?ui)\bNorway\b
+pestles.political.country.europe.nothern_europe,Svalbard_Jan_Mayen,place,(?ui)\bSvalbard and Jan Mayen\b
+pestles.political.country.europe.nothern_europe,Sweden,place,(?ui)\bSweden\b
+pestles.political.country.europe.nothern_europe,UK_Ireland,place,(?ui)(\bUnited Kingdom of Great Britain and Northern Ireland\b|United Kingdom\b|\bUK\b|\bIreland\b)
+pestles.political.country.europe.southern_europe,Albania,place,(?ui)\bAlbania\b
+pestles.political.country.europe.southern_europe,Andorra,place,(?ui)\bAndorra\b
+pestles.political.country.europe.southern_europe,Bosnia_Herzegovina,place,(?ui)(\bBosnia and Herzegovina\b|\bBosnia\b|\bHerzegovina\b)
+pestles.political.country.europe.southern_europe,Croatia,place,(?ui)\bCroatia\b
+pestles.political.country.europe.southern_europe,Gibraltar,place,(?ui)\bGibraltar\b
+pestles.political.country.europe.southern_europe,Greece,place,(?ui)\bGreece\b
+pestles.political.country.europe.southern_europe,Holy_See,place,(?ui)\bHoly See\b
+pestles.political.country.europe.southern_europe,Italy,place,(?ui)\bItaly\b
+pestles.political.country.europe.southern_europe,Macedonia,place,(?ui)(\bMacedonia \(the former Yugoslav Republic of\)\b|\bMacedonia\b)
+pestles.political.country.europe.southern_europe,Malta,place,(?ui)\bMalta\b
+pestles.political.country.europe.southern_europe,Montenegro,place,(?ui)\bMontenegro\b
+pestles.political.country.europe.southern_europe,Portugal,place,(?ui)\bPortugal\b
+pestles.political.country.europe.southern_europe,San_Marino,place,(?ui)\bSan Marino\b
+pestles.political.country.europe.southern_europe,Serbia,place,(?ui)\bSerbia\b
+pestles.political.country.europe.southern_europe,Slovenia,place,(?ui)\bSlovenia\b
+pestles.political.country.europe.southern_europe,Spain,place,(?ui)\bSpain\b
+pestles.political.country.europe.westerern_europe,Austria,place,(?ui)\bAustria\b
+pestles.political.country.europe.westerern_europe,Belgium,place,(?ui)\bBelgium\b
+pestles.political.country.europe.westerern_europe,France,place,(?ui)\bFrance\b
+pestles.political.country.europe.westerern_europe,Germany,place,(?ui)\bGermany\b
+pestles.political.country.europe.westerern_europe,Liechtenstein,place,(?ui)\bLiechtenstein\b
+pestles.political.country.europe.westerern_europe,Luxembourg,place,(?ui)\bLuxembourg\b
+pestles.political.country.europe.westerern_europe,Monaco,place,(?ui)\bMonaco\b
+pestles.political.country.europe.westerern_europe,Netherlands,place,(?ui)\bNetherlands\b
+pestles.political.country.europe.westerern_europe,Switzerland,place,(?ui)\bSwitzerland\b
+pestles.political.country.oceania,australia,place,(?ui)\baustralia\b
+pestles.political.government,senate,person,(?ui)\bsenate\b
+pestles.political.government,congress,person,(?ui)\bcongress |congressional\b
+pestles.political.leadership,governor,person,(?ui)\bgovernor(s|'s)?|gubernatoriall\b
+pestles.political.leadership,president,person,(?ui)\b(vice )?president(s|'s|ial)?\b
+pestles.political.leadership,prime_minister,person,(?ui)\bprime minister(s)?\b
+pestles.political.leadership,senator,person,(?ui)\bsenator(s)?\b
+pestles.political.region,Arabian_Peninsula,place,(?ui)\barabian\speninsula\b
+pestles.political.region,Levant,place,(?ui)\blevant\b
+pestles.political.region,Southeast_Asia,place,(?ui)\bsouth(\s)?east(ern)?\sasia\b
+pestles.political.region,Northeast_Asia,place,(?ui)\bnorth(\s)?east(ern)?\sasia\b
+pestles.political.region,West_Asia,place,(?ui)\bwest(ern)?\sasia\b
+pestles.political.region,North_Asia,place,(?ui)\bnorth(ern)?\sasia\b
+pestles.political.region,South_Asia,place,(?ui)\bsouth(ern)?\sasia\b
+pestles.political.region,East_Asia,place,(?ui)\beast(ern)?\sasia\b
+pestles.political.region,Northwest_Asia,place,(?ui)\bnorth(\s)?west(ern)?\sasia\b
+pestles.political.region,Southwest_Asia,place,(?ui)\bsouth(\s)?west(ern)?\sasia\b
+pestles.political.region,Northwest_Africa,place,(?ui)\bnorth(\s)?west(ern)?\safrica\b
+pestles.political.region,Southwest_Africa,place,(?ui)\bsouth(\s)?west(ern)?\safrica\b
+pestles.political.region,West_Africa,place,(?ui)\bwest(ern)?\safrica\b
+pestles.political.region,East_Africa,place,(?ui)\beast(ern)?\safrica\b
+pestles.political.region,Southeast_Africa,place,(?ui)\bsouth(\s)?east(ern)?\safrica\b
+pestles.political.region,Northeast_Africa,place,(?ui)\bnorth(\s)?east(ern)?\safrica\b
+pestles.political.region,North_Arfrica,place,(?ui)\bnorth(ern)?\safrica\b
+pestles.political.region,South_Africa,place,(?ui)\bsouth(ern)?\safrica\b
+pestles.political.region,Southwest_Africa,place,(?ui)\bsouth(\s)?west(ern)?\safrica\b
+pestles.security.cyber,cyber,thing,(?ui)\bcyber\b
+pestles.security.cyber,cyber_alert,thing,(?ui)\b(cyber )?alert(s)?\b
+pestles.security.cyber,cyber_attack,thing,(?ui)\b(cyber )?attack(s)?\b
+pestles.security.cyber,cyber_incident,thing,(?ui)\b(cyber )?incident(s)?\b
+pestles.security.cyber,cyber_response,thing,(?ui)\b(cyber )?response(s)?\b
+pestles.security.cyber,spyware,thing,(?ui)\bspyware\b
+pestles.security.cyber,hacker,thing,(?ui)\bhacker\b
+pestles.security.cyber,malware,thing,(?ui)\bmalware\b
+pestles.security.cyber,virus,thing,(?ui)\b(anti[- ])?virus( software)?\b
+pestles.security.cyber,encryption,thing,(?ui)\bencrypt(ion)?\b
+pestles.security.military,military,person,(?ui)\bmilitary\b
+pestles.security.military.unit,army,person,(?ui)\barmy\b
+pestles.security.military.unit,navy,person,(?ui)\b(navy|naval)\b
+pestles.security.military.vehicle,aircraft_carrier,thing,(?ui)\baircraft\scarrier(s)?\b
+pestles.security.military.vehicle,battleship,thing,(?ui)\bbattleship(s)?\b
+pestles.security.military.vehicle,battlecruiser,thing,(?ui)\bbattlecruiser(s)?\b
+pestles.security.military.vehicle,cruiser,thing,(?ui)\bcruiser(s)?\b
+pestles.security.military.vehicle,hovercraft,thing,(?ui)\bhovercraft(s)?\b
+pestles.security.military.vehicle,submarine,thing,(?ui)\bsubmarine(s)?\b
+pestles.security.military.vehicle,vessel,thing,(?ui)\bvessel(s)?\b
+pestles.security.military.vehicle,torpedo_boat,thing,(?ui)\btorpedo\sboat(s)?\b
+pestles.security.military.vehicle,airship,thing,(?ui)\bairship(s)?\b
+pestles.security.military.vehicle,dirigible,thing,(?ui)\bdirigible(s)?\b
+pestles.security.military.vehicle,fighter_bomber,thing,(?ui)\b(fighter|strike)?(\s)bomb(er(s)?)\b
+pestles.security.military.vehicle,spotter_plane,thing,(?ui)\bspotter\splane(s)?\b
+pestles.security.military.weapons,bayonet,thing,(?ui)\bbayonet(s)?\b
+pestles.security.military.weapons,danish_axe,thing,(?ui)\bdanish\saxe(s)?\b
+pestles.security.military.weapons,halberd,thing,(?ui)\bhalberd(s)?\b
+pestles.security.military.weapons,knife,thing,(?ui)\bkni(fe|ves)\b
+pestles.security.military.weapons,spear,thing,(?ui)\bspear(s)?\b
+pestles.security.military.weapons,sword,thing,(?ui)\bsword(s)?\b
+pestles.security.military.weapons,sling,thing,(?ui)\bsling(s)?\b
+pestles.security.military.weapons,machine_gun,thing,(?ui)\bmachine\sgun(s)?\b
+pestles.security.military.weapons,pistol,thing,(?ui)\bpistol(s)?\b
+pestles.security.military.weapons,revolver,thing,(?ui)\brevolver(s)?\b
+pestles.security.military.weapons,rifle,thing,(?ui)\brifle(s)?\b
+pestles.security.military.weapons,shotgun,thing,(?ui)\bshot(\s)?gun(s)?\b
+pestles.security.military.weapons,submachine_gun,thing,(?ui)\bsub(\-)?machine\sgun(s)?\b
+pestles.security.military.weapons,cannon,thing,(?ui)\bcannon(s)?\b
+pestles.security.military.weapons,gun,thing,(?ui)\bgun(s)?\b
+pestles.security.military.weapons,naval_artillery,thing,(?ui)\bnaval\sartiller(y|ies)\b
+pestles.security.military.weapons,artillery,thing,(?ui)\bartiller(y|ies)\b
+pestles.security.military.weapons,howitzer,thing,(?ui)\bhowitzer\b
+pestles.security.military.weapons,mortar,thing,(?ui)\bmortar(s)?\b
+pestles.security.military.weapons,artillery_shell,thing,(?ui)\bartillery\sshell(s)?\b
+pestles.security.military.weapons,bangalore_torpedo,thing,(?ui)\bbangalore\storpedo\b
+pestles.security.military.weapons,camouflet,thing,(?ui)\bcamouflet(s)?\b
+pestles.security.military.weapons,grenade,thing,(?ui)\bgrenade(s)?\b
+pestles.security.military.weapons,hand_grenade,thing,(?ui)\bhand\sgrenade(s)?\b
+pestles.security.military.weapons,rifle_grenade,thing,(?ui)\brifle\sgrenade(s)?\b
+pestles.security.military.weapons,rocket_propelled_grenade,thing,(?ui)\brocket\spropelled\sgrenade(s)?\b
+pestles.security.military.weapons,land_mine,thing,(?ui)\bland mine(s)?\b
+pestles.security.military.weapons,anti_tank_mine,thing,(?ui)\banti(\-)?tank\smine(s)?\b
+pestles.security.military.weapons,anti_personnel_mine,thing,(?ui)\banti(\-)?personnel\smine(s)?\b
+pestles.security.military.weapons,flamethrowers,thing,(?ui)\bflame(\s)?thrower(s)?\b
+pestles.security.military.weapons,greek_fire,thing,(?ui)\bgreek\sfire\b
+pestles.security.military.weapons,napalm,thing,(?ui)\bnapalm(s)?\b
+pestles.security.military.weapons,white_phosphorus,thing,(?ui)\bwhite\sphosphorus\b
+pestles.security.military.weapons,sea_mine,thing,(?ui)\bsea\smine(s)?\b
+pestles.security.military.weapons,torpedo,thing,(?ui)\btorpedo(es)?\b
+pestles.security.military.weapons,turret,thing,(?ui)\bturret(s)?\b
+pestles.security.military.weapons,destroyer,thing,(?ui)\bdestroyer(s)?\b
+pestles.security.military.weapons,frigate,thing,(?ui)\bfrigate(s)?\b
+pestles.security.military.weapons,bomber,thing,(?ui)\bbomber(s)?\b
+pestles.security.military.weapons,missile,thing,(?ui)\bmissle(s)?\b
+pestles.security.military.weapons,bomb,thing,(?ui)\bbomb(s)?\b
+pestles.security.military.weapons,drone,thing,(?ui)\b(drone(s)?|unmanned\s(aerial|aircraft)\ssystem(s)?|u(\.)?a(\.)?s(\.)?)\b
+pestles.security.military.weapons,IED,thing,(?ui)\b(improvise(d)?\sexplosive\sdevice(s)?|i(\.)?e(\.)?d(\.)?)\b
+pestles.security.military.weapons,smart_bomb,thing,(?ui)\bsmart\sbomb((s)?|er(s)?)?\b
+pestles.security.military.weapons,laser_guided,thing,(?ui)\blaser(\-|\s)guided\b
+pestles.security.police,police,thing,(?ui)\bpolice( force| officer| car| vehicle| station)?\b
+pestles.social.demographics.ethnicity,Abazins,person,(?ui)\babazin(s)?\b
+pestles.social.demographics.ethnicity,Abkhazians,person,(?ui)\babkhazian(s)?\b
+pestles.social.demographics.ethnicity,Acoli,person,(?ui)\bacoli\b
+pestles.social.demographics.ethnicity,African_Americans,person,(?ui)\bafrican((\s)|(\-))american(s)?\b
+pestles.social.demographics.ethnicity,Africans,person,(?ui)\bafrican(s)?\b
+pestles.social.demographics.ethnicity,Asians,person,(?ui)\basian(s)?\b
+pestles.social.demographics.ethnicity,Afrikaners,person,(?ui)\bafrikaner(s)?\b
+pestles.social.demographics.ethnicity,Agaw,person,(?ui)\bagaw(s)?\b
+pestles.social.demographics.ethnicity,Ahom,person,(?ui)\bahom(s)?\b
+pestles.social.demographics.ethnicity,Akan,person,(?ui)\bakan(s)?\b
+pestles.social.demographics.ethnicity,Albanians,person,(?ui)\balbanian(s)?\b
+pestles.social.demographics.ethnicity,Ambundu,person,(?ui)\bambundu\b
+pestles.social.demographics.ethnicity,Amhara,person,(?ui)\bamhara\b
+pestles.social.demographics.ethnicity,Anuak,person,(?ui)\banuak(s)?\b
+pestles.social.demographics.ethnicity,Arabs,person,(?ui)\barab(ian(s)?|s)?\b
+pestles.social.demographics.ethnicity,Armenians,person,(?ui)\barmenian(s)?\b
+pestles.social.demographics.ethnicity,Aromanians,person,(?ui)\baromanian(s)?\b
+pestles.social.demographics.ethnicity,Assyrians,person,(?ui)\bassyrian(s)?\b
+pestles.social.demographics.ethnicity,Austrians,person,(?ui)\baustrian(s)?\b
+pestles.social.demographics.ethnicity,Avars,person,(?ui)\bavar(s)?\b
+pestles.social.demographics.ethnicity,Aymara,person,(?ui)\baymara\b
+pestles.social.demographics.ethnicity,Azerbaijanis,person,(?ui)\bazerbaijanis\b
+pestles.social.demographics.ethnicity,Balanta,person,(?ui)\bbalanta\b
+pestles.social.demographics.ethnicity,Balinese,person,(?ui)\bbalinese\b
+pestles.social.demographics.ethnicity,Balkars,person,(?ui)\bbalkar(s)?\b
+pestles.social.demographics.ethnicity,Balochis,person,(?ui)\bbalochis\b
+pestles.social.demographics.ethnicity,Balti,person,(?ui)\bbalti\b
+pestles.social.demographics.ethnicity,Bamars,person,(?ui)\bbamar(s)?\b
+pestles.social.demographics.ethnicity,Bambara,person,(?ui)\bbambara(s)?\b
+pestles.social.demographics.ethnicity,Banda,person,(?ui)\bbanda(s)?\b
+pestles.social.demographics.ethnicity,Bari,person,(?ui)\bbari(s)?\b
+pestles.social.demographics.ethnicity,Bariba,person,(?ui)\bbariba(s)?\b
+pestles.social.demographics.ethnicity,Bassa,person,(?ui)\bbassa(s)?\b
+pestles.social.demographics.ethnicity,Bashkirs,person,(?ui)\bbashkir(s)?\b
+pestles.social.demographics.ethnicity,Basques,person,(?ui)\bbasque(s)?\b
+pestles.social.demographics.ethnicity,Belarusians,person,(?ui)\bbelarusian(s)?\b
+pestles.social.demographics.ethnicity,Bembe,person,(?ui)\bbembe(s)?\b
+pestles.social.demographics.ethnicity,Bengalis,person,(?ui)\bbengalis\b
+pestles.social.demographics.ethnicity,Berbers,person,(?ui)\bberber(s)?\b
+pestles.social.demographics.ethnicity,Berta,person,(?ui)\bberta(s)?\b
+pestles.social.demographics.ethnicity,Beti,person,(?ui)\bbeti(s)?\b
+pestles.social.demographics.ethnicity,Bissa,person,(?ui)\bbissa(s)?\b
+pestles.social.demographics.ethnicity,Bodo,person,(?ui)\bbodo(s)?\b
+pestles.social.demographics.ethnicity,Bosniaks,person,(?ui)\bbosniak(s)?\b
+pestles.social.demographics.ethnicity,Brahui,person,(?ui)\bbrahui(s)?\b
+pestles.social.demographics.ethnicity,Bretons,person,(?ui)\bbreton(s)?\b
+pestles.social.demographics.ethnicity,Bulgarians,person,(?ui)\bbulgarian(s)?\b
+pestles.social.demographics.ethnicity,Catalans,person,(?ui)\bcatalan(s)?\b
+pestles.social.demographics.ethnicity,Chamorro,person,(?ui)\bchamorro(s)?\b
+pestles.social.demographics.ethnicity,Chechens,person,(?ui)\bchechens\b
+pestles.social.demographics.ethnicity,Cherokee,person,(?ui)\bcherokee\b
+pestles.social.demographics.ethnicity,Choctaw,person,(?ui)\bchoctaw\b
+pestles.social.demographics.ethnicity,Chokwe,person,(?ui)\bchokwe\b
+pestles.social.demographics.ethnicity,Chutiya,person,(?ui)\bchutiya(s)?\b
+pestles.social.demographics.ethnicity,Chuvash,person,(?ui)\bChuvash\b
+pestles.social.demographics.ethnicity,Circassians,person,(?ui)\bcircassian(s)?\b
+pestles.social.demographics.ethnicity,Chewa,person,(?ui)\bchewa(s)?\b
+pestles.social.demographics.ethnicity,Corsicans,person,(?ui)\bcorsican(s)?\b
+pestles.social.demographics.ethnicity,Croats,person,(?ui)\bcroat(s)?\b
+pestles.social.demographics.ethnicity,Czechs,person,(?ui)\bczech(s)?\b
+pestles.social.demographics.ethnicity,Dagaaba,person,(?ui)\bdagaaba(s)?\b
+pestles.social.demographics.ethnicity,Dargins,person,(?ui)\bdargin(s)?\b
+pestles.social.demographics.ethnicity,Dinka,person,(?ui)\bdinka(s)?\b
+pestles.social.demographics.ethnicity,Duala,person,(?ui)\bduala(s)?\b
+pestles.social.demographics.ethnicity,Dutch,person,(?ui)\bdutch\b
+pestles.social.demographics.ethnicity,Dyula,person,(?ui)\bdyula\b
+pestles.social.demographics.ethnicity,Efik,person,(?ui)\befik\b
+pestles.social.demographics.ethnicity,Egyptians,person,(?ui)\begyptian(s)?\b
+pestles.social.demographics.ethnicity,English,person,(?ui)\benglish\b
+pestles.social.demographics.ethnicity,Europeans,person,(?ui)\beuropean(s)?\b
+pestles.social.demographics.ethnicity,Estonians,person,(?ui)\bestonian(s)?\b
+pestles.social.demographics.ethnicity,Fijians,person,(?ui)\bfijian(s)?\b
+pestles.social.demographics.ethnicity,French,person,(?ui)\bfrench\b
+pestles.social.demographics.ethnicity,Frisians,person,(?ui)\bfrisian(s)?\b
+pestles.social.demographics.ethnicity,Friulians,person,(?ui)\bfriulian(s)?\b
+pestles.social.demographics.ethnicity,Fula,person,(?ui)\bfula(s)?\b
+pestles.social.demographics.ethnicity,Ga_Adangbe,person,(?ui)\bga(\-|\s)?adangbe(s)?\b
+pestles.social.demographics.ethnicity,Gagauz,person,(?ui)\bgagauz\b
+pestles.social.demographics.ethnicity,Galicians,person,(?ui)\bgalician(s)?\b
+pestles.social.demographics.ethnicity,Ganda,person,(?ui)\bganda(s)?\b
+pestles.social.demographics.ethnicity,Garifuna,person,(?ui)\bgarifuna(s)?\b
+pestles.social.demographics.ethnicity,Gbagyi,person,(?ui)\bgbagyi\b
+pestles.social.demographics.ethnicity,Georgians,person,(?ui)\bgeorgian(s)?\b
+pestles.social.demographics.ethnicity,Germans,person,(?ui)\bgerman(s)?\b
+pestles.social.demographics.ethnicity,Gorontaloan,person,(?ui)\bgorontaloan(s)?\b
+pestles.social.demographics.ethnicity,Greeks,person,(?ui)\bgreek(s)?\b
+pestles.social.demographics.ethnicity,Guaranis,person,(?ui)\bguarani(s)?\b
+pestles.social.demographics.ethnicity,Gujarati,person,(?ui)\bgujarati\b
+pestles.social.demographics.ethnicity,Gumuz,person,(?ui)\bgumuz\b
+pestles.social.demographics.ethnicity,Gurage,person,(?ui)\bgurage\b
+pestles.social.demographics.ethnicity,Gurma,person,(?ui)\bgurma(s)?\b
+pestles.social.demographics.ethnicity,Gurunsi,person,(?ui)\bgurunsi\b
+pestles.social.demographics.ethnicity,Hadiya,person,(?ui)\bhadiya(s)?\b
+pestles.social.demographics.ethnicity,Hajongs,person,(?ui)\bhajong(s)?\b
+pestles.social.demographics.ethnicity,Harari,person,(?ui)\bharari(s)?\b
+pestles.social.demographics.ethnicity,Hausa,person,(?ui)\bhausa(s)?\b
+pestles.social.demographics.ethnicity,Hawaiians,person,(?ui)\bhawaiian(s)?\b
+pestles.social.demographics.ethnicity,Hazaras,person,(?ui)\bhazara(s)?\b
+pestles.social.demographics.ethnicity,Herero,person,(?ui)\bherero(s)?\b
+pestles.social.demographics.ethnicity,Hmong,person,(?ui)\bhmong(s)?\b
+pestles.social.demographics.ethnicity,Huli,person,(?ui)\bhuli(s)?\b
+pestles.social.demographics.ethnicity,Hungarians,person,(?ui)\bhungarian(s)?\b
+pestles.social.demographics.ethnicity,Hutu,person,(?ui)\bhutu(s)?\b
+pestles.social.demographics.ethnicity,Ibibio,person,(?ui)\bibibio(s)?\b
+pestles.social.demographics.ethnicity,Icelanders,person,(?ui)\bicelander(s)?\b
+pestles.social.demographics.ethnicity,Igbo,person,(?ui)\bigbo(s)?\b
+pestles.social.demographics.ethnicity,Ijaw,person,(?ui)\bijaw\b
+pestles.social.demographics.ethnicity,Ingushes,person,(?ui)\bingush(es)?\b
+pestles.social.demographics.ethnicity,Inuit,person,(?ui)\binuit(s)?\b
+pestles.social.demographics.ethnicity,Irish,person,(?ui)\birish\b
+pestles.social.demographics.ethnicity,Iranian,person,(?ui)\biranian(s)?\b
+pestles.social.demographics.ethnicity,Iroquois,person,(?ui)\biroquois\b
+pestles.social.demographics.ethnicity,Italians,person,(?ui)\bitalian(s)?\b
+pestles.social.demographics.ethnicity,Japanese,person,(?ui)\bjapanese\b
+pestles.social.demographics.ethnicity,Javanese,person,(?ui)\bjavanese\b
+pestles.social.demographics.ethnicity,Jews,person,(?ui)\bjew(s|ish)?\b
+pestles.social.demographics.ethnicity,Jingpo,person,(?ui)\bjingpo\b
+pestles.social.demographics.ethnicity,Jola,person,(?ui)\bjola\b
+pestles.social.demographics.ethnicity,Kalanga,person,(?ui)\bkalanga\b
+pestles.social.demographics.ethnicity,Kalenjin,person,(?ui)\bkalenjin(s)?\b
+pestles.social.demographics.ethnicity,Kannadigas,person,(?ui)\bkannadiga(s)?\b
+pestles.social.demographics.ethnicity,Kanuri,person,(?ui)\bkanuri\b
+pestles.social.demographics.ethnicity,Karachays,person,(?ui)\bkarachay(s)?\b
+pestles.social.demographics.ethnicity,Karakalpaks,person,(?ui)\bkarakalpak(s)?\b
+pestles.social.demographics.ethnicity,Karenni,person,(?ui)\bkarenni\b
+pestles.social.demographics.ethnicity,Kashmiris,person,(?ui)\bkashmiri(s)?\b
+pestles.social.demographics.ethnicity,Kashubians,person,(?ui)\bkashubian(s)?\b
+pestles.social.demographics.ethnicity,Kazakhs,person,(?ui)\bkazakh(s)?\b
+pestles.social.demographics.ethnicity,Khas,person,(?ui)\bkhas\b
+pestles.social.demographics.ethnicity,Khakas,person,(?ui)\bkhaka(s)?\b
+pestles.social.demographics.ethnicity,Khamti,person,(?ui)\bkhamti\b
+pestles.social.demographics.ethnicity,Khmer,person,(?ui)\bkhmer\b
+pestles.social.demographics.ethnicity,Kikuyu,person,(?ui)\bkikuyu\b
+pestles.social.demographics.ethnicity,Komi,person,(?ui)\bkomi\b
+pestles.social.demographics.ethnicity,Konkani,person,(?ui)\bkonkani\b
+pestles.social.demographics.ethnicity,Kongo,person,(?ui)\bkongo\b
+pestles.social.demographics.ethnicity,Konjo,person,(?ui)\bkonjo\b
+pestles.social.demographics.ethnicity,Koreans,person,(?ui)\bkorean(s)?\b
+pestles.social.demographics.ethnicity,Kumyks,person,(?ui)\bkumyk(s)?\b
+pestles.social.demographics.ethnicity,Kurds,person,(?ui)\bkurd(s)?\b
+pestles.social.demographics.ethnicity,Kyrgyz,person,(?ui)\bkyrhyz\b
+pestles.social.demographics.ethnicity,Laks,person,(?ui)\blaks\b
+pestles.social.demographics.ethnicity,Lango,person,(?ui)\blango\b
+pestles.social.demographics.ethnicity,Latvians,person,(?ui)\blatvian(s)?\b
+pestles.social.demographics.ethnicity,Laz,person,(?ui)\blaz\b
+pestles.social.demographics.ethnicity,Lega,person,(?ui)\blega\b
+pestles.social.demographics.ethnicity,Lezgins,person,(?ui)\blezgin(s)?\b
+pestles.social.demographics.ethnicity,Lithuanians,person,(?ui)\blithuanian(s)?\b
+pestles.social.demographics.ethnicity,Luba,person,(?ui)\bluba\b
+pestles.social.demographics.ethnicity,Luo,person,(?ui)\bluo\b
+pestles.social.demographics.ethnicity,Luxembourgers,person,(?ui)\bluxembourger(s)?\b
+pestles.social.demographics.ethnicity,Lurs,person,(?ui)\blurs\b
+pestles.social.demographics.ethnicity,Maasai,person,(?ui)\bmaasai\b
+pestles.social.demographics.ethnicity,Macedonians,person,(?ui)\bmacedonian(s)?\b
+pestles.social.demographics.ethnicity,Madi,person,(?ui)\bmadi\b
+pestles.social.demographics.ethnicity,Mafa,person,(?ui)\bmafa\b
+pestles.social.demographics.ethnicity,Makassarese,person,(?ui)\bmakassarese\b
+pestles.social.demographics.ethnicity,Malays,person,(?ui)\bmalay(s)?\b
+pestles.social.demographics.ethnicity,Malayali,person,(?ui)\bmalayali\b
+pestles.social.demographics.ethnicity,Maldivians,person,(?ui)\bmaldivian(s)?\b
+pestles.social.demographics.ethnicity,Maltese,person,(?ui)\bmaltese\b
+pestles.social.demographics.ethnicity,Manchu,person,(?ui)\bmanchu\b
+pestles.social.demographics.ethnicity,Mandinka,person,(?ui)\bmandinka(s)?\b
+pestles.social.demographics.ethnicity,Manx,person,(?ui)\bmanx\b
+pestles.social.demographics.ethnicity,Maori,person,(?ui)\bmaori\b
+pestles.social.demographics.ethnicity,Mapuche,person,(?ui)\bmapuche\b
+pestles.social.demographics.ethnicity,Marathi,person,(?ui)\bmarathi\b
+pestles.social.demographics.ethnicity,Mari,person,(?ui)\bmari\b
+pestles.social.demographics.ethnicity,Masa,person,(?ui)\bmasa\b
+pestles.social.demographics.ethnicity,Masalit,person,(?ui)\bmasalit\b
+pestles.social.demographics.ethnicity,Mayans,person,(?ui)\bmyan(s)?\b
+pestles.social.demographics.ethnicity,Mbaka,person,(?ui)\bmbaka(s)?\b
+pestles.social.demographics.ethnicity,Mende,person,(?ui)\bmende\b
+pestles.social.demographics.ethnicity,Merina,person,(?ui)\bmerina\b
+pestles.social.demographics.ethnicity,Minahasan,person,(?ui)\bminahasan\b
+pestles.social.demographics.ethnicity,Minangkabau,person,(?ui)\bminangkabau\b
+pestles.social.demographics.ethnicity,Mishing,person,(?ui)\bmishing\b
+pestles.social.demographics.ethnicity,Miskito,person,(?ui)\bmiskito\b
+pestles.social.demographics.ethnicity,Mixtec,person,(?ui)\bmixtec\b
+pestles.social.demographics.ethnicity,Mon,person,(?ui)\bmon\b
+pestles.social.demographics.ethnicity,Mongo,person,(?ui)\bmongo\b
+pestles.social.demographics.ethnicity,Mongols,person,(?ui)\bmongol(s)?\b
+pestles.social.demographics.ethnicity,Montenegrins,person,(?ui)\bmontenegrin(s)?\b
+pestles.social.demographics.ethnicity,Mordvins,person,(?ui)\bmordvin(s)?\b
+pestles.social.demographics.ethnicity,Mossi,person,(?ui)\bmossi\b
+pestles.social.demographics.ethnicity,Murut,person,(?ui)\bmurut(s)?\b
+pestles.social.demographics.ethnicity,Muscogee,person,(?ui)\bmusogee\b
+pestles.social.demographics.ethnicity,Naga,person,(?ui)\bnaga\b
+pestles.social.demographics.ethnicity,Nahuas,person,(?ui)\bnahuas\b
+pestles.social.demographics.ethnicity,Nama,person,(?ui)\bnama\b
+pestles.social.demographics.ethnicity,Navajo,person,(?ui)\bnavajo\b
+pestles.social.demographics.ethnicity,Ngalop,person,(?ui)\bngalop\b
+pestles.social.demographics.ethnicity,Nias,person,(?ui)\bnias\b
+pestles.social.demographics.ethnicity,Nogais,person,(?ui)\bnogais\b
+pestles.social.demographics.ethnicity,Norwegians,person,(?ui)\bnorwegian(s)?\b
+pestles.social.demographics.ethnicity,Nubians,person,(?ui)\bnubian(s)?\b
+pestles.social.demographics.ethnicity,Nuer,person,(?ui)\bnuer(s)?\b
+pestles.social.demographics.ethnicity,Nuristanis,person,(?ui)\bnuristani(s)?\b
+pestles.social.demographics.ethnicity,Occitans,person,(?ui)\boccitan(s)?\b
+pestles.social.demographics.ethnicity,Odia,person,(?ui)\bodia(s)?\b
+pestles.social.demographics.ethnicity,Ojibwe,person,(?ui)\bojibwe\b
+pestles.social.demographics.ethnicity,Oromo,person,(?ui)\boromo\b
+pestles.social.demographics.ethnicity,Ossetians,person,(?ui)\bossetian(s)?\b
+pestles.social.demographics.ethnicity,Otomi,person,(?ui)\botomi\b
+pestles.social.demographics.ethnicity,Ovambo,person,(?ui)\bovambo\b
+pestles.social.demographics.ethnicity,Ovimbundu,person,(?ui)\bovimbundu\b
+pestles.social.demographics.ethnicity,Pamiris,person,(?ui)\bpamiri(s)?\b
+pestles.social.demographics.ethnicity,PaO,person,(?ui)\bpa(\')?o\b
+pestles.social.demographics.ethnicity,Pashtuns,person,(?ui)\bpashtun(s)?\b
+pestles.social.demographics.ethnicity,Persians,person,(?ui)\bpersian(s)?\b
+pestles.social.demographics.ethnicity,Portuguese,person,(?ui)\bportuguese\b
+pestles.social.demographics.ethnicity,Punjabis,person,(?ui)\bpunjabis\b
+pestles.social.demographics.ethnicity,Purepecha,person,(?ui)\bpurepecha\b
+pestles.social.demographics.ethnicity,Qashqai,person,(?ui)\bqashqai\b
+pestles.social.demographics.ethnicity,Quechua,person,(?ui)\bquechua\b
+pestles.social.demographics.ethnicity,Rajbongshi,person,(?ui)\brajbongshi\b
+pestles.social.demographics.ethnicity,Rakhine,person,(?ui)\brakhine\b
+pestles.social.demographics.ethnicity,Rejangese,person,(?ui)\brejangese\b
+pestles.social.demographics.ethnicity,Rohingyas,person,(?ui)\brohingyas\b
+pestles.social.demographics.ethnicity,Romani,person,(?ui)\bromani\b
+pestles.social.demographics.ethnicity,Romanians,person,(?ui)\bromanian(s)?\b
+pestles.social.demographics.ethnicity,Russians,person,(?ui)\brussian(s)?\b
+pestles.social.demographics.ethnicity,Ryukyuans,person,(?ui)\bryukyuan(s)?\b
+pestles.social.demographics.ethnicity,Rusyns,person,(?ui)\brusyn(s)?\b
+pestles.social.demographics.ethnicity,Saho,person,(?ui)\bsaho\b
+pestles.social.demographics.ethnicity,Samoans,person,(?ui)\bsamoan(s)\b
+pestles.social.demographics.ethnicity,Sangirese,person,(?ui)\bsanirese\b
+pestles.social.demographics.ethnicity,Sardinians,person,(?ui)\bsardinian(s)?\b
+pestles.social.demographics.ethnicity,Scottish,person,(?ui)\bscottish\b
+pestles.social.demographics.ethnicity,Senufo,person,(?ui)\bsenufo\b
+pestles.social.demographics.ethnicity,Serbs,person,(?ui)\bserb(s)?\b
+pestles.social.demographics.ethnicity,Serer,person,(?ui)\bserer\b
+pestles.social.demographics.ethnicity,Shilluk,person,(?ui)\bshilluk(s)?\b
+pestles.social.demographics.ethnicity,Shona,person,(?ui)\bshona(s)?\b
+pestles.social.demographics.ethnicity,Sidama,person,(?ui)\bsidama\b
+pestles.social.demographics.ethnicity,Silesian,person,(?ui)\bsilesian\b
+pestles.social.demographics.ethnicity,Siddi,person,(?ui)\bsiddi\b
+pestles.social.demographics.ethnicity,Silte,person,(?ui)\bsilt(\')?e\b
+pestles.social.demographics.ethnicity,Sindhis,person,(?ui)\bsindhis\b
+pestles.social.demographics.ethnicity,Sinhalese,person,(?ui)\bsinhalese\b
+pestles.social.demographics.ethnicity,Sioux,person,(?ui)\bsioux\b
+pestles.social.demographics.ethnicity,Slovaks,person,(?ui)\bslovak(s)?\b
+pestles.social.demographics.ethnicity,Slovenes,person,(?ui)\bsolvenes\b
+pestles.social.demographics.ethnicity,Soga,person,(?ui)\bsoga\b
+pestles.social.demographics.ethnicity,Somalis,person,(?ui)\bsomali(s)?\b
+pestles.social.demographics.ethnicity,Songhai,person,(?ui)\bsonghai\b
+pestles.social.demographics.ethnicity,Soninke,person,(?ui)\bsoninke\b
+pestles.social.demographics.ethnicity,Sotho,person,(?ui)\bsotho\b
+pestles.social.demographics.ethnicity,Spaniards,person,(?ui)\bspaniard(s)?\b
+pestles.social.demographics.ethnicity,Sundanese,person,(?ui)\bsundanese\b
+pestles.social.demographics.ethnicity,Sukuma,person,(?ui)\bsukuma\b
+pestles.social.demographics.ethnicity,Swahili,person,(?ui)\bswahili\b
+pestles.social.demographics.ethnicity,Swazi,person,(?ui)\bswazi\b
+pestles.social.demographics.ethnicity,Swedes,person,(?ui)\bswedes\b
+pestles.social.demographics.ethnicity,Tabasaran,person,(?ui)\btabasaran\b
+pestles.social.demographics.ethnicity,Tagalogs,person,(?ui)\btagalos\b
+pestles.social.demographics.ethnicity,Tahitians,person,(?ui)\btahitian(s)?\b
+pestles.social.demographics.ethnicity,Tajiks,person,(?ui)\btajik(s)?\b
+pestles.social.demographics.ethnicity,Tama,person,(?ui)\btama(s)?\b
+pestles.social.demographics.ethnicity,Tamils,person,(?ui)\btamil(s)?\b
+pestles.social.demographics.ethnicity,Tatars,person,(?ui)\btatar(s)?\b
+pestles.social.demographics.ethnicity,Telugu,person,(?ui)\btelugu\b
+pestles.social.demographics.ethnicity,Temne,person,(?ui)\btemne\b
+pestles.social.demographics.ethnicity,Thais,person,(?ui)\bthai(s)?\b
+pestles.social.demographics.ethnicity,Tibetans,person,(?ui)\btibetan(s)?\b
+pestles.social.demographics.ethnicity,Tigrayans,person,(?ui)\btigrayan(s)?\b
+pestles.social.demographics.ethnicity,Tigre,person,(?ui)\btigre\b
+pestles.social.demographics.ethnicity,Tiv,person,(?ui)\btiv\b
+pestles.social.demographics.ethnicity,Tiwa,person,(?ui)\btiwa\b
+pestles.social.demographics.ethnicity,Toraja,person,(?ui)\btoraja\b
+pestles.social.demographics.ethnicity,Toubou,person,(?ui)\btoubou\b
+pestles.social.demographics.ethnicity,Tsonga,person,(?ui)\btsonga\b
+pestles.social.demographics.ethnicity,Tswana,person,(?ui)\btswana\b
+pestles.social.demographics.ethnicity,Turkana,person,(?ui)\bturkana\b
+pestles.social.demographics.ethnicity,Turks,person,(?ui)\bturk(s)?\b
+pestles.social.demographics.ethnicity,Turkmens,person,(?ui)\bturkmen(s)?\b
+pestles.social.demographics.ethnicity,Tutsi,person,(?ui)\btutsi\b
+pestles.social.demographics.ethnicity,Tuvans,person,(?ui)\btuvan(s)?\b
+pestles.social.demographics.ethnicity,Twa,person,(?ui)\btwa\b
+pestles.social.demographics.ethnicity,Udmurts,person,(?ui)\budmurt(s)?\b
+pestles.social.demographics.ethnicity,Ukrainians,person,(?ui)\bukrainian(s)?\b
+pestles.social.demographics.ethnicity,Uyghurs,person,(?ui)\buyghur(s)?\b
+pestles.social.demographics.ethnicity,Uzbeks,person,(?ui)\buzbek(s)?\b
+pestles.social.demographics.ethnicity,Venda,person,(?ui)\bvenda(s)?\b
+pestles.social.demographics.ethnicity,Vietnamese,person,(?ui)\bvietnamese\b
+pestles.social.demographics.ethnicity,Welayta,person,(?ui)\bwalayta\b
+pestles.social.demographics.ethnicity,Welsh,person,(?ui)\bwelsh\b
+pestles.social.demographics.ethnicity,Wolof,person,(?ui)\bwolof\b
+pestles.social.demographics.ethnicity,Xhosa,person,(?ui)\bxhosa\b
+pestles.social.demographics.ethnicity,Yakuts,person,(?ui)\byakut(s)?\b
+pestles.social.demographics.ethnicity,Yoruba,person,(?ui)\byoruba\b
+pestles.social.demographics.ethnicity,Zaghawa,person,(?ui)\bzaghawa\b
+pestles.social.demographics.ethnicity,Zande,person,(?ui)\bzande\b
+pestles.social.demographics.ethnicity,Zapotec,person,(?ui)\bzapotec\b
+pestles.social.demographics.ethnicity,Zhuang,person,(?ui)\bzhuang\b
+pestles.social.demographics.ethnicity,Zulu,person,(?ui)\bzulu\b
+pestles.social.education,University_institute,place,"(?ui)\b([A-Z][a-z]{1,20} ?){1,4} (Institute of Technology|Institute of Science and Technology|University)"
+pestles.social.education,University_of,place,"(?ui)\bUniversity of ([A-Z][a-z]{1,20} ?){1,4}"
+pestles.social.education,college,place,(?ui)\b(universit(ies|y)|institut(e|ion)|college)(s)?\b
+pestles.social.people.email,email_addr,person,"(?ui)[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}\b"
+pestles.social.people.groups.terrorists,Abu_Nidal_Organization,person,(?ui)Abu Nidal(\s)?(Organization|org)?|Fatah(\s)?(\-)?(\s)?The Revolutionary Council
+pestles.social.people.groups.terrorists,Abu_Sayyaf_Group,person,(?ui)Abu Sayyaf(\'s|s\'|s)?\s((\()?group(\))?)?|(ISIL|Islamic State of Iraq and the Levant|ISIS|Islamic State of Iraq and Syria)(\s)?(|\-)?(\s)?Philippines Province
+pestles.social.people.groups.terrorists,Aum_Shinrikyo,person,(?ui)Aum Shinrikyo
+pestles.social.people.groups.terrorists,Basque_Fatherland_and_Liberty,person,(?ui)Basque Fatherland (and|\&) Liberty|Euskadi(\s|\-)?Ta(\s|\-)?Askatasuna
+pestles.social.people.groups.terrorists,Gama_al_Islamiyya,person,(?ui)\bgama\sal\sislamiyya\b
+pestles.social.people.groups.terrorists,HAMAS,person,(?ui)\bHAMAS\b
+pestles.social.people.groups.terrorists,Harakat_ul_Mujahidin,person,(?ui)Harakat ul(\-|\s)?(Mujahidin|Mujahideen)
+pestles.social.people.groups.terrorists,Hizballah,person,(?ui)\b(Hizballah|Hezbollah)\b
+pestles.social.people.groups.terrorists,Kahane_Chai,person,(?ui)Kahane Chai|Kach and Kahane Chai|Kach
+pestles.social.people.groups.terrorists,Kurdistan_Workers_Party,person,(?ui)Kurdistan Worker(\�s|s\�|s) Party
+pestles.social.people.groups.terrorists,Liberation_Tigers_of_Tamil_Eelam,person,(?ui)Liberation Tigers of Tamil Eelam|Tamil Tiger(s)?|\bL(TTE)\b
+pestles.social.people.groups.terrorists,National_Liberation_Army,person,(?ui)National Liberation Army
+pestles.social.people.groups.terrorists,Palestine_Liberation_Front,person,(?ui)Palestine Liberation Front
+pestles.social.people.groups.terrorists,Palestinian_Islamic_Jihad,person,(?ui)Palestinian Islamic Jihad|Islamic Jihad Movement in Palestine
+pestles.social.people.groups.terrorists,Popular_Front_for_the_Liberation_of_Palestine,person,(?ui)Popular Front for the Liberation of Palestine
+pestles.social.people.groups.terrorists,PFLP_General_Command,person,(?ui)(PFLP|Popular Front for the Liberation of Palestine)(\-|\s)?General Command|\b(PFLP\-GC)\b
+pestles.social.people.groups.terrorists,Revolutionary_Armed_Forces_of_Colombia,person,(?ui)Revolutionary Armed Forces of Colombia
+pestles.social.people.groups.terrorists,Revolutionary_People_Liberation_Party,person,(?ui)Revolutionary People\'s Liberation Party(\s)?(\/)?((\s)?Front)?
+pestles.social.people.groups.terrorists,Shining_Path,person,(?ui)Shining Path|Communist Party of Peru
+pestles.social.people.groups.terrorists,al_Qaida,person,(?ui)\b(al(\-|(\s))?Qa\'?(i|e)da)\b
+pestles.social.people.groups.terrorists,Islamic_Movement_of_Uzbekistan,person,(?ui)\bIslamic Movement of Uzbekistan\b
+pestles.social.people.groups.terrorists,Real_Irish_Republican_Army,person,(?ui)\bReal Irish Republican Army\b
+pestles.social.people.groups.terrorists,Jaish_e_Mohammed,person,(?ui)\bJaish(\-|\s)?e(\-|\s)?Mohammed\b
+pestles.social.people.groups.terrorists,Lashkar_e_Tayyiba,person,(?ui)\bLashkar(\-|\s)?e Tayyiba\b
+pestles.social.people.groups.terrorists,Al_Aqsa_Martyrs_Brigade,person,(?ui)\bAl(\-|\s)?Aqsa Martyrs Brigade\b
+pestles.social.people.groups.terrorists,Asbat_al_Ansar,person,(?ui)\b(A|O)sbat(\-|\s)?a(l|n)(\-|\s)?Ansar\b
+pestles.social.people.groups.terrorists,al_Qaida_in_the_Islamic_Maghreb,person,(?ui)(al(\-|(\s))?Qa\'?(i|e)da) in (the)? Islamic Maghreb
+pestles.social.people.groups.terrorists,Communist_Party_of_the_Philippines,person,(?ui)(Communist Party of the Philippines|New People(\'s|\\s)? Army)
+pestles.social.people.groups.terrorists,Jemaah_Islamiya,person,(?ui)Jemaah Islamiya(h)?
+pestles.social.people.groups.terrorists,Lashkar_i_Jhangvi,person,(?ui)\bLashkar(\s|\-)?(i|e)?(\s|\-)?Jhangvi\b
+pestles.social.people.groups.terrorists,Ansar_al_Islam,person,(?ui)Ansar al(\-|\s)?Islam
+pestles.social.people.groups.terrorists,Continuity_Irish_Republican_Army,person,(?ui)(Continuity Irish Republican Army|Continuity(\s)?((\()?IRA(\))?))
+pestles.social.people.groups.terrorists,Islamic_State_of_Iraq_and_the_Levant,person,(?ui)\b(ISIL|Islamic State of Iraq and the Levant|ISIS|Islamic State of Iraq and Syria)\b
+pestles.social.people.groups.terrorists,Islamic_Jihad_Union,person,(?ui)(Islamic)?(\s)?Jihad(\s)?(Union)?
+pestles.social.people.groups.terrorists,Harakat_ul_Jihad_i_Islami_Bangladesh,person,(?ui)Harakat ul(\-|\s)?Jihad(\-|\s)?i(\-|\s)?Islami(\/|\s)?Bangladesh
+pestles.social.people.groups.terrorists,al_Shabaab,person,(?ui)\b(al(\-|\s)?Shabaab|Harakat(\-|\s)?al(\-|\s)?Shabaab(\-|\s)?al(\-|\s)?(Mujahidin|Mujahideen))\b
+pestles.social.people.groups.terrorists,Revolutionary_Struggle,person,(?ui)\bRevolutionary Struggle\b
+pestles.social.people.groups.terrorists,Kataib_Hizballah,person,(?ui)Kata\'?ib (Hizballah|Hezbollah)|Brigades of the Party of God|(Hizballah|Hezbollah) Brigades
+pestles.social.people.groups.terrorists,al_Qaida_in_the_Arabian_Peninsula,person,(?ui)(al-Qa\'?ida|al(\-|\s)?Qaeda) (in|of) the Arabian Peninsula
+pestles.social.people.groups.terrorists,Harakat_ul_Jihad_i_Islami,person,(?ui)Har(a)?kat(\-|\s)?ul(\-|\s)?Jihad(\-|\s)?(i)?(\-|\s)?(al)?(\-|\s)?Islami
+pestles.social.people.groups.terrorists,Tehrik_e_Taliban_Pakistan,person,(?ui)\b(Tehrik(\-|\s)?e(\s)?(taliban pakistan)?)\b
+pestles.social.people.groups.terrorists,Jundallah,person,(?ui)\bJundallah\b|People(\'s|s) Resistance Movement of Iran
+pestles.social.people.groups.terrorists,Army_of_Islam,person,(?ui)Army of Islam|Jaysh al(\-|\s)?Islam
+pestles.social.people.groups.terrorists,Indian_Mujahedeen,person,(?ui)Indian (Mujahidin|Mujahideen)
+pestles.social.people.groups.terrorists,Jemaah_Anshorut_Tauhid,person,(?ui)(Jemaah|Jamaah) (Anshorut|Ansharut) Tauhid
+pestles.social.people.groups.terrorists,Abdallah_Azzam_Brigades,person,(?ui)Abdallah Azzam Brigades|(al(\-|(\s))?Qa\'?(i|e)da) (in|of) Lebanon
+pestles.social.people.groups.terrorists,Haqqani_Network,person,(?ui)\bHaqqani(\s)?(Network)?\b
+pestles.social.people.groups.terrorists,Ansar_al_Dine,person,(?ui)Ansar al(\-|\s)?Dine
+pestles.social.people.groups.terrorists,Boko_Haram,person,(?ui)\b(Boko(\-|\s)?Haram)\b
+pestles.social.people.groups.terrorists,Ansaru,person,(?ui)\bAnsaru\b|Vanguard for the Protection of Muslims in Black Lands
+pestles.social.people.groups.terrorists,al_Mulathamun_Battalion,person,(?ui)\bal(\-|\s)?Mulathamun(\s)?(Battalion)?\b
+pestles.social.people.groups.terrorists,Ansar_al_Sharia_Benghazi_Darnah_Tunisia,person,(?ui)\b(Ansar al(\-|\s)?Shari(\')?a(\s)?(in)?(\s)?(Benghazi|Darnah|Tunisia)?)\b
+pestles.social.people.groups.terrorists,ISIL_Sinai_Province,person,(?ui)\b(ISIL|Islamic State of Iraq and the Levant|ISIS|Islamic State of Iraq and Syria)(\s)?(\-)?(\s)?(Sinai Province)\b
+pestles.social.people.groups.terrorists,al_Nusrah_Front,person,(?ui)\b(al(\-|\s)?Nusrah(\s)?(Front)?)|(Jabhat al(\-|\s)?Nusra)\b
+pestles.social.people.groups.terrorists,Mujahidin_Shura_Council_in_the_Environs_of_Jerusalem,person,(?ui)(Mujahidin|Mujahideen) Shura Council(\s)?in(\s)?(the)?(\s)?(Environs of)?(\s)?Jerusalem
+pestles.social.people.groups.terrorists,Jaysh_Rijal_al_Tariq_al_Naqshabandi,person,(?ui)Jaysh Rijal al(\-|\s)?Tariq al(\-|\s)?Naqshabandi
+pestles.social.people.groups.terrorists,ISIL_Khorasan,person,(?ui)\b((ISIL|Islamic State of Iraq and the Levant|ISIS|Islamic State of Iraq and Syria)(\-|\s)?Khorasan)\b
+pestles.social.people.groups.terrorists,ISIL_Lybia,person,(?ui)(ISIL|Islamic State of Iraq and the Levant|ISIS|Islamic State of Iraq and Syria)(\s)?(Branch)?(\s)?in(\s)?Libya
+pestles.social.people.groups.terrorists,Al_Qaida_in_the_Indian_Subcontinent,person,(?ui)(al-Qa\'?ida|al(\-|\s)?Qaeda) (of|in) the Indian Subcontinent
+pestles.social.people.groups.terrorists,Jund_al_Aqsa,person,(?ui)(Jund al(\-|\s)?Aqsa|Liwa al(\-|\s)?Aqsa)
+pestles.social.people.groups.terrorists,Suquar_al_Sham,person,(?ui)(Suquar|suqour) al(\-|\s)?Sham(\s)?(Brigade)?
+pestles.social.people.groups.terrorists,Jaish_al_Muhajireen_wal_Ansar,person,(?ui)(Jaish)?(\s)?al(\-|\s)?Muhajireen wal(\-|\s)?Ansa(r)?
+pestles.social.people.groups.terrorists,Al_Aqsa_Brigade,person,(?ui)Al(\-|\s)?Aqsa (martyrs(\')?)(\s)?Brigade(s)?
+pestles.social.people.groups.terrorists,Junud_al_Sham,person,(?ui)Junud al(\-|\s)?Sham
+pestles.social.people.groups.terrorists,Sharia4Belgium,person,(?ui)\bSharia(\s)?(4|four)(\s)?Belgium\b
+pestles.social.people.groups.terrorists,Ahlus_Sunnah_Wal_Jamaah_Association_of_Australia,person,(?ui)Ahlus Sunnah Wal Jamaah Association(\s)?(of|in)?(\s)?Australia|\bASWJA\b
+pestles.social.people.groups.terrorists,Street_Dawah_Australia,person,(?ui)Street Dawah (of|in)? Australia
+pestles.social.people.groups.terrorists,Majlis_Shura_al_Muhajireen,person,(?ui)Majlis Shura al(\-|\s)?Muhajireen
+pestles.social.people.groups.terrorists,Global_Islamic_Media_Front,person,(?ui)Global Islamic Media (Front|group|centre|center)|\b(GIMF|GIMG|GIMC)\b
+pestles.social.people.groups.terrorists,Millatu_Ibrahim,person,(?ui)Millatu Ibrahim
+pestles.social.people.groups.terrorists,Islamic_Front,person,(?ui)Islamic Front
+pestles.social.people.groups.terrorists,Free_Syria_Army,person,(?ui)Free Syr(ia|ian) Army(\s)?(of|in)?(\s)?Australia
+pestles.social.people.groups.terrorists,Mujahideen_Brigade,person,(?ui)(Mujahidin|Mujahideen)(\s)?Brigade(\s)?(of|in)?(\s)?\(?Syria\)?
+pestles.social.people.groups.terrorists,Mujahideen_Shura_Council,person,(?ui)((Mujahidin|Mujahideen) Shura Council|Liwa(\')?(\s)?al(\-|\s)?(Mujahidin|Mujahideen))
+pestles.social.people.groups.terrorists,ashkar_i_Jhangvi,person,(?ui)Ansar Dine
+pestles.social.people.groups.terrorists,Moroccan_Islamic_Fighting_Group,person,(?ui)(Moroccan Islamic Fighting(\s)?(Group|youth)?|\bGICM\b)
+pestles.social.people.groups.terrorists,Falcons_of_Sham,person,(?ui)\b(Falcons\sof\sSham|Sham\sFalcons\sBrigade|Falcons\sof\sthe\sLevant\sBrigade)\b
+pestles.social.people.groups.terrorists,Resto_du_tawhid,person,(?ui)Resto du tawhid
+pestles.social.people.phone,phone_northamerican,person,\(?[2-9][0-9][0-9]\)?[-. ][0-9][0-9][0-9][-. ]?[0-9][0-9][0-9][0-9]
+pestles.social.people.phone,phone_uk_mobile,person,\(?[0][7][0-9][0-9][0-9\)?][-. ][0-9][0-9][0-9][0-9][0-9][0-9]
+pestles.social.religion,Christian,thing,(?ui)\bchristian(ity)?\b
+pestles.social.religion,Catholic,thing,(?ui)\b((roman|byzantine|greek)(-| )?)?catholic(ism)?\b
+pestles.social.religion,Sikhism,thing,(?ui)\bsikh(ism)?\b
+pestles.social.religion,Hindu,thing,(?ui)\bhindu(ism)?\b
+pestles.social.religion,Buddism,thing,(?ui)\bbudd(ha|(ism))?\b
+pestles.social.religion,Judaism,thing,(?ui)\bjuda(h|(ism))?\b
+pestles.social.religion,Bahai,thing,(?ui)\bbaha(\')?i\b
+pestles.social.religion,Aladura,thing,(?ui)\baladura\b
+pestles.social.religion,Amish,thing,(?ui)\bamish\b
+pestles.social.religion,Anglicanism,thing,(?ui)\banglican(ism)?\b
+pestles.social.religion,Asatru,thing,(?ui)\basatru\b
+pestles.social.religion,Assemblies_of_God,thing,(?ui)\bassembl(ies|y){1}\s(of)\s(god)\b
+pestles.social.religion,Atheism,thing,(?ui)\bathei(st|ism){1}\b
+pestles.social.religion,Baptists,thing,(?ui)\bbaptist\b
+pestles.social.religion,Candomble,thing,(?ui)\bcandomble\b
+pestles.social.religion,Cao_Dai,thing,(?ui)\bcao\sdai\b
+pestles.social.religion,Cathari,thing,(?ui)\bcathari\b
+pestles.social.religion,Charismatic_movement,thing,(?ui)\bcharismatic\smovement\b
+pestles.social.religion,Chinese_Religion,thing,(?ui)\bchinese\religion\b
+pestles.social.religion,Christadelphians,thing,(?ui)\bchristadelphians\b
+pestles.social.religion,Christian_Science,thing,(?ui)\bchristian\sscience\b
+pestles.social.religion,Church_of_God,thing,(?ui)\bchurch\sof\sgod\b
+pestles.social.religion,Church_of_God_in_Christ,thing,(?ui)\bchurch\sof\sgod\sin\schrist\b
+pestles.social.religion,Church_of_Satan,thing,(?ui)\bchurch\sof\ssatin\b
+pestles.social.religion,Confucianism,thing,(?ui)\bconfucianism\b
+pestles.social.religion,Conservative_Judaism,thing,(?ui)\bconservative\sjudaism\b
+pestles.social.religion,Deism,thing,(?ui)\bdeism\b
+pestles.social.religion,Donatism,thing,(?ui)\bdonatism\b
+pestles.social.religion,Dragon_Rouge,thing,(?ui)\bdragon\srouge\b
+pestles.social.religion,Druze,thing,(?ui)\bdruze\b
+pestles.social.religion,Eastern_Orthodox_Church,thing,(?ui)\beast(ern)?\sorthodox\schurch\b
+pestles.social.religion,Eckankar,thing,(?ui)\beckankar\b
+pestles.social.religion,ELCA,thing,(?ui)\bELCA\b
+pestles.social.religion,Epicureanism,thing,(?ui)\bepicurean(ism)?\b
+pestles.social.religion,Evangelicalism,thing,(?ui)\bevangelical(ism)?\b
+pestles.social.religion,Falun_Gong,thing,(?ui)\bfalun\sgong\b
+pestles.social.religion,Foursquare_Church,thing,(?ui)\bfoursquare\schurch\b
+pestles.social.religion,Gnosticism,thing,(?ui)\bgnostic(ism)?\b
+pestles.social.religion,Greek_Religion,thing,(?ui)\bgreek\sreligion\b
+pestles.social.religion,Hare_Krishna,thing,(?ui)\bhare\skrishna\b
+pestles.social.religion,Hasidism,thing,(?ui)\bhasid(ism)?\b
+pestles.social.religion,Hellenic_Reconstructionism,thing,(?ui)\bhellenic\sreconstruction(ism)?\b
+pestles.social.religion,Illuminati,thing,(?ui)\billuminati\b
+pestles.social.religion,Jainism,thing,(?ui)\bjainism\b
+pestles.social.religion,Jehovahs_Witnesses,thing,(?ui)\bjehovah(\')?(s)?\switness(es)?\b
+pestles.social.religion,Kabbalah,thing,(?ui)\bkabbalah\b
+pestles.social.religion,Kemetic_Reconstructionism,thing,(?ui)\bkemetic\sreconstruction(ism)?\b
+pestles.social.religion,Lutheranism,thing,(?ui)\blutheran(ism)?\b
+pestles.social.religion,Mahayana_Buddhism,thing,(?ui)\bmahayana\sbuddhism\b
+pestles.social.religion,Mayan_Religion,thing,(?ui)\bmayan\sreligion\b
+pestles.social.religion,Methodism,thing,(?ui)\bmethodism\b
+pestles.social.religion,Mithraism,thing,(?ui)\bmithraism\b
+pestles.social.religion,Mormonism,thing,(?ui)\bmormon(ism)?\b
+pestles.social.religion,Neopaganism,thing,(?ui)\bneopagan(ism)?\b
+pestles.social.religion,New_Age,thing,(?ui)\bnew\sage\b
+pestles.social.religion,New_Thought,thing,(?ui)\bnew\sthought\b
+pestles.social.religion,Nichiren,thing,(?ui)\bnichiren\b
+pestles.social.religion,Norse_Religion,thing,(?ui)\bnorse(\s)?(religion)?\b
+pestles.social.religion,Olmec_Religion,thing,(?ui)\bolmec(\s)?(religion)?\b
+pestles.social.religion,Oneness_Pentecostalism,thing,(?ui)\bone(ness)?\spentecostal(ism)?\b
+pestles.social.religion,Orthodox_Judaism,thing,(?ui)\borthodox\sjudaism\b
+pestles.social.religion,Pentecostalism,thing,(?ui)\bpentecostal(ism)?\b
+pestles.social.religion,Presbyterianism,thing,(?ui)\bpresbyterian(ism)?\b
+pestles.social.religion,Priory_of_Sion,thing,(?ui)\bpriory\sof\ssion\b
+pestles.social.religion,Protestantism,thing,(?ui)\bprotestant(ism)?\b
+pestles.social.religion,Pure_Land_Buddhism,thing,(?ui)\bpure\sland\sbuddhism\b
+pestles.social.religion,Quakers,thing,(?ui)\bquaker(s)?\b
+pestles.social.religion,Rastafarianism,thing,(?ui)\brastafarian(ism)?\b
+pestles.social.religion,Reform_Judaism,thing,(?ui)\breform\sjudaism\b
+pestles.social.religion,Rinzai_Zen_Buddhism,thing,(?ui)\brinzai\szen\sbuddhism\b
+pestles.social.religion,Roman_Religion,thing,(?ui)\broman\sreligion\b
+pestles.social.religion,Satanism,thing,(?ui)\bsatan(ism)?\b
+pestles.social.religion,Scientology,thing,(?ui)\bscientology\b
+pestles.social.religion,Seventh_Day_Adventism,thing,(?ui)\bseven(th)(-)?(\s)?day\sadvent(ist|ism)?\b
+pestles.social.religion,Shaivism,thing,(?ui)\bshaiv(ist|ism)?\b
+pestles.social.religion,Shia,thing,(?ui)\bshia\b
+pestles.social.religion,Shinto,thing,(?ui)\bshinto\b
+pestles.social.religion,Soto_Zen_Buddhism,thing,(?ui)\bsoto(\s|-){1}zen\sbuddhi(st|sm){1}\b
+pestles.social.religion,Spiritualism,thing,(?ui)\bspiritual(ism)?\b
+pestles.social.religion,Stoicism,thing,(?ui)\bstoic(ism)?\b
+pestles.social.religion,Sufism,thing,(?ui)\bsufism\b
+pestles.social.religion,Sunni,thing,(?ui)\bsunni\b
+pestles.social.religion,Taoism,thing,(?ui)\btaoism\b
+pestles.social.religion,Tendai_Buddhism,thing,(?ui)\btendai\sbuddi(st|sm){1}\b
+pestles.social.religion,Theravada_Buddhism,thing,(?ui)\btheravada\sbuddhi(st|sm){1}\b
+pestles.social.religion,Tibetan_Buddhism,thing,(?ui)\btibetan\sbuddhi(st|sm){1}\b
+pestles.social.religion,Typhonian_Order,thing,(?ui)\btyphon(ian)?\sorder\b
+pestles.social.religion,Umbanda,thing,(?ui)\bumbanda\b
+pestles.social.religion,Unification_Church,thing,(?ui)\bunif(ication|y){1}(\sof)?\schurch\b
+pestles.social.religion,Unitarian_Universalism,thing,(?ui)\bunitarian\suniversal(ism)?\b
+pestles.social.religion,Vaishnavism,thing,(?ui)\bvaishnavism\b
+pestles.social.religion,Vajrayana_Buddhism,thing,(?ui)\bvajrayana(\sbuddhi(st|sm){1})?\b
+pestles.social.religion,Vedanta,thing,(?ui)\bvedanta\b
+pestles.social.religion,Vineyard_Churches,thing,(?ui)\bvineyard\schurch(es)?\b
+pestles.social.religion,Voodoo,thing,(?ui)\bvoodoo\b
+pestles.social.religion,Wicca,thing,(?ui)\bwicca\b
+pestles.social.religion,Yezidi,thing,(?ui)\byezidi\b
+pestles.social.religion,Zen,thing,(?ui)\bzen\b
+pestles.social.religion,Zionism,thing,(?ui)\bzionism\b
+pestles.social.religion,Zoroastrianism,thing,(?ui)\bZoroastrian(ism)?\b
+pestles.social.religion,islam,thing,(?ui)\bislam(ic)?\b
+pestles.technological.applications,file_compress,thing,\b(a-z)+[.](tar|gzip|tgz|zip)
+pestles.technological.applications,file_data,thing,\b(a-z)+[.](txt|pdf|json|docx|doc|ppt)
+pestles.technological.applications,file_doc,thing,\b(a-z)+[.](txt|pdf|pages|doc|docx|doct|docm|gdoc|odm|odt|ott|rtf|ppt|pptx|gslides|key)
+pestles.technological.applications,file_execute,thing,\b(a-z)+[.](action|apk|app|bat|bin|com|command|csh|msi|osx|out|reg|rgs|run|vb|js|jar|lib)
+pestles.technological.applications,password_ref,thing,\b((admin(istrator)?|default|root) password)\b
+pestles.technological.equipment,equipment,thing,(?ui)\bequipment\b
+pestles.technological.equipment,games,thing,(?ui)\bgam(e(s)?|ming)\b
+pestles.technological.internet,address_IPV4,thing,\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b
+pestles.technological.internet,address_mac,thing,(?ui)\b[0-9a-f][0-9a-f][:][0-9a-f][0-9a-f][:][0-9a-f][0-9a-f][:][0-9a-f][0-9a-f][:][0-9a-f][0-9a-f][:][0-9a-f][0-9a-f]\b
+pestles.technological.internet,isp,thing,(?ui)\binternet service provider(s)?\b
+pestles.technological.internet,isp_abbreviated,thing,(?ui)\bISP(s)?\b
+pestles.technological.internet,broadband,thing,(?ui)\bbroadband\b
+pestles.technological.iot,iot,thing,(?ui)\binternet of things\b
+pestles.technological.iot,iot_abbreviated,thing,(?ui)\bIoT\b
+pestles.technological.nuclear,nuclear_energy,thing,(?ui)\bnuclear\senergy\b
+pestles.technological.nuclear,nuclear_power,thing,(?ui)\bnuclear\spower\b
+pestles.technological.nuclear,fission_reactor,thing,(?ui)\bfission\sreactor\b
+pestles.technological.nuclear,reactor,thing,(?ui)\breactor\b
+pestles.technological.nuclear,nuclear_decay,thing,(?ui)\bnuclear\sdecay\b
+pestles.technological.nuclear,nuclear_reactor,thing,(?ui)\bnuclear\sreactor\b
+pestles.technological.nuclear,nuclear_waste,thing,(?ui)\bnuclear\swaste\b
+pestles.technological.nuclear,half_life,thing,(?ui)\bhalf-life\b
+pestles.technological.nuclear,nuclear,thing,(?ui)\bnuclear\b
+pestles.technological.nuclear,uranium,thing,(?ui)\buranium(-233|-234|-235|-236|-237|-238|-239)?\b
+pestles.technological.region,Smart_Cities,place,(?ui)\bsmart\scit(ies|y)\b
+pestles.technological.scada,scada_ics,thing,(?ui)\bindustrial control system(s)?\b
+pestles.technological.scada,scada,thing,(?ui)\bscada\b
+pestles.technological.telecoms,modem,thing,(?ui)\bmodem(s)?\b
+pestles.technological.telecoms,device,thing,(?ui)\bdevice(s)?\b
+pestles.technological.telecoms,GSM,thing,(?ui)\b(gsm|global\ssystem\sfor\smobile)\b
+pestles.technological.telecoms,LTE,thing,(?ui)\b(LTE|long(\-)?(\s)?term\sevolution)\b
+pestles.technological.telecoms,CDMA,thing,(?ui)\b(CDMA|code\sdivision\smultiple\saccess)\b
+pestles.technological.telecoms,cell_phone,thing,(?ui)\b(cell|cell(\s)?phone|mobile)\b
+pestles.technological.telecoms,phone,thing,(?ui)\b(phone|telephone)\b
+pestles.technological.telecoms,telecommunication,thing,(?ui)\b(telecomm(s)?|telecommunication|communicat(e|ion)(s)?)\b
+pestles.technological.telecoms,radio,thing,(?ui)\bradio\b
+pestles.technological.telecoms,radar,thing,(?ui)\bradar\b
+pestles.technological.telecoms,sonar,thing,(?ui)\bsonar\b
+pestles.technological.telecoms,acoustic,thing,(?ui)\bacoustic\b
+pestles.technological.telecoms,video,thing,(?ui)\bvideo(s)?\b
+pestles.technological.cyber,cyber_alert,thing,(?ui)\b(cyber )?alert(s)?\b
+pestles.technological.cyber,cyber_attack,thing,(?ui)\b(cyber )?attack(s)?\b
+pestles.technological.cyber,cyber_incident,thing,(?ui)\b(cyber )?incident(s)?\b
+pestles.technological.cyber,cyber_response,thing,(?ui)\b(cyber )?response(s)?\b
+pestles.technological.cyber,spyware,thing,(?ui)\bspyware\b
+pestles.technological.cyber,hacker,thing,(?ui)\bhacker\b
+pestles.technological.cyber,malware,thing,(?ui)\bmalware\b
+pestles.technological.cyber,virus,thing,(?ui)\b(anti[- ])?virus( software)?\b
+pestles.technological.digitalCurrency,Currency,Digital,bitcoin
+pestles.technological.digitalCurrency,Currency,Digital,litecoin
+pestles.technological.digitalCurrency,Currency,Digital,dogecoin
+pestles.technological.digitalCurrency,Currency,Digital,monero
+pestles.technological.digitalCurrency,Currency,Digital,dash
+pestles.technological.digitalCurrency,Currency,Digital,ethereum
+pestles.technological.digitalCurrency,Currency,Denomination,millibitcoin
+pestles.technological.digitalCurrency,Currency,Denomination,mBTC
+pestles.technological.digitalCurrency,Currency,Denomination,microbitcoin
+pestles.technological.digitalCurrency,Currency,Denomination,satoshi
+pestles.technological.digitalCurrency,Currency,Denomination,millicoin
+pestles.technological.digitalCurrency,Currency,Denomination,mLTC
+pestles.technological.digitalCurrency,Currency,Denomination,microcoin
+pestles.technological.digitalCurrency,Currency,Denomination,litoshi
+pestles.technological.digitalCurrency,Currency,BTCID,"\b1[1-9A-HJ-NP-Za-km-z]{32,33}\b"

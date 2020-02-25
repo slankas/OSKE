@@ -1,0 +1,54 @@
+#tableLayout, #filter {
+	width: 100%;
+	height: 100%;
+}
+
+#tableLayoutCell1, #tableLayoutCell2, #tableLayoutCell3 {
+	vertical-align: top;
+}
+
+#tableLayoutCell2 {
+	width: 20%;
+}
+
+#canvas {}
+
+#filter{
+	width: 100%;
+}
+
+#dialog {
+	display: none;
+}
+
+#map {
+	 width: 100%;
+     height:100%;
+}
+
+.panel-body {
+	padding: 0px;
+}
+
+html, body {
+  height: 100%;
+}
+
+label {
+font-size: 1em;
+margin-top: 10px;
+margin-right: 10px;
+margin-left: 10px;
+}
+
+.analyticDisplay {
+	height: 100%;
+}
+
+#timeSlider {
+	z-index: 5000;
+}
+
+.padBottom {
+   margin-bottom: 10px;
+}

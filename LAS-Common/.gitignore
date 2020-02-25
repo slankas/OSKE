@@ -1,0 +1,6 @@
+target/**
+allCountries.zip
+allCountries.txt
+indexDirectory*/**
+IndexDirectory*/
+/target/

@@ -1,0 +1,28 @@
+# Name: las/collector
+# Purpose: Extracts microformat data (http://microformats.org/) from html pages
+#
+# Version: 1.0
+# History
+# 20170405 Initial creation
+# 20190501 Updated to opensource project organization
+#
+# Build Command: (execute from this current directory)
+#     docker build -t="openke_ms_microformat" -f dockerfile  .
+#
+FROM python:3.7.3-stretch
+RUN pip3.7 install --upgrade pip
+RUN pip3.7 install flask gunicorn json-logging-py mf2py
+
+COPY . /root/install/MicroServices
+
+RUN mkdir /opt/microformatParser && \
+    mkdir /opt/microformatParser/gunicorn && \
+    cp /root/install/MicroServices/*.py /opt/microformatParser/ && \
+    cp /root/install/MicroServices/gunicorn/*.conf /opt/microformatParser/gunicorn
+
+WORKDIR /opt/microformatParser
+
+USER 1000
+
+ENTRYPOINT ["/usr/local/bin/gunicorn", "--config", "/opt/microformatParser/gunicorn/gunicorn.conf", "--log-config", "/opt/microformatParser/gunicorn/logging.conf", "-b", ":8000", "app:app"]
+EXPOSE 8000

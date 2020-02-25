@@ -1,0 +1,42 @@
+/*
+   system.properties
+
+   Master configuration file file for the Collector system.
+   This file needs to have those attributes listed in all capital letters
+   modified to the system installation.
+
+   Note: this file needs to be run through a Javascript minify routine to remove comments which are
+         not part of the JSON specification.  The relevant Collector applications perform this
+         automatically.
+
+*/
+{
+    "collector" : {
+        "id" : "dockerDaemon",    // what is the current collector identified by.  This needs to be unique across any "cluster" / distributed set of collectors
+        "jobPoolSize": 5,           // number of concurrent threads that can run on a particular machine.  This is for collector Jobs
+        "taskPoolSize": 5,          // threads that are used for misc. tasks such as sending emails or exporting search results.
+        "searchPoolSize": 25,       // threads that are used to search URLs within the DomainDiscovery object
+        "idleKillTimeSec":  600,    // Amount of inactivity time before kill an active job
+        "sleepTimeSec" : 60,       //specified in seconds.  What is the time to sleep in between perform cycle check (new jobs, hung jobs, status, ...)
+        "workingDirectory" : "collector_",  //system uses the user's temporary working directory and creates a directory starting with this prefix
+        "allowServices" : true,
+        "requireUserAgreement" : false     // Does the system require a "signed" user agreement before a user can access the system.
+    },
+    "database": {
+        "datasourcename" : "CollectorDataSource",
+        "driver"         : "org.postgresql.Driver",
+        "url"            : "jdbc:postgresql://database:5432/openke_db",
+        "user"           : "openke_user",
+        "password"       : "REQUIRED_PASSWORD_CHANGE", 
+        "maxconnections" : 10
+    },
+    "pubMedImporter": {
+        "sleepTimeSec"  : 86400, // how much time should we sleep in between executions of checking for new work (86400 = 60 * 60 *24, daily)
+        "ftp_server"    : "ftp.ncbi.nlm.nih.gov",
+        "baseline_dir"  : "/pubmed/baseline/",
+        "update_dir"    : "/pubmed/updatefiles/",
+        "baseDirectory" : "OPENKE_DIRECTORY_DATA_LOG_PUBMED"
+    },
+    "fileRoot": "/openke",
+    "secretPhrase": "docker compose secret message"
+}

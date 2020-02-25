@@ -1,0 +1,15 @@
+docker-compose.yml
+Dockerfile_base
+Dockerfile_daemon
+Dockerfile_ms_exif
+Dockerfile_ms_geocode
+Dockerfile_ms_geotag
+Dockerfile_ms_microformat
+Dockerfile_ms_nlp
+Dockerfile_ms_siteinfo
+Dockerfile_ms_spacy
+Dockerfile_ms_temporal
+Dockerfile_ms_textrank
+Dockerfile_ms_topic
+Dockerfile_ms_whois
+Dockerfile_webapp

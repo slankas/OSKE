@@ -1,0 +1,31 @@
+{
+    "database": {
+        "password": "OPENKE_DB_PASSWORD",
+        "driver": "org.postgresql.Driver",
+        "maxconnections": 10,
+        "portnumber": 5432,
+        "datasourcename": "CollectorDataSource",
+        "user": "openke_user",
+        "url": "jdbc:postgresql://OPENKE_DB_SERVER:5432/openke_db"
+    },
+    "pubMedImporter": {
+        "sleepTimeSec": 86400,
+        "update_dir": "/pubmed/updatefiles/",
+        "baseline_dir": "/pubmed/baseline/",
+        "ftp_server": "ftp.ncbi.nlm.nih.gov",
+        "baseDirectory": "OPENKE_DIRECTORY_DATA_LOG_PUBMED"
+    },
+    "fileRoot": "../../data",
+    "secretPhrase": "docker compose secret message",
+    "collector": {
+        "sleepTimeSec": 60,
+        "taskPoolSize": 5,
+        "idleKillTimeSec": 600,
+        "workingDirectory": "collector_",
+        "searchPoolSize": 25,
+        "requireUserAgreement": false,
+        "id": "devDaemon",
+        "jobPoolSize": 5,
+        "allowServices": true
+    }
+}

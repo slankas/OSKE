@@ -1,0 +1,106 @@
+{
+  "properties": {
+    "open_graph": {
+      "type": "object",
+      "enabled": false
+    },
+    "domainDiscovery": {
+      "properties": {
+        "relevant": {
+          "type": "boolean"
+        },
+        "retrievals": {
+          "type": "nested",
+          "properties": {
+            "executionNumber": {
+              "type": "long"
+            },
+            "sessionID": {
+              "type": "text",
+              "fields": {
+                "raw": {
+                  "index": true,
+                  "type": "keyword"
+                }
+              }
+            }
+          }
+        },
+        "url": {
+          "type": "text",
+          "fields": {
+            "raw": {
+              "index": true,
+              "type": "keyword"
+            }
+          }
+        }
+      }
+    },
+    "provenance": {
+      "properties": {
+        "configuration": {
+          "properties": {
+            "allowSingleHopFromReferrer": {
+              "type": "text"
+            },
+            "webCrawler": {
+              "properties": { "respectRobotsTxt": { "type" : "text"}}
+            }
+          }
+        },
+        "job": {
+          "properties": {
+            "url": {
+              "type": "text",
+              "fields": {
+                "raw": {
+                  "index": true,
+                  "type": "keyword"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+	"geotag": { "type" : "nested" },
+    "concepts": {
+      "type": "nested"
+    },
+    "http_headers": {
+      "type": "object",
+      "enabled": false
+    },
+    "user_collection": {
+      "type": "nested",
+      "properties": {
+        "collection_id": {
+          "index": true,
+          "type": "keyword"
+        }
+      }
+    },
+    "structured_data": {
+      "type": "object",
+      "enabled": false
+    },
+    "html_meta": {
+      "type": "object",
+      "enabled": false
+    },
+    "tikaMetaData": {
+      "type": "object",
+      "enabled": false
+    },	
+    "url": {
+      "type": "text",
+      "fields": {
+        "raw": {
+          "index": true,
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
