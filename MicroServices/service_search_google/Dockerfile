@@ -8,6 +8,9 @@
 # Build Command:
 #     docker build -t="openke_ms_google" .
 #
+# RUN:
+#     docker run -p EXPOSED_PORT_NUM:8000 openke_ms_google
+#
 FROM python:3.7.3-stretch
 
 RUN pip3.7 install --upgrade pip setuptools
