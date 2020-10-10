@@ -1,7 +1,9 @@
 package edu.ncsu.las.source;
 
 import edu.ncsu.las.collector.Collector;
+import edu.ncsu.las.model.collector.Configuration;
 import edu.ncsu.las.model.collector.SearchRecord;
+import edu.ncsu.las.model.collector.type.ConfigurationType;
 import edu.ncsu.las.model.collector.type.SourceParameter;
 import edu.ncsu.las.model.collector.type.SourceParameterType;
 import edu.ncsu.las.util.FileUtilities;
@@ -26,6 +28,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
+
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
 
 
 /**
@@ -134,6 +140,49 @@ public class GoogleHandler extends AbstractSearchHandler implements SourceHandle
 		return errors;
 	}
 
+	/**
+	 * Generate the possible search results that will be used as the seeds for a search
+	 * Scraps Google to get these results.
+	 *
+	 * @param domain
+	 * @param queryText
+	 * @param configuration
+	 * @param numberOfSeearchResults
+	 * @param advConfiguration
+	 * @return
+	 */
+	public java.util.List<SearchRecord> generateSearchResults(String domain, String searchCriteria, JSONObject configuration, int numberOfResults, JSONObject advConfiguration) {	
+    	java.util.List<SearchRecord> srResult = new java.util.ArrayList<SearchRecord>();
+
+    	try {
+		    HttpResponse<JsonNode> jsonResponse = Unirest.get(Configuration.getConfigurationProperty(domain,ConfigurationType.GOOGLE_API)+"google/search/"+searchCriteria+"/"+  (numberOfResults/10 + 1))
+				                                     .header("accept", "application/json")
+				                                     .asJson();
+		    JSONArray result = jsonResponse.getBody().getArray();
+		    
+		    if (result.length() >0 ) {
+		    	
+		    	for (int i=0; i< result.length(); i++) {
+		    		JSONObject jo = result.getJSONObject(i);
+		    		if (jo.isNull("link")) { continue; }
+		    		SearchRecord sr = new SearchRecord(jo.isNull("title") ? "": jo.getString("title"),
+		    				                           jo.isNull("link") ? "": jo.getString("link"),
+		    						                   jo.isNull("description") ? "": jo.getString("description"),i+1,SOURCE_HANDLER_NAME);
+		    		srResult.add(sr);
+		    	}
+		    	
+		    	return srResult;
+		    }
+		else {
+			srcLogger.log(Level.WARNING, "spaCy API had an issue. See that log for more details");
+			return srResult;
+		}
+		}
+		catch (Exception ure) {
+			srcLogger.log(Level.WARNING, "Unable to process remote request", ure);
+			return srResult;
+		}	
+	}	
 
 	/**
 	 * Generate the possible search results that will be used as the seeds for a search
@@ -146,7 +195,7 @@ public class GoogleHandler extends AbstractSearchHandler implements SourceHandle
 	 * @param advConfiguration
 	 * @return
 	 */
-	public java.util.List<SearchRecord> generateSearchResults(String domain, String searchCriteria, JSONObject configuration, int numberOfResults, JSONObject advConfiguration) {
+	public java.util.List<SearchRecord> generateSearchResultsPreviousVersion(String domain, String searchCriteria, JSONObject configuration, int numberOfResults, JSONObject advConfiguration) {
 		if (advConfiguration.length() > 0) {
 			configuration = advConfiguration;
 		}

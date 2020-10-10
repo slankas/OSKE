@@ -166,7 +166,7 @@ public enum ConfigurationType implements ConfigurationTypeInterface {
 
 	NLDEFINITIONEXPANSION_API("nlDefExpansionAPI",true, null, "api end point for word expansion based upon definitions", ConfigurationLocation.SYSTEM,true),
 
-	
+	GOOGLE_API("googleAPI",true, null,"what is the location at the google collector API.  google/search/ will be appended to this value",ConfigurationLocation.SYSTEM,true),
 	GRAPH_API("graphAPI",true, null,"what is the location at the graph collector API.  Should include web app name (context)",ConfigurationLocation.SYSTEM,true),
 	TEXTRANK_API("textrankAPI",true, null,"what is the location at the textrank-based APIs",ConfigurationLocation.SYSTEM,true),
 	TOPICMODEL_API("topicModelAPI",true, null, "Where is the location of the topic-modeling APIs", ConfigurationLocation.SYSTEM,true),
