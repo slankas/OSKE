@@ -10,6 +10,7 @@ DBPedia-Spotlight | 2222 | Discovers links to dbpedia entries within unstructure
 Exif Service | 9001 | Extracts camera and image metadata from images
 GeoTagging Service | 9904 | Extracts locations from unstructured text
 GeoCoding Service | 9002 | For a given address, returns the latitude and longitude coordinates
+Google Search | 9015 | Implements the a slightly customized version googleapi from https://github.com/abenassi/Google-Search-API
 Microformat Service | 9009 | Extracts microformat data from HTML pages. http://microformats.org/
 NLP Service | 9006 | Extracts named entities and relations from unstructured text using Stanford CoreNLP and minIE
 Scrapper Service | 9011 | Provides a simple wrapper around puppet to dynamically crawl an HTML page

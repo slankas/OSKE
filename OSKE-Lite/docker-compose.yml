@@ -122,6 +122,21 @@ services:
     networks:
       - openke
 
+  google-service:
+    image: openke_ms_google
+    container_name: google-service
+    restart: always
+    build:
+      context: ../MicroServices/service_search_google
+      dockerfile: Dockerfile
+    environment:
+      GUNICORN_WORKERS: 4
+      GUNICORN_ACCESSLOG: '-'
+    ports:
+      - 9015:8000
+    networks:
+      - openke
+
   microformat-service:
     image: openke_ms_microformat
     container_name: microformat-service

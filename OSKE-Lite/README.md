@@ -24,6 +24,7 @@ WordNet | 5679 | REST based WordNet Service - https://github.com/jacopofar/wordn
 Voyant     | 80   | http://server/voyant <br>Text analysis toolkit
 DBPedia-Spotlight | 2222 | Discovers links to dbpedia entries within unstructured text.
 GeoTagging Service | 9904 | Extracts locations from unstructured text
+Google Search | 9015 | Implements the a slightly customized version googleapi from https://github.com/abenassi/Google-Search-API
 Microformat Service | 9009 | Extracts microformat data from HTML pages. http://microformats.org/
 NLP Service | 9006 | Extracts named entities and relations from unstructured text using Stanford CoreNLP and minIE
 Spacy Service | 9012 | Extracts named entities from unstructured text using the Spacy library service
