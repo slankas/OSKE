@@ -66,7 +66,7 @@ def performGoogleSearch(searchTerm,numPages):
 
     try:
         search_results = google.search(searchTerm, int(numPages))
-        return jsonify(jsons.dumps(search_results))
+        return jsons.dumps(search_results)
 
     except Exception as e:
         logger.warning (str(e))
