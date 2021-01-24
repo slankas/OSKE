@@ -74,8 +74,13 @@ chown  999 oske/database
 
 
 8. In OSKE/Collector/system_properties.json.docker change
-   the parameter for "password" (under "database") from REQUIRED_PASSWORD_CHANGE
+   the parameter for "password" (under "database") from MUST_CHANGE_PASSWORD 
    to the same password utilized in the last two steps.
+
+Note: for the last three commands, the following command should work:
+```
+find <your install location> \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i 's/MUST_CHANGE_PASSWORD/NEW_PASSWORD/g'
+````
 
 9. Start the system.  This step will take well over 30 minutes to execute the first time as the docker images are downloaded and built.  Once the images are available(built) and for subsequent runs, the system should start within 30 seconds.
 ```
