@@ -8,9 +8,12 @@
 # Build Command: (executed from current directory)
 #     docker build -t="openke_base" Dockerfile_base ../..
 #
-FROM centos:7.5.1804
+FROM rockylinux:9.0.20220720
 RUN yum update -y
-RUN yum -y install java maven openssh-clients wget git unzip
+RUN yum -y install java-17-openjdk maven-openjdk17 openssh-clients wget git unzip
+
+# Don't like the following, but java 11 is the default.  This is highly version dependent
+RUN alternatives --set java /usr/lib/jvm/java-17-openjdk-17.0.3.0.7-1.el9_0.x86_64/bin/java
 
 COPY . /root/install/OpenKE
 WORKDIR /root/install

@@ -2,7 +2,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 from collections import Counter, defaultdict
 from decimal import Decimal
 import logging
-import textacy 
+import textacy
 import spacy
 
 import itertools
@@ -15,8 +15,6 @@ import networkx as nx
 import numpy as np
 
 from textacy import extract
-from textacy import vsm
-from textacy.network import terms_to_semantic_network
 from textacy.spacier import utils as spacy_utils
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
@@ -158,7 +156,3 @@ for i in a:
 	print(i[0],i[1])
 
 '''
-
-
-
-

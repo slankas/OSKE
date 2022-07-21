@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import edu.ncsu.las.collector.util.ApplicationConstants;
+
 import edu.ncsu.las.model.RSS;
 import edu.ncsu.las.model.ValidationException;
 import edu.ncsu.las.model.collector.RSSFeed;

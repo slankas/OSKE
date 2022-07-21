@@ -22,54 +22,13 @@ punct = set(string.punctuation)
 stop_words = set(nltk_stopwords.words('english'))
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
-def getJSONObjectsFromElasticSearch(restEndPoint, sourceType, sessionID, newQuery, maxNumResults = -1):
-	"""
-	retrieve all documents from elastic search
-	"""
-	fromvalue = 0
-	docs = []
-	size = 100             # number of results to bring back for each call to ElasticSearch
-
-	if (maxNumResults > 0):
-		size = min(size,maxNumResults)
-
-	myHeaders = { 'content-type': 'application/json'}
-	query = {
-		"from" : fromvalue,
-		"size" : size,
-		"query": newQuery
-		}
-
-	totalhits = size +1; # forces the loop value through at least once.  Correct value for totalHits established at the end of loop
-
-	while (fromvalue < totalhits):
-		query['from'] = fromvalue
-		response = requests.get(restEndPoint+'/_search', data=json.dumps(query),  headers=myHeaders)
-		results =  json.loads(response.text)
-		for doc in results['hits']['hits']:
-			docs.append(doc)
-
-		fromvalue = fromvalue + query['size']
-		if (maxNumResults == -1):
-			totalHits = min(results['hits']['total']['value'],10000)  # this search API only supports 10,000 documetns by default in ElasticSearch
-		else:
-			totalhits = min(results['hits']['total']['value'],maxNumResults)
-
-	# truncate if we brought back too much data.  this is easier than adjudting size for the last loop
-	if (maxNumResults > 0):
-		docs = docs[0:maxNumResults]
-
-	logging.info("Total documents retrieved: %d",len(docs))
-	return docs
-
-
 def getAllTextData(docs):
 	"""
 	extracting text data from the documents retrieved
 	"""
 	content = []
 	for doc in docs:
-		content.append(doc['_source']['text'])
+		content.append(doc['text'])
 
 	return content
 
@@ -124,16 +83,16 @@ def getBookBackIndexes(sessionID, content,docs):
 				iterCount += 1
 				if (iterCount % 10000 == 0):
 					logging.info(sessionID + " processing iterationCount: " + str(iterCount))
-				if keyphraseRegex.search(doc['_source']['text']):   # removed .lower() as the regex is now case insensitive
+				if keyphraseRegex.search(doc['text']):   # removed .lower() as the regex is now case insensitive
 					if word == k or word == lemmatizedKeyPhrase[k]:
 						if word in keyphraserecord:
-							keyphraserecord[word].append({"id":str(doc['_id'])  })
+							keyphraserecord[word].append({"id":str(doc['id'])  })
 						else:
-							keyphraserecord[word] = [{"id":str(doc['_id'])   }]
+							keyphraserecord[word] = [{"id":str(doc['id'])   }]
 					elif (word+'|'+k) in keyphraserecord:
-						keyphraserecord[word+'|'+k].append({"id":str(doc['_id'])  })
+						keyphraserecord[word+'|'+k].append({"id":str(doc['id'])  })
 					else:
-						keyphraserecord[word+'|'+k] = [{"id":str(doc['_id'])  }]
+						keyphraserecord[word+'|'+k] = [{"id":str(doc['id'])  }]
 
 	logging.info(sessionID + " processed all documents now for keyphrases. Iteration count: "+ str(iterCount))
 
@@ -151,19 +110,6 @@ def getBookBackIndexes(sessionID, content,docs):
 	return orderedoutput,len(alldistinctwords)
 
 
-def insertIntoElasticSearch(jsonObject,documentData,concepts,metadata,url):
-	"""
-	insert all the index data into elastic search
-	"""
-	#payload = {"bookback":json.loads(json.dumps(output))}
-	payload = {"bookback": jsonObject,"allDocumentData":documentData,"metadata": metadata,"conceptIndex":concepts}
-	headers = {"content-type": "application/json","Accept":"text/plain"}
-	createURL = url +"/_create"
-	r = requests.post(createURL, data=json.dumps(payload), headers=headers)
-	if (r.status_code == 409):
-		r = requests.put(url,data=json.dumps(payload), headers=headers)
-	return r
-
 def getTitles(docs):
 	"""
 	retrieving titles for all documents
@@ -171,16 +117,9 @@ def getTitles(docs):
 	documentData = []
 	for d in docs:
 		temp = {}
-		temp['id'] = d['_id']
-		#temp[]
-		if 'title' in d['_source'].keys():
-			temp['title'] = d['_source']['title']
-		elif 'html_title' in d['_source'].keys():
-			temp['title'] = d['_source']['html_title']
-		else:
-			temp['title'] = d['_source']['url']
-
-		temp['url'] = d['_source']['url']
+		temp['id'] = d['id']
+		temp['title'] = d['title']
+		temp['url'] = d['url']
 		documentData.append(temp)
 	return documentData,len(documentData)
 
@@ -188,7 +127,7 @@ def getConcepts(docs):
 	conceptData = set()
 	conceptNames = set()
 	for d in docs:
-		for concept in d['_source']['concepts']:
+		for concept in d['concepts']:
 			conceptData.add(concept['fullName'])
 			conceptNames.add(concept['name'])
 
@@ -206,14 +145,14 @@ def getConcepts(docs):
 			valueList = set()
 			isPresent = False
 
-			for x in d['_source']['concepts'] :
+			for x in d['concepts'] :
 				if x['fullName'] == concept:
 					valueList.add(x['value'])
 					isPresent = True
 					docPresent = True
 			if isPresent:
-				temp['id'] = d['_id']
-				#temp['url'] = d['_source']['url']
+				temp['id'] = d['id']
+				#temp['url'] = d['url']
 				temp['values'] = list(valueList)
 				tempDoc.append(temp)
 

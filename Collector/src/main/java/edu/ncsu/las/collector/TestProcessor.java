@@ -12,7 +12,6 @@ import org.json.JSONObject;
 
 import java.nio.file.Files;
 
-import edu.ncsu.las.collector.util.ApplicationConstants;
 import edu.ncsu.las.document.Document;
 import edu.ncsu.las.document.DocumentHandler;
 import edu.ncsu.las.document.DocumentRouter;

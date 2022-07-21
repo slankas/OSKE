@@ -1,40 +1,43 @@
-# Name: open_ms_textrank
+# Name: cap_ms_textrank
 # Purpose: Textrank service to producde keywords, keyphrases, summaries, and back of the book index
 # requires: redis server available listening with service_name of openke_redis
-# Notes: Attempted to use python3.7.0-strech as the the base image, but could not compile cld2-cffi
+# Notes: Attempted to use python3.9.0-strech as the the base image, but could not compile cld2-cffi
 #
 # Version: 1.0
 # History
 # 20170405 Initial creation
-#
+# 20210406 Added LDA, upgrade to latest ubuntu 18.04, and python 3.7.7
+
 # Build Command:
-#     docker build -t="openke_ms_textrank" .
+#     docker build -t="cap_ms_textrank" .
 #
-FROM centos:7.5.1804
+FROM ubuntu:20.04
 
-RUN yum group install -y "Development Tools"
-RUN yum install -y xz-devel zlib-devel bzip2-devel sqlite sqlite-devel openssl-devel libffi-devel python-tools tk-devel tcl-devel wget curl git
+RUN apt-get update
+RUN apt-get install -y build-essential
+RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
+RUN apt-get install -y autoconf automake gdb git libffi-dev zlib1g-dev libssl-dev liblzma-dev zlib1g-dev libbz2-dev libsqlite3-dev libffi-dev tcl-dev wget curl
 
-# Install python 3.7.3 from source
+# Install python 3.10.5 from source
 RUN mkdir /install
-RUN wget -q --directory-prefix=/install https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz
-RUN cd /install && tar xf Python-3.7.3.tgz && cd Python-3.7.3 && ./configure && make install
+RUN wget -q --directory-prefix=/install https://www.python.org/ftp/python/3.10.5/Python-3.10.5.tgz
+RUN cd /install && tar xf Python-3.10.5.tgz && cd Python-3.10.5 && ./configure && make install
 RUN rm -rf /install
 
-RUN pip3.7 install --upgrade pip
-RUN pip3.7 install flask gensim nltk==3.3 matplotlib
-RUN pip3.7 install pattern3 fuzzywuzzy cld2-cffi
+COPY . /root/install/cap
 
-RUN pip3.7 install textacy[all]
-RUN python3.7 -c "import nltk;nltk.download('book', download_dir='/usr/share/nltk_data', halt_on_error=False)"
-RUN pip3.7 install  gunicorn json-logging-py zulu redis
+RUN pip3.10 install --upgrade pip wheel
+RUN pip3.10 install -r /root/install/cap/requirements.txt
+RUN CFLAGS="-Wno-narrowing"  pip3.10 install cld2-cffi
 
-COPY . /root/install/OpenKE
+RUN python3.10 -c "import nltk;nltk.download('book', download_dir='/usr/share/nltk_data', halt_on_error=False)"
+RUN python3.10 -c "import nltk;nltk.download('omw-1.4', download_dir='/usr/share/nltk_data', halt_on_error=False)"
 
 RUN mkdir /opt/textAnalysis && \
     mkdir /opt/textAnalysis/gunicorn && \
-    cp /root/install/OpenKE/*.py /opt/textAnalysis/ && \
-    cp /root/install/OpenKE/gunicorn/* /opt/textAnalysis/gunicorn && \
+    cp /root/install/cap/*.py /opt/textAnalysis/ && \
+	cp -r /root/install/cap/summarization /opt/textAnalysis/ && \
+    cp /root/install/cap/gunicorn/* /opt/textAnalysis/gunicorn && \
     rm -rf /root/install /root/.ssh
 
 WORKDIR /opt/textAnalysis

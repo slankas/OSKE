@@ -329,6 +329,7 @@ public class InternetUtilities {
 		}	
 		
 		HttpContent result = new HttpContent();
+		result.responseCode = httpConn.getResponseCode();
 		
 		result.contentType = conn.getContentType();
 		result.charset     = InternetUtilities.getCharsetFromContentType(result.contentType);
@@ -529,6 +530,7 @@ public class InternetUtilities {
 		public Set<String> outgoingURLs;
 		public org.apache.http.Header[] httpHeaders; 
 		public org.jsoup.nodes.Document jsoupDocument;
+		public int responseCode;
 		
 		public File localFileLocation; /* if we downloaded the file to a file store, this points to that file.  Needed for large content such as movies. */
 		

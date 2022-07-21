@@ -38,6 +38,9 @@
 	</distributionManagement>
 
 	<properties>
+		<java-version>17</java-version>
+		<maven.compiler.source>17</maven.compiler.source>
+	    <maven.compiler.target>17</maven.compiler.target>	
 		<slf4j.version>1.7.22</slf4j.version>
 		<logback.version>1.2.0</logback.version>
 		<guava.version>29.0-jre</guava.version>

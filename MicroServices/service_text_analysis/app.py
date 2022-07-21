@@ -3,15 +3,19 @@
 
 from flask import Flask,abort,jsonify,make_response,request, url_for
 import logging
-import gensim.summarization as genism
 import keyphrase_textrank as kptr
 import textacyutility as txtutility
 import keyphrase_index as kpindex
+import lda_topic
 import threading
 import json
 import datetime
 import zulu
 import redis
+import gensim
+import summarization
+from summarization.keywords import keywords
+
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
 app = Flask(__name__,static_folder=None)
@@ -20,56 +24,65 @@ app = Flask(__name__,static_folder=None)
 # need some location to share information across the worker processes
 indexMapRedis = redis.StrictRedis(host='openke_redis', port=6379,db=0)
 
-def setDiscoveryInProgess(id):
+def setAnalyticInProgress(id):
     indexMapRedis.set(str(id), "False")
 
-def setDiscoveryIndex(id,discoveryIndex):
-    indexMapRedis.set(str(id), json.dumps(discoveryIndex))
+def setAnalyticResult(id,result):
+    indexMapRedis.set(str(id), json.dumps(result))
 
 
-def getDiscoveryIndex(id):
+def getAnalyticResult(id):
     return indexMapRedis.get(str(id))
 
 #to launch a separate thread for creating index
 class myThread (threading.Thread):
-    def __init__(self, sessionID,restEndPoint,sourceType,destinationType,query,title,maxNumResults, creatorID):
+    def __init__(self, sessionID,title,creatorID, docs):
         threading.Thread.__init__(self)
         self.threadID = sessionID
-        self.rest = restEndPoint
-        self.sourceType = sourceType
-        self.destinationType = destinationType
-        self.query = query
         self.title = title
-        self.maxNumResults = maxNumResults
         self.creatorID = creatorID
+        self.documents = docs
 
     def run(self):
-        logging.info(self.threadID + " - thread started, query recieved: %s",str(self.query))
-        logging.info(self.threadID + " REST endpoint: " + self.rest)
+        logging.info(self.threadID + " - thread started")
 
         sessionID = self.threadID
-        #setDiscoveryIndex(sessionID)
+        #setAnalyticResult(sessionID)
 
-        allJSONObjects = kpindex.getJSONObjectsFromElasticSearch(self.rest, self.sourceType,self.threadID,self.query,self.maxNumResults)
-        logging.info(self.threadID + " -  data retrieved from Elastic search creating index now")
+        #allJSONObjects = kpindex.getJSONObjectsFromElasticSearch(self.rest, self.sourceType,self.threadID,self.query,self.maxNumResults)
+        #logging.info(self.threadID + " -  data retrieved from Elastic search creating index now")
 
-        textData = kpindex.getAllTextData(allJSONObjects)
-        indexes,totalDistinctKeywords = kpindex.getBookBackIndexes(self.threadID,textData,allJSONObjects)
+        textData = kpindex.getAllTextData(self.documents)
+        indexes,totalDistinctKeywords = kpindex.getBookBackIndexes(self.threadID,textData,self.documents)
         logging.info(self.threadID +  " - Index creation done")
-        documentData,totalDocuments = kpindex.getTitles(allJSONObjects)
+        documentData,totalDocuments = kpindex.getTitles(self.documents)
 
         currentDateZulu = zulu.now()
         date = zulu.parse(currentDateZulu).isoformat()#datetime.datetime.now().isoformat()
 
-        conceptData,totalConcepts=kpindex.getConcepts(allJSONObjects)
-        metadata = {"totalDocuments":totalDocuments,"dateCreated":date,"totalKeywords":totalDistinctKeywords,"totalConcepts":totalConcepts,"title":self.title, "creator": self.creatorID}
-        url = self.rest + self.destinationType +"/"+sessionID
-        #insertsuccess = kpindex.insertIntoElasticSearch(indexes,documentData,conceptData,metadata,url)
+        conceptData,totalConcepts=kpindex.getConcepts(self.documents)
+        indexMetaData = {"totalDocuments":totalDocuments,"dateCreated":date,"totalKeywords":totalDistinctKeywords,"totalConcepts":totalConcepts,"title":self.title, "creator": self.creatorID}
 
-        completedIndex = {"bookback": indexes,"allDocumentData":documentData,"metadata": metadata,"conceptIndex":conceptData}
-        setDiscoveryIndex(sessionID,completedIndex)
+        completedIndex = {"bookback": indexes,"allDocumentData":documentData,"metadata": indexMetaData,"conceptIndex":conceptData}
+        setAnalyticResult(sessionID,completedIndex)
         logging.info(self.threadID +  "Index stored, thread completed")
 
+#to launch a separate thread for generating the LDA topics and assigning documents
+class ldaThread (threading.Thread):
+    def __init__(self, session_id,docs, num_topics, stop_words):
+        threading.Thread.__init__(self)
+        self.session_id = session_id
+        self.documents = docs
+        self.num_topics = num_topics
+        self.stop_words = stop_words
+
+    def run(self):
+        logging.info(self.session_id + " - LDA thread started")
+
+        topics = lda_topic.produce_lda(self.documents, num_topics=self.num_topics, additional_stop_words=self.stop_words)
+        result =  { "topics" : topics, "records" : self.documents }
+        setAnalyticResult(self.session_id,result)
+        logging.info(self.session_id +  "LDA stored, thread completed")
 
 
 @app.route('/')
@@ -113,7 +126,7 @@ def index():
 
 @app.route('/textrank/summary/<float:r>',methods=['POST'])
 def getSummary(r):
-    """ Summarizes text based upon gensim's implementation of textrank
+    """ Summarizes text based upon textrank
 
     Args:
         r - what % of the text should be provided as a summary
@@ -141,7 +154,7 @@ def getSummary(r):
     try:
         contentJSON = request.json
         text = contentJSON['text']
-        summary = genism.summarize(text, split=True,ratio = r);
+        summary = summarization.summarize(text, split=True,ratio = r);
         return jsonify({'summary':summary});
     except:
         return jsonify({'error': sys.exc_info()[0], 'value':  sys.exc_info()[1]});
@@ -186,7 +199,7 @@ def getKeyphrases(r):
 
 @app.route('/textrank/keyword/<float:r>',methods=['POST'])
 def getKeyWords(r):
-    """ Retrieves the top keywords based upon gensim's implementation of textrank
+    """ Retrieves the top keywords based upon pytextrank's implementation of textrank
     By default, words are lemmatized to reduce duplicates.
 
     Args:
@@ -196,12 +209,10 @@ def getKeyWords(r):
                     which contains the text to have the keywords returned.
 
     Returns:
-        A json object with a single element "keywords" that is a json
-        array of
+        A JSON array of the keywords and their score
 
         Example:
-        {
-          "keyword": [
+           [
             {
               "score": 0.30112727244135246,
               "word": "testValue"
@@ -210,16 +221,16 @@ def getKeyWords(r):
               "score": 0.2880290370874553,
               "word": "testValue2"
             }
-	  ]
-	}
+	       ]
+
     Raises:
         None
     """
 
     text = request.get_json(silent = True)['text']
-    keywordlist = genism.keywords(text,ratio = r,scores=True,split=True,lemmatize=True)
+    keywordlist = keywords(text,ratio = r,scores=True,split=True,lemmatize=True)
     result = [{ "word": str(k[0]), "score": k[1] } for k in keywordlist]
-    return jsonify({'keywords':result});
+    return jsonify(result);
 
 @app.route('/textrank/sgrank/<int:num>',methods=['POST'])
 def getSgrank(num):
@@ -233,17 +244,13 @@ def getSgrank(num):
 def createAndStoreIndexes():
     data =  json.loads(request.data.decode("utf-8"))
     sessionID = data["sessionID"]
-    setDiscoveryInProgess(sessionID)
-    restEndPoint = data["urlAndIndex"]
-    sourceType = data["type"]
-    destinationType = "discoveryIndex"
-    query = data["query"]
+    setAnalyticInProgress(sessionID)
     title = data["title"] if "title" in data else ""
     creatorID = data["creatorID"] if "creatorID" in data else "unknown"
-    maxNumResults = data["maxNumResults"] if "maxNumResults" in data else -1
+    docs = data["documents"]
 
-    #url = str(elasticServer)+str(indexES)+"/"+str(typeES)+"/"+str(sessionID)+"/_create"
-    createIndexThread = myThread(sessionID,restEndPoint,sourceType,destinationType,query,title,maxNumResults,creatorID)
+
+    createIndexThread = myThread(sessionID,title,creatorID,docs)
     createIndexThread.start()
 
     return jsonify({"status":"creating"})
@@ -251,7 +258,7 @@ def createAndStoreIndexes():
 
 @app.route('/textrank/index/status/<id>',methods=['GET'])
 def checkCreateIndexStatus(id):
-    index = getDiscoveryIndex(id)
+    index = getAnalyticResult(id)
 
     if index is None:
         return  jsonify({"status": False,"message":"key not found"})
@@ -274,9 +281,48 @@ def createTimeSeries():
     return jsonify(res)
 
 
+@app.route('/lda',methods=['POST'])
+def produceLDATopics():
+    data =  json.loads(request.data.decode("utf-8"))
+    #sessionID = data["sessionID"]
+    #setAnalyticInProgress(sessionID)
+
+    docs = data["records"]
+    stop_words = data["stopWords"]  if "stopWords" in data else []
+    num_topics  = data["numTopics"] if "numTopics" in data else 7
+    session_id  = data["sessionID"]
+
+    setAnalyticInProgress(session_id)
+    lda_thread = ldaThread(session_id,docs, num_topics, stop_words)
+    lda_thread.start()
+    return jsonify({"status":"creating"})
+
+@app.route('/lda/<id>',methods=['GET'])
+def checkLDAStatus(id):
+    index = getAnalyticResult(id)
+
+    if index is None:
+        return  jsonify({"status": False,"message":"key not found"})
+
+    index = index.decode("utf-8")
+    if index == "False":
+        return jsonify({"status":False,"message":"in progress"})
+    else:
+        indexMapRedis.delete(str(id))
+        index = json.loads(index)
+        index["status"] = True
+        return jsonify(index)
+
+
+
+
+
+
+
+
 @app.errorhandler(404)
 def not_found(error):
-    return make_response(jsonify({'error': 'Not found'}), 404)
+    return make_response(jsonify({'error': 'service url not found'}), 404)
 
 
 if __name__ == '__main__':

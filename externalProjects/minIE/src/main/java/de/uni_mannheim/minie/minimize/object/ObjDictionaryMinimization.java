@@ -5,7 +5,6 @@ import java.util.List;
 
 import de.uni_mannheim.minie.annotation.AnnotatedPhrase;
 import de.uni_mannheim.minie.minimize.Minimization;
-import de.uni_mannheim.minie.minimize.object.ObjSafeMinimization;
 import de.uni_mannheim.utils.coreNLP.CoreNLPUtils;
 
 import edu.stanford.nlp.semgraph.SemanticGraph;

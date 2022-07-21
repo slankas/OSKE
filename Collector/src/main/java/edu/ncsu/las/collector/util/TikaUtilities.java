@@ -12,7 +12,8 @@ import java.util.regex.Pattern;
 
 import org.apache.tika.Tika;
 import org.apache.tika.exception.TikaException;
-import org.apache.tika.language.LanguageIdentifier;
+import org.apache.tika.langdetect.optimaize.OptimaizeLangDetector;
+import org.apache.tika.language.detect.LanguageDetector;
 import org.apache.tika.language.detect.LanguageResult;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.AutoDetectParser;
@@ -81,11 +82,11 @@ public class TikaUtilities {
 				
 		java.util.HashMap<String,String> results = new java.util.HashMap<String,String>();
 	    try {
-	        Parser parser = new AutoDetectParser();
+	    	AutoDetectParser parser = new AutoDetectParser();
 	        BodyContentHandler handler = new BodyContentHandler();
 	        Metadata metadata = new Metadata();
-	        ParseContext context = new ParseContext();
-	        parser.parse(stream, handler, metadata, context);
+	        parser.parse(stream, handler, metadata);
+
 	        //System.out.println(handler.toString());
 
 	        //getting the list of all meta data elements 
@@ -106,11 +107,14 @@ public class TikaUtilities {
 	
 	
 	public static String detectLanguage(String content) {
-		
+        LanguageDetector detector = new OptimaizeLangDetector().loadModels();
+        LanguageResult result = detector.detect(content);
+        return result.getLanguage();
+        
 		// The following code is deprecated, but runs ~ 1 ms vs 300-600ms for the newer methods...
 		
-		LanguageIdentifier li = new LanguageIdentifier(content);
-		return li.getLanguage();
+		//LanguageDetector li = new LanguageDetector(content);
+		//return li.getLanguage();
 		
 		/*
 		try {

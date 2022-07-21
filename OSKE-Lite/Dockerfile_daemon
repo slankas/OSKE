@@ -10,8 +10,7 @@
 #
 FROM openke_base as base
 
-FROM centos:7.5.1804
-#FROM openjdk:8u181-jdk
+FROM rockylinux:9.0.20220720
 RUN mkdir /opt/collector && \
     mkdir /opt/collector/bin && \
     mkdir /opt/collector/config && \

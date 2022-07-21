@@ -10,8 +10,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	   <maven.compiler.source>1.8</maven.compiler.source>
-	   <maven.compiler.target>1.8</maven.compiler.target>
+		<java-version>17</java-version>
+		<maven.compiler.source>17</maven.compiler.source>
+	    <maven.compiler.target>17</maven.compiler.target>
 	   <maven.test.skip>true</maven.test.skip>
 	    <maven.build.timestamp.format>yyyyMMdd'T'HHmm'Z'</maven.build.timestamp.format>
 	    <jersey.version>2.28</jersey.version>

@@ -9,7 +9,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.TreeMap;
 import java.util.logging.Level;
 
-import org.apache.commons.lang.StringUtils;
 import org.json.JSONObject;
 
 import edu.ncsu.las.model.collector.Configuration;
@@ -72,7 +71,7 @@ public abstract class CommunitySourceHandler extends AbstractHandler {
 
 	@Override
 	public final String getDescription() {
-		return "Source handler for " + StringUtils.capitalize(this.getSourceHandlerName());
+		return "Source handler for " + this.getSourceHandlerName();
 	}
 
 	@Override
@@ -95,7 +94,7 @@ public abstract class CommunitySourceHandler extends AbstractHandler {
 
 	@Override
 	public final String getSourceHandlerDisplayName() {
-		return StringUtils.capitalize(this.getSourceHandlerName()) + " Handler";
+		return this.getSourceHandlerName() + " Handler";
 	}
 
 	private boolean isStopRequested() {

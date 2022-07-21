@@ -1,0 +1,14 @@
+textacy
+flask
+gensim
+pytextrank
+nltk
+matplotlib
+pattern3
+fuzzywuzzy
+python-Levenshtein
+gunicorn
+json-logging-py
+zulu
+redis
+pandas
