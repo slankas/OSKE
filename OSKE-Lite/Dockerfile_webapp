@@ -18,13 +18,10 @@ RUN wget https://github.com/sgsinclair/VoyantServer/releases/download/2.4.0-M7/V
 
 
 FROM tomcat:9.0.64-jre17-temurin-jammy
-RUN mkdir /opt && \
-    mkdir /opt/collector && \
-    mkdir /opt/collector/config && \
-    mkdir /openke && \
-    mkdir /openke/download && \
-    mkdir /openke/externalExport && \
-    mkdir /openke/upload_directory
+RUN mkdir -p /opt/collector/config && \
+    mkdir -p /openke/download && \
+    mkdir -p /openke/externalExport && \
+    mkdir -p /openke/upload_directory
 
 COPY --from=base /root/install/OpenKE/Collector/system_properties.json.docker /opt/collector/config/system_properties.json
 COPY --from=base /root/install/OpenKE/Collector/logging* /opt/collector/config/

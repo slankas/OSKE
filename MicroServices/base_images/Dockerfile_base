@@ -6,7 +6,7 @@
 # 20170405 Initial creation
 #
 # Build Command: (executed from current directory)
-#     docker build -t="openke_base" Dockerfile_base ../..
+#     docker build -t="openke_base" -f Dockerfile_base ../..
 #
 FROM rockylinux:9.0.20220720
 RUN yum update -y

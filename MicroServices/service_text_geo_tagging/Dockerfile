@@ -8,7 +8,7 @@
 # Build Command: (from this directory)
 #     docker build -t="openke_ms_geotag" .
 #
-FROM centos:7.5.1804 as base
+FROM rockylinux:9.0.20220720 as base
 
 RUN yum update -y
 RUN yum -y install java maven curl unzip
@@ -32,7 +32,7 @@ RUN mkdir --parents /opt/clavin/index/src/main/resources/
 RUN cp /root/install/MicroServices/resources/SupplementaryGazetteer.txt /opt/clavin/index/src/main/resources/
 RUN cd /opt/clavin/index && java -Xmx4g -classpath "/opt/clavin/lib/*" com.bericotech.clavin.index.IndexDirectoryBuilder
 
-FROM openjdk:8u181-jdk
+FROM eclipse-temurin:17
 RUN mkdir /opt/clavin && chown 1000:1000 /opt/clavin
 USER 1000
 COPY --from=base /opt/clavin /opt/clavin

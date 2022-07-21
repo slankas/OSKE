@@ -41,8 +41,7 @@ yum update -y
 yum install -y yum-utils   device-mapper-persistent-data   lvm2 git iptables
 yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo
 yum install -y docker-ce
-curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+yum install -y docker-compose-plugin
 systemctl enable docker
 systemctl start docker
 echo "vm.max_map_count=262144" >> /etc/sysctl.conf
@@ -80,7 +79,7 @@ chown  999 oske/database
 9. Start the system.  This step will take well over 30 minutes to execute the first time as the docker images are downloaded and built.  Once the images are available(built) and for subsequent runs, the system should start within 30 seconds.
 ```
 cd <your install location>/OSKE/OSKE-Lite
-docker-compose up -d
+docker compose up -d
 ```
 
   Once the build process is complete, you may want to delete some of the intermediate builds that are not necessary to save some disk space:
