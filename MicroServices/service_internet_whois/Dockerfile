@@ -14,8 +14,7 @@ COPY . /root/install/MicroServices
 RUN cd /root/install/MicroServices && \
     mvn clean compile dependency:copy-dependencies package
 
-#FROM centos:7.5.1804
-FROM openjdk:8u181-jdk
+FROM eclipse-temurin:17
 RUN mkdir /opt/whois && \
     mkdir /opt/whois/classes && \
     mkdir /opt/whois/lib

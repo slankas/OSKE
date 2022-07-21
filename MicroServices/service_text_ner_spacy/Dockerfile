@@ -8,11 +8,11 @@
 # Build Command:
 #     docker build -t="openke_ms_spacy" .
 #
-FROM python:3.7.3-stretch
+FROM python:3.10.5
 
-RUN pip3.7 install --upgrade pip setuptools
-RUN pip3.7 install --upgrade spacy flask gunicorn json-logging-py
-RUN python3.7 -m spacy download en_core_web_lg
+RUN pip3.10 install --upgrade pip setuptools wheel
+RUN pip3.10 install --upgrade spacy flask gunicorn json-logging-py
+RUN python3.10 -m spacy download en_core_web_lg
 
 COPY . /root/install/MicroServices
 

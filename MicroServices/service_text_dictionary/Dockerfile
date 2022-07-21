@@ -8,16 +8,19 @@
 # Build Command: (from this directory)
 #     docker build -t="openke_ms_geocode" .
 #
-FROM centos:7.5.1804 as base
-
+FROM rockylinux:9.0.20220720 as base
 RUN yum update -y
-RUN yum -y install java maven
+RUN yum -y install java-17-openjdk maven-openjdk17 openssh-clients wget git unzip
+
+# Don't like the following, but java 11 is the default.  This is highly version dependent
+RUN alternatives --set java /usr/lib/jvm/java-17-openjdk-17.0.3.0.7-1.el9_0.x86_64/bin/java
+
 
 COPY . /root/install/MicroServices
 RUN cd /root/install/MicroServices && \
     mvn clean compile dependency:copy-dependencies package
 
-FROM openjdk:8u181-jdk
+FROM eclipse-temurin:17
 RUN mkdir /opt/geoCoder && \
     mkdir /opt/geoCoder/classes && \
     mkdir /opt/geoCoder/lib

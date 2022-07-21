@@ -14,7 +14,7 @@ COPY . /root/install/MicroServices
 RUN cd  /root/install/MicroServices && \
     mvn clean compile dependency:copy-dependencies package
 
-FROM openjdk:8u181-jdk
+FROM eclipse-temurin:17
 RUN mkdir /opt/nlpAPI  && \
     mkdir /opt/nlpAPI/classes && \
     mkdir /opt/nlpAPI/lib

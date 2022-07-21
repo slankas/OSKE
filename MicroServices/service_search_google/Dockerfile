@@ -11,11 +11,11 @@
 # RUN:
 #     docker run -p EXPOSED_PORT_NUM:8000 openke_ms_google
 #
-FROM python:3.7.3-stretch
+FROM python:3.10.5
 
-RUN pip3.7 install --upgrade pip setuptools
-RUN pip3.7 install --upgrade spacy flask gunicorn json-logging-py jsons
-RUN pip3.7 install git+https://github.com/slankas/Google-Search-API
+RUN pip3.10 install --upgrade pip setuptools wheel
+RUN pip3.10 install --upgrade spacy flask gunicorn json-logging-py jsons
+RUN pip3.10 install git+https://github.com/slankas/Google-Search-API
 
 COPY . /root/install/MicroServices
 

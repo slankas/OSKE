@@ -9,9 +9,9 @@
 # Build Command: (execute from this current directory)
 #     docker build -t="openke_ms_microformat" -f dockerfile  .
 #
-FROM python:3.7.3-stretch
-RUN pip3.7 install --upgrade pip
-RUN pip3.7 install flask gunicorn json-logging-py mf2py
+FROM python:3.10.5
+RUN pip3.10 install --upgrade pip setuptools wheel
+RUN pip3.10 install flask gunicorn json-logging-py mf2py
 
 COPY . /root/install/MicroServices
 
