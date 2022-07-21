@@ -1,4 +1,4 @@
-# Name: las/collector
+# Name: las/openke_ms_geotag
 # Purpose: detects geographical locations within unstructured text using the CLAVIN library
 #
 # Version: 1.0
@@ -10,8 +10,13 @@
 #
 FROM rockylinux:9.0.20220720 as base
 
+FROM rockylinux:9.0.20220720
 RUN yum update -y
-RUN yum -y install java maven curl unzip
+RUN yum -y install java-17-openjdk maven-openjdk17 openssh-clients wget git unzip curl
+
+# Don't like the following, but java 11 is the default.  This is highly version dependent
+RUN alternatives --set java /usr/lib/jvm/java-17-openjdk-17.0.3.0.7-1.el9_0.x86_64/bin/java
+
 
 COPY . /root/install/MicroServices
 RUN cd  /root/install/MicroServices && \
