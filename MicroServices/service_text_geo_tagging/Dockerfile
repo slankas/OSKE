@@ -9,8 +9,6 @@
 #     docker build -t="openke_ms_geotag" .
 #
 FROM rockylinux:9.0.20220720 as base
-
-FROM rockylinux:9.0.20220720
 RUN yum update -y
 RUN yum -y install java-17-openjdk maven-openjdk17 openssh-clients wget git unzip curl
 
