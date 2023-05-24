@@ -1,10 +1,9 @@
-# Flask REST-based application to retrieve named enties from a text string
-# using the spaCy library
+# Flask REST-based application to access Google Search Results
 
-from flask import Flask,abort,jsonify,make_response,request, url_for
+from flask import Flask,jsonify,make_response
 import logging
-import jsons
-from googleapi import google
+import json
+from googlesearch import search
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 logger = logging.getLogger('proxy')
@@ -65,8 +64,8 @@ def performGoogleSearch(searchTerm,numPages):
     """
 
     try:
-        search_results = google.search(searchTerm, int(numPages))
-        return jsons.dumps(search_results)
+        search_results = search(searchTerm, num_results=int(numPages),advanced=True)
+        return json.dumps([{"url": x.url,"title":x.title, "description":x.description} for x in search_results])
 
     except Exception as e:
         logger.warning (str(e))

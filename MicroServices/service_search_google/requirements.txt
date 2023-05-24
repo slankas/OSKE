@@ -1,0 +1,4 @@
+googlesearch-python
+flask
+gunicorn
+json-logging-py

@@ -1,27 +1,35 @@
 # Google Search API
-Provides a REST-based interface to the googleapi at https://github.com/abenassi/Google-Search-API
+Provides a REST-based interface to the googlesearch-python API: https://github.com/Nv7-GitHub/googlesearch
 
-This version uses https://github.com/slankas/Google-Search-API as the source,
-which implements a small change to provide a more refined version of the title.
+## Creating local environment
+```sh
+python3 -m venv service_venv
+source serverice_venv/bin/activate
+pip install --upgrade pip setuptools wheel
+pip install -r requirements.txt
+
+flask run --port 8000 --reload --debugger
+```
+
+
 
 ## Client Usage
-The service only accepts a post request. The "text" attribute is required. "showAll" is optional.  Default is false.  If set to true, then the following entities are also returned: DATE, TIME, PERCENT, QUANTITY, ORDINAL, CARDINAL
+The service only accepts a get request and returns an array of JSON Objects.
+Each object contains title, url, and description.  Use a '+' symbol as speaces in the search terms.
 
 ````
-GET http://serverName:port/google/search/search+terms
+GET http://serverName:port/google/search/search+terms/numResults
 ````
 
 Sample response
 ````
-{
-"entities": [  {
-    "endPos": 10,
-    "startPos": 1,
-    "text": "text matched",
-    "type": "ENTITY TYPE"
-    }, ...
-],
-}
+[
+  { "url": "...",
+    "title" : "...",
+    "description" : "..."
+  }
+]
+
 ````
 
 ## Build and run
