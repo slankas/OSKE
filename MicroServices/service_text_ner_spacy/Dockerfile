@@ -1,4 +1,4 @@
-# Name: las/collector
+# Name: openke_ms_spacy
 # Purpose: Extracts named entities from unstructured text using the spacy python library
 #
 # Version: 1.0
@@ -8,21 +8,26 @@
 # Build Command:
 #     docker build -t="openke_ms_spacy" .
 #
-FROM python:3.7.3-stretch
-
-RUN pip3.7 install --upgrade pip setuptools
-RUN pip3.7 install --upgrade spacy flask gunicorn json-logging-py
-RUN python3.7 -m spacy download en_core_web_lg
+# RUN:
+#     docker run -p EXPOSED_PORT_NUM:8000 openke_ms_spacy
+#
+FROM python:3.11
+RUN pip3.11 install --upgrade pip setuptools wheel
 
 COPY . /root/install/MicroServices
 
 RUN mkdir /opt/spacyNER && \
     mkdir /opt/spacyNER/gunicorn && \
     cp /root/install/MicroServices/*.py /opt/spacyNER/ && \
-    cp /root/install/MicroServices/gunicorn/*.conf /opt/spacyNER/gunicorn
+    cp /root/install/MicroServices/gunicorn/*.conf.py /opt/spacyNER/gunicorn && \
+    cp /root/install/MicroServices/requirements.txt opt/spacyNER/gunicorn
 
+WORKDIR /opt/spacyNER
+
+RUN pip3.11 install -r requirements.txt
+RUN python3.11 -m spacy download en_core_web_lg
 
 USER 1000
-WORKDIR /opt/spacyNER
-ENTRYPOINT ["/usr/local/bin/gunicorn", "--config", "/opt/spacyNER/gunicorn/gunicorn.conf", "--log-config", "/opt/spacyNER/gunicorn/logging.conf", "-b", ":8000", "app:app"]
+
+ENTRYPOINT ["/usr/local/bin/gunicorn", "--config", "/opt/spacyNER/gunicorn/gunicorn.conf.py", "--log-config", "/opt/spacyNER/gunicorn/logging.conf.py", "-b", ":8000", "app:app"]
 EXPOSE 8000

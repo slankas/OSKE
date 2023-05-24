@@ -5,6 +5,15 @@ The spaCy named entity feature is described at https://spacy.io/usage/linguistic
 
 The available entity types are https://spacy.io/usage/linguistic-features#entity-types
 
+## Creating local environment
+```sh
+python3 -m venv service_venv
+source serverice_venv/bin/activate
+pip install --upgrade pip setuptools wheel
+pip install -r requirements.txt
+
+flask run --port 8000 --reload --debugger
+```
 ## Client Usage
 The service only accepts a post request. The "text" attribute is required. "showAll" is optional.  Default is false.  If set to true, then the following entities are also returned: DATE, TIME, PERCENT, QUANTITY, ORDINAL, CARDINAL
 
