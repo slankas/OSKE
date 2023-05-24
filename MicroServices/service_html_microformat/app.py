@@ -1,7 +1,7 @@
 # Basic Flask application to provide access to various textrank functions
 # through a REST API
 
-from flask import Flask,abort,jsonify,make_response,request, url_for
+from flask import Flask,jsonify,make_response,request
 import logging
 import json
 import datetime
