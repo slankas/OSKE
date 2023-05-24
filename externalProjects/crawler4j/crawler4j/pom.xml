@@ -43,7 +43,7 @@
 		<guava.version>29.0-jre</guava.version>
 		<apache.http.components.version>4.5.13</apache.http.components.version>
 		<je.version>5.0.84</je.version>
-		<apache.tika.version>1.16</apache.tika.version>
+		<apache.tika.version>1.18</apache.tika.version>
 		<!--test dependency versions -->
 		<junit.version>4.13.1</junit.version>
 		<wiremock.version>2.4.1</wiremock.version>
