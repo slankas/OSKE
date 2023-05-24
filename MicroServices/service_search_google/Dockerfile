@@ -12,7 +12,7 @@
 #     docker run -p EXPOSED_PORT_NUM:8000 openke_ms_google
 #
 FROM python:3.11
-
+RUN pip3.11 install --upgrade pip setuptools wheel
 
 COPY . /root/install/MicroServices
 RUN mkdir /opt/googleapi && \
@@ -23,7 +23,7 @@ RUN mkdir /opt/googleapi && \
 
 WORKDIR /opt/googleapi
 
-RUN pip3.11 install --upgrade pip setuptools wheel
+
 RUN pip3.11 install -r requirements.txt
 
 
