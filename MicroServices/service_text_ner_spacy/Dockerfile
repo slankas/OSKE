@@ -20,7 +20,7 @@ RUN mkdir /opt/spacyNER && \
     mkdir /opt/spacyNER/gunicorn && \
     cp /root/install/MicroServices/*.py /opt/spacyNER/ && \
     cp /root/install/MicroServices/gunicorn/*.conf.py /opt/spacyNER/gunicorn && \
-    cp /root/install/MicroServices/requirements.txt opt/spacyNER/gunicorn
+    cp /root/install/MicroServices/requirements.txt opt/spacyNER
 
 WORKDIR /opt/spacyNER
 
