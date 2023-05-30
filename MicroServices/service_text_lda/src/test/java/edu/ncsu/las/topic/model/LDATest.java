@@ -26,7 +26,7 @@ public class LDATest {
     private static WebTarget target;
 
     @BeforeClass
-    public static void setUp() throws Exception {
+    public void setUp() throws Exception {
         // start the server
     	//Main.main(new String[1]);
         server = Main.startServer("http://0.0.0.0:9001/topicmodel/");
@@ -36,7 +36,7 @@ public class LDATest {
     }
 
     @AfterClass
-    public static void tearDown() throws Exception {
+    public void tearDown() throws Exception {
         server.shutdownNow();
     }
 
@@ -93,7 +93,7 @@ public class LDATest {
 	        	 Response statusResponse = target.path("v1/LDA/"+sessionID).request().accept(MediaType.APPLICATION_JSON).get();
 	 	        //System.out.println(response.getStatus() + " " + response.getStatusInfo() + " " + response);
 	        	String textResponse = statusResponse.readEntity(String.class);
-	        	//System.out.println(textResponse);
+	        	System.out.println(textResponse);
 	 	        JSONObject statusResult = new JSONObject(textResponse);
 	 	        if (statusResult.getString("message").contains("failure")) {
 	 	        	break;

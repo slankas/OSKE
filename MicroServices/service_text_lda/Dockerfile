@@ -10,13 +10,19 @@
 # Build Command: (from current directory)
 #     docker build -t="openke_ms_topic" .
 #
-FROM openke_base as base
+# docker run -p 9005:9001 openke_ms_topic
+# curl http://127.0.0.1:9005/topicmodel/v1/statistics
+
+FROM rockylinux:9
+RUN dnf update -y
+RUN dnf -y install java-17-openjdk java-17-openjdk-devel maven
+ENV JAVA_HOME /usr/lib/jvm/java-17
+
 COPY . /root/install/MicroServices
 
 RUN cd /root/install/MicroServices/ && \
     mvn clean compile dependency:copy-dependencies package
 
-#FROM openjdk:8u181-jdk
 RUN mkdir /opt/topicModeler && \
     mkdir /opt/topicModeler/classes && \
     mkdir /opt/topicModeler/lib
@@ -30,5 +36,5 @@ RUN chown -R tmuser:tmgroup /opt/topicModeler
 
 WORKDIR /opt/topicModeler
 USER tmuser
-ENTRYPOINT ["java", "-Xmx4g", "-classpath", "classes:lib/*", "edu.ncsu.las.topicmodel.api.Main"]
+ENTRYPOINT ["/usr/lib/jvm/java-17/bin/java", "-Xmx4g", "-classpath", "classes:lib/*", "edu.ncsu.las.topicmodel.api.Main"]
 EXPOSE 9001
