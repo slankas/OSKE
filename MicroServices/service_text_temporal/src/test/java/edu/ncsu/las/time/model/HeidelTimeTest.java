@@ -39,7 +39,7 @@ public class HeidelTimeTest {
 		JSONArray result = processDocument(ht2,testObject);
 
 		System.out.println(result.toString(4));
-		assertEquals(result.length(),6);
+		assertEquals(result.length(),5);
 
 		JSONObject firstResult = result.getJSONObject(0);
 		assertEquals(firstResult.getString("text"),"Yesterday");

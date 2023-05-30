@@ -8,20 +8,32 @@
 # Build Command: (from current directory)
 #     docker build -t="openke_ms_temporal" .
 #
-FROM openke_base as base
+
+#
+# export SERVICE_URL=http://0.0.0.0:9001/temporalTagger/
+# export SERVICE_CONFIGURATION_FILE=/opt/heideltimeAPI/docker_config.props
+# docker run -p 9003:9001 -e SERVICE_URL -e SERVICE_CONFIGURATION openke_ms_temporal
+#
+# curl http://127.0.0.1:9003/temporalTagger/v1/statistics
+# curl http://127.0.0.1:9003/temporalTagger/v1/extract -d '{ "text":"John went to the park on Monday.", "published_date" : { "date":"2023-05-30T10:00:00.00Z"}}' -H "Content-Type: application/json"
+
+FROM centos:7
+
+RUN yum update -y
+RUN yum -y install java maven
+
 COPY . /root/install/MicroServices
 
 RUN cd /root/install/MicroServices/ && \
     mvn clean compile dependency:copy-dependencies package
 
-FROM openjdk:8u181-jdk
 RUN mkdir /opt/heideltimeAPI && \
     mkdir /opt/heideltimeAPI/classes && \
     mkdir /opt/heideltimeAPI/lib
-COPY --from=base /root/install/MicroServices/target/classes /opt/heideltimeAPI/classes/
-COPY --from=base /root/install/MicroServices/target/dependency/* /opt/heideltimeAPI/lib/
-COPY --from=base /root/install/MicroServices/docker_config.props /opt/heideltimeAPI/docker_config.props
-COPY --from=base /root/install/MicroServices/english-bidirectional /opt/heideltimeAPI/english-bidirectional
+RUN cp -r /root/install/MicroServices/target/classes /opt/heideltimeAPI
+RUN cp -r /root/install/MicroServices/target/dependency/* /opt/heideltimeAPI/lib/
+RUN cp /root/install/MicroServices/docker_config.props /opt/heideltimeAPI/
+RUN cp -r /root/install/MicroServices/english-bidirectional /opt/heideltimeAPI/
 
 RUN chown -R 1000:1000 /opt/heideltimeAPI
 
