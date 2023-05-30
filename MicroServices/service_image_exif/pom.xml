@@ -6,15 +6,15 @@
     <groupId>edu.ncsu.las</groupId>
     <artifactId>service.image.exif</artifactId>
     <packaging>jar</packaging>
-    <version>20170227</version>
+    <version>20230530</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	   <maven.compiler.source>1.8</maven.compiler.source>
-	   <maven.compiler.target>1.8</maven.compiler.target>
+	   <maven.compiler.source>17</maven.compiler.source>
+	   <maven.compiler.target>17</maven.compiler.target>
 	   <maven.test.skip>true</maven.test.skip>
 	    <maven.build.timestamp.format>yyyyMMdd'T'HHmm'Z'</maven.build.timestamp.format>
-	    <jersey.version>2.28</jersey.version>
+	    <jersey.version>3.1.2</jersey.version>
 	</properties>
    
     <dependencyManagement>
@@ -68,7 +68,7 @@
 		<dependency>
 		  <groupId>org.testng</groupId>
 		  <artifactId>testng</artifactId>
-		  <version>7.5.1</version>
+		  <version>7.8.0</version>
 		  <scope>test</scope>
 		</dependency>
 
