@@ -8,6 +8,15 @@
 # Build Command: (from this directory)
 #     docker build -t="openke_ms_geotag" .
 #
+# Execution
+#     export SERVICE_URL=http://0.0.0.0:9001/geoTagger/
+#     export SERVICE_INDEX_DIRECTORY=/opt/clavin/index/IndexDirectory
+#     docker run -p 9004:9001 -e SERVICE_URL -e SERVICE_INDEX_DIRECTORY openke_ms_geotag
+#
+# Test commands:
+# curl http://127.0.0.1:9004/geoTagger/v1/process -d '{ "text" : "John lives in Raleigh, North Carolina" }' -H "Content-Type: application/json"
+# curl http://127.0.0.1:9004/geoTagger/v1/statistics
+#
 FROM rockylinux:9
 RUN dnf update -y
 RUN dnf -y install java-17-openjdk java-17-openjdk-devel maven  unzip
@@ -32,7 +41,7 @@ RUN mkdir --parents /opt/clavin/index/src/main/resources/
 RUN cp /root/install/MicroServices/resources/SupplementaryGazetteer.txt /opt/clavin/index/src/main/resources/
 RUN cd /opt/clavin/index && java -Xmx4g -classpath "/opt/clavin/lib/*" com.bericotech.clavin.index.IndexDirectoryBuilder
 
-RUN mkdir /opt/clavin && chown 1000:1000 /opt/clavin
+RUN chown -R 1000:1000 /opt/clavin
 USER 1000
 
 
