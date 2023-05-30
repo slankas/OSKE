@@ -6,16 +6,16 @@
     <groupId>edu.ncsu.las</groupId>
     <artifactId>service.text.geocode</artifactId>
     <packaging>jar</packaging>
-    <version>20170403</version>
+    <version>20230530</version>
     <name>Geocoding - Nominatim</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	   <maven.compiler.source>1.8</maven.compiler.source>
-	   <maven.compiler.target>1.8</maven.compiler.target>
+	   <maven.compiler.source>17</maven.compiler.source>
+	   <maven.compiler.target>17</maven.compiler.target>
 	   <maven.test.skip>true</maven.test.skip>
 	    <maven.build.timestamp.format>yyyyMMdd'T'HHmm'Z'</maven.build.timestamp.format>
-	    <jersey.version>2.28</jersey.version>
+	    <jersey.version>3.1.2</jersey.version>
 	</properties>
    
     <dependencyManagement>
@@ -54,15 +54,15 @@
 		</dependency>       
        
 		<dependency>
-		    <groupId>com.mashape.unirest</groupId>
+		    <groupId>com.konghq</groupId>
 		    <artifactId>unirest-java</artifactId>
-		    <version>1.4.9</version>
+		    <version>3.14.2</version>
 		</dependency>
 
         <dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>29.0-jre</version>
+			<version>32.0.0-jre</version>
 		</dependency>
         
         
@@ -70,7 +70,7 @@
 		<dependency>
 		  <groupId>org.testng</groupId>
 		  <artifactId>testng</artifactId>
-		  <version>7.5.1</version>
+		  <version>7.8.0</version>
 		  <scope>test</scope>
 		</dependency>
     </dependencies>

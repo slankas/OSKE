@@ -6,15 +6,16 @@ import java.time.temporal.ChronoUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.google.common.util.concurrent.RateLimiter;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
+
 
 import edu.ncsu.las.geo.api.Configuration;
+import kong.unirest.HttpResponse;
+import kong.unirest.JsonNode;
+import kong.unirest.Unirest;
+import kong.unirest.json.JSONArray;
 
 
 /**
@@ -29,7 +30,7 @@ public class GeoProvider {
 	private int maxRequestsPerDay;
 	private double requestRatePerSecond;
 	private String userAgent;
-	private String parentArrayField;
+	//private String parentArrayField;
 	private String latitudeField;
 	private String longitudeField;
 	private String providerName;
@@ -56,7 +57,7 @@ public class GeoProvider {
 		providerName         = configuration.getString(Configuration.GEO_PROVIDER_NAME.getLabel());
 		restAPI              = configuration.getString(Configuration.GEO_PROVIDER_RESTAPI.getLabel());
 		userAgent            = configuration.getString(Configuration.GEO_PROVIDER_USER_AGENT.getLabel());
-		parentArrayField     = configuration.getString(Configuration.GEO_PROVIDER_PARENT_ARRAY.getLabel());
+		//parentArrayField     = configuration.getString(Configuration.GEO_PROVIDER_PARENT_ARRAY.getLabel());
 		latitudeField        = configuration.getString(Configuration.GEO_PROVIDER_LATITUDE_FIED.getLabel());
 		longitudeField       = configuration.getString(Configuration.GEO_PROVIDER_LONGITUDE_FIED.getLabel());
 		
@@ -140,7 +141,7 @@ public class GeoProvider {
 				JSONArray array = body.getArray();
 				
 				if (array.length() > 0) {
-					JSONObject record = array.getJSONObject(0);
+					kong.unirest.json.JSONObject record = array.getJSONObject(0);
 					
 					if (record.has(latitudeField) == false || record.has(longitudeField) == false) {
 						logger.log(Level.SEVERE, "Missing latitude/longitude, rest api:"+url+", result: "+array.toString());

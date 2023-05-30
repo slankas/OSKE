@@ -16,7 +16,39 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Main class.
+ * Main class
+ * Sample configuration for APPLICATION_PROPERTIES
+
+{
+    "geo_api": {
+        "service_url": "http://0.0.0.0:9001/geo/",
+        "cacheSize": 20000,
+        "maxSleepTime": 1000
+    },
+    "providers": [
+        {
+            "longitudeField": "lon",
+            "requestRate": 1,
+            "parentArray": "",
+            "name": "openStreetMap",
+            "latitudeField": "lat",
+            "userAgent": "IDENTIFYING_EMAIL_ADDRESS",
+            "maxPerDay": 86400,
+            "restEndPoint": "http://nominatim.openstreetmap.org/search?format=json&q="
+        },
+        {
+            "longitudeField": "lon",
+            "requestRate": 1,
+            "parentArray": "",
+            "name": "locationIQ",
+            "latitudeField": "lat",
+            "userAgent": "IDENTIFYING_EMAIL_ADDRESS",
+            "maxPerDay": 10000,
+            "restEndPoint": "https://locationiq.org/v1/search.php?key=LOCATIONID_KEY&format=json&q="
+        }
+    ]
+}
+
  *
  */
 public class Main {
@@ -37,7 +69,7 @@ public class Main {
 		
 		try {
 			// Load the properties file
-			String content = System.getenv(environmentVariable); //{"geo_api":{"service_url":"http://0.0.0.0:9001/geo/","cacheSize":20000,"providers":[{"name":"openStreetMap","userAgent":"YOUR_EMAIL_ADDRESS","restEndPoint":"http://nominatim.openstreetmap.org/search?format=json&q=","maxPerDay":86400,"requestRate":1,"parentArray":"","latitudeField":"lat","longitudeField":"lon"},{"name":"locationIQ","userAgent":"YOUR_EMAIL_ADDRESS","restEndPoint":"https://locationiq.org/v1/search.php?key=REGISTERED_KEY&format=json&q=","maxPerDay":10000,"requestRate":1,"parentArray":"","latitudeField":"lat","longitudeField":"lon"}]}}
+			String content = System.getenv(environmentVariable);
 			logger.log(Level.INFO, "System configuration: " +content);
 			_properties = new JSONObject(content);
 		}
