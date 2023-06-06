@@ -7,12 +7,12 @@ const LASLogger  = require('./LASLogger');
 var page;
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless:true,executablePath:'/usr/bin/google-chrome'});
   page = await browser.newPage();
 
-  const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36';
+  //const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36';
 
-  puppetTools.configurePageObject(page,userAgent);
+  //puppetTools.configurePageObject(page,userAgent);
 
 })();
 
@@ -36,7 +36,7 @@ app.post("/crawl", (req, res, next) => {
   (async () => {
     try {
       await page.goto(req.body.url);
-      await page.waitFor(req.body.waitFor)
+      await page.waitForTimeout(req.body.waitFor)
       var response =  await page.content();
 
       res.send(response);
